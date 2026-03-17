@@ -1,0 +1,140 @@
+"""Federated client entity for local training and prototype generation."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+import torch
+from torch.utils.data import DataLoader
+
+from ..models.client_model import ClientModel
+from ..prototypes.distribution_builder import PrototypeDistributionBuilder
+from ..prototypes.prototype_distribution import PrototypeDistribution
+from ..prototypes.prototype_extractor import PrototypeExtractor
+from ..training.cluster_aware_trainer import ClusterAwareTrainer
+from ..training.local_trainer import LocalTrainer
+from .messages import ClientToServerMessage, ServerToClientMessage
+
+
+@dataclass
+class Client:
+    client_id: int
+    model: ClientModel
+    train_loader: DataLoader
+    eval_loader: DataLoader
+    num_classes: int
+    device: str = "cpu"
+
+    def __post_init__(self) -> None:
+        self.model.to(self.device)
+        self.local_trainer = LocalTrainer()
+        self.cluster_trainer = ClusterAwareTrainer()
+        self._last_cluster_id: int | None = None
+        self._last_cluster_distribution: PrototypeDistribution | None = None
+
+    def train_local(self, local_epochs: int, learning_rate: float, weight_decay: float) -> dict[str, float]:
+        return self.local_trainer.train(
+            model=self.model,
+            train_loader=self.train_loader,
+            device=self.device,
+            local_epochs=local_epochs,
+            learning_rate=learning_rate,
+            weight_decay=weight_decay,
+        )
+
+    def extract_shared_representations(self) -> tuple[torch.Tensor, torch.Tensor]:
+        self.model.eval()
+        features: list[torch.Tensor] = []
+        labels: list[torch.Tensor] = []
+
+        with torch.no_grad():
+            for x_batch, y_batch in self.train_loader:
+                x_batch = x_batch.to(self.device)
+                y_batch = y_batch.to(self.device)
+
+                z = self.model.extract_features(x_batch)
+                h = self.model.project_shared(z)
+                features.append(h.detach().cpu())
+                labels.append(y_batch.detach().cpu())
+
+        if not features:
+            raise RuntimeError(f"Client {self.client_id} has no samples")
+
+        return torch.cat(features, dim=0), torch.cat(labels, dim=0)
+
+    def compute_prototype_distribution(
+        self,
+    ) -> tuple[PrototypeDistribution, dict[int, torch.Tensor], dict[int, int]]:
+        shared_features, labels = self.extract_shared_representations()
+        prototype_dict, class_counts = PrototypeExtractor.compute_class_prototypes(
+            shared_features=shared_features,
+            labels=labels,
+            num_classes=self.num_classes,
+        )
+        distribution = PrototypeDistributionBuilder.build_distribution(
+            client_id=self.client_id,
+            prototype_dict=prototype_dict,
+            class_counts=class_counts,
+            num_classes=self.num_classes,
+        )
+        return distribution, prototype_dict, class_counts
+
+    def build_upload_message(self, round_idx: int) -> ClientToServerMessage:
+        distribution, prototype_dict, class_counts = self.compute_prototype_distribution()
+        return ClientToServerMessage(
+            client_id=self.client_id,
+            round_idx=round_idx,
+            prototype_distribution=distribution,
+            prototype_dict=prototype_dict,
+            class_counts=class_counts,
+            metadata={"num_samples": int(sum(class_counts.values()))},
+        )
+
+    def apply_cluster_guidance(
+        self,
+        message: ServerToClientMessage,
+        cluster_aware_epochs: int,
+        learning_rate: float,
+        weight_decay: float,
+        lambda_cluster: float,
+    ) -> dict[str, float]:
+        self._last_cluster_id = int(message.cluster_id)
+        self._last_cluster_distribution = message.cluster_prototype_distribution
+
+        cluster_metrics = self.cluster_trainer.train(
+            model=self.model,
+            train_loader=self.train_loader,
+            device=self.device,
+            num_classes=self.num_classes,
+            cluster_distribution=message.cluster_prototype_distribution,
+            lambda_cluster=lambda_cluster,
+            cluster_aware_epochs=cluster_aware_epochs,
+            learning_rate=learning_rate,
+            weight_decay=weight_decay,
+        )
+
+        output = {
+            "cluster_id": float(self._last_cluster_id),
+            "cluster_support_size": float(message.cluster_prototype_distribution.num_support),
+        }
+        output.update(cluster_metrics)
+        return output
+
+    def evaluate_accuracy(self) -> float:
+        self.model.eval()
+        total_correct = 0
+        total_samples = 0
+
+        with torch.no_grad():
+            for x_batch, y_batch in self.eval_loader:
+                x_batch = x_batch.to(self.device)
+                y_batch = y_batch.to(self.device)
+
+                logits = self.model.forward_task(x_batch)
+                preds = logits.argmax(dim=1)
+                total_correct += int((preds == y_batch).sum().item())
+                total_samples += int(y_batch.shape[0])
+
+        if total_samples == 0:
+            return 0.0
+        return float(total_correct / total_samples)
