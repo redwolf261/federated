@@ -1,0 +1,23 @@
+{
+  "final_metrics": {
+    "mean_client_accuracy": 0.0,
+    "worst_client_accuracy": 0.0,
+    "worst_group_accuracy": 0.0
+  },
+  "communication": {
+    "client_to_server_bytes": 878108,
+    "server_to_client_bytes": 878090,
+    "total_bytes": 1756198
+  },
+  "convergence": {
+    "mean_client_accuracy": [
+      0.0
+    ],
+    "worst_client_accuracy": [
+      0.0
+    ],
+    "worst_group_accuracy": [
+      0.0
+    ]
+  }
+}

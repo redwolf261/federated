@@ -1,0 +1,112 @@
+{
+  "experiments": [
+    {
+      "experiment_id": "test_experiment_20260322_181006_132ff95f",
+      "name": "test_experiment_demo",
+      "method": "prototype",
+      "regime": "high_het",
+      "num_seeds": 3,
+      "start_timestamp": "2026-03-22T18:10:06.796957",
+      "end_timestamp": "2026-03-22T18:10:06.802482",
+      "git_commit": "343ff206f49de94b6217d9c09b927822579e927b",
+      "directory": "experiments\\test_experiment_20260322_181006_132ff95f",
+      "status": "completed"
+    },
+    {
+      "experiment_id": "test_experiment_20260322_181041_f04f1be0",
+      "name": "test_experiment_demo",
+      "method": "prototype",
+      "regime": "high_het",
+      "num_seeds": 3,
+      "start_timestamp": "2026-03-22T18:10:41.418992",
+      "end_timestamp": "2026-03-22T18:10:41.418992",
+      "git_commit": "343ff206f49de94b6217d9c09b927822579e927b",
+      "directory": "experiments\\test_experiment_20260322_181041_f04f1be0",
+      "status": "completed"
+    },
+    {
+      "experiment_id": "test_experiment_20260322_181057_f68b9b13",
+      "name": "test_experiment_demo",
+      "method": "prototype",
+      "regime": "high_het",
+      "num_seeds": 3,
+      "start_timestamp": "2026-03-22T18:10:57.292790",
+      "end_timestamp": "2026-03-22T18:10:57.299791",
+      "git_commit": "343ff206f49de94b6217d9c09b927822579e927b",
+      "directory": "experiments\\test_experiment_20260322_181057_f68b9b13",
+      "status": "completed"
+    },
+    {
+      "experiment_id": "fedavg_high_het_10seed_20260322_181200_41e4131c",
+      "name": "fedavg_high_het_10seed",
+      "method": "fedavg",
+      "regime": "high_het",
+      "num_seeds": 1,
+      "start_timestamp": "2026-03-22T18:12:00.542335",
+      "end_timestamp": "2026-03-22T18:17:30.272015",
+      "git_commit": "343ff206f49de94b6217d9c09b927822579e927b",
+      "directory": "experiments\\fedavg_high_het_10seed_20260322_181200_41e4131c",
+      "status": "completed"
+    },
+    {
+      "experiment_id": "prototype_high_het_10seed_20260322_181730_dee26092",
+      "name": "prototype_high_het_10seed",
+      "method": "prototype",
+      "regime": "high_het",
+      "num_seeds": 1,
+      "start_timestamp": "2026-03-22T18:17:30.322882",
+      "end_timestamp": "2026-03-22T18:17:44.093377",
+      "git_commit": "343ff206f49de94b6217d9c09b927822579e927b",
+      "directory": "experiments\\prototype_high_het_10seed_20260322_181730_dee26092",
+      "status": "completed"
+    },
+    {
+      "experiment_id": "fedavg_high_het_10seed_20260322_182527_2995475b",
+      "name": "fedavg_high_het_10seed",
+      "method": "fedavg",
+      "regime": "high_het",
+      "num_seeds": 1,
+      "start_timestamp": "2026-03-22T18:25:27.569285",
+      "end_timestamp": "2026-03-22T18:30:51.693483",
+      "git_commit": "343ff206f49de94b6217d9c09b927822579e927b",
+      "directory": "experiments\\fedavg_high_het_10seed_20260322_182527_2995475b",
+      "status": "completed"
+    },
+    {
+      "experiment_id": "fedavg_high_het_10seed_20260322_183707_5938ced4",
+      "name": "fedavg_high_het_10seed",
+      "method": "fedavg",
+      "regime": "high_het",
+      "num_seeds": 10,
+      "start_timestamp": "2026-03-22T18:37:07.734858",
+      "end_timestamp": "2026-03-22T18:58:16.851845",
+      "git_commit": "343ff206f49de94b6217d9c09b927822579e927b",
+      "directory": "experiments\\fedavg_high_het_10seed_20260322_183707_5938ced4",
+      "status": "completed"
+    },
+    {
+      "experiment_id": "fedavg_high_het_10seed_20260322_200414_2384d581",
+      "name": "fedavg_high_het_10seed",
+      "method": "fedavg",
+      "regime": "high_het",
+      "num_seeds": 10,
+      "start_timestamp": "2026-03-22T20:04:14.565380",
+      "end_timestamp": "2026-03-22T20:07:53.660807",
+      "git_commit": "343ff206f49de94b6217d9c09b927822579e927b",
+      "directory": "experiments\\fedavg_high_het_10seed_20260322_200414_2384d581",
+      "status": "completed"
+    },
+    {
+      "experiment_id": "fedavg_high_het_10seed_20260322_200801_1ba6f569",
+      "name": "fedavg_high_het_10seed",
+      "method": "fedavg",
+      "regime": "high_het",
+      "num_seeds": 10,
+      "start_timestamp": "2026-03-22T20:08:01.300710",
+      "end_timestamp": "2026-03-22T20:12:47.106024",
+      "git_commit": "343ff206f49de94b6217d9c09b927822579e927b",
+      "directory": "experiments\\fedavg_high_het_10seed_20260322_200801_1ba6f569",
+      "status": "completed"
+    }
+  ]
+}

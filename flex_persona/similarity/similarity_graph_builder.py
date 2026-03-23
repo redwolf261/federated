@@ -15,7 +15,15 @@ class SimilarityGraphBuilder:
         if distance_matrix.ndim != 2 or distance_matrix.shape[0] != distance_matrix.shape[1]:
             raise ValueError("distance_matrix must be square")
 
+        # Guard against occasional non-finite OT distances produced by unstable rounds.
+        distance_matrix = torch.nan_to_num(
+            distance_matrix,
+            nan=0.0,
+            posinf=1e6,
+            neginf=0.0,
+        )
         similarity = torch.exp(-(distance_matrix / (sigma**2)))
+        similarity = torch.nan_to_num(similarity, nan=0.0, posinf=1.0, neginf=0.0)
         similarity.fill_diagonal_(1.0)
         return similarity
 

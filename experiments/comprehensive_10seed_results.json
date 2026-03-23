@@ -1,0 +1,4510 @@
+{
+  "fedavg_high_het": {
+    "method": "fedavg",
+    "regime": "high_het",
+    "num_seeds": 10,
+    "mean_accuracy_avg": 0.14783333333333334,
+    "mean_accuracy_std": 0.08034178572333155,
+    "worst_accuracy_avg": 0.1568627450980392,
+    "worst_accuracy_std": 0.16508929333745215,
+    "p10_accuracy_avg": 0.1568627450980392,
+    "p10_accuracy_std": 0.16508929333745215,
+    "bottom3_accuracy_avg": 0.19281045751633985,
+    "bottom3_accuracy_std": 0.16729557960657582,
+    "collapse_rate": 0.3,
+    "collapse_count": 3,
+    "seeds": [
+      {
+        "seed": 11,
+        "method": "fedavg",
+        "regime": "high_het",
+        "mean_accuracy": 0.13892156862745098,
+        "worst_accuracy": 0.23529411764705882,
+        "p10_accuracy": 0.23529411764705882,
+        "bottom3_accuracy": 0.2352941176470588,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.1
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.10784313725490195
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.11176470588235295
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.1196078431372549
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.14509803921568626
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.16666666666666669
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.20784313725490197
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.2372549019607843
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.2568627450980392
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.2901960784313725
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.31176470588235294
+          }
+        ]
+      },
+      {
+        "seed": 22,
+        "method": "fedavg",
+        "regime": "high_het",
+        "mean_accuracy": 0.07686274509803923,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.026143790849673203,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.045098039215686274
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.045098039215686274
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.0803921568627451
+          }
+        ]
+      },
+      {
+        "seed": 33,
+        "method": "fedavg",
+        "regime": "high_het",
+        "mean_accuracy": 0.09794117647058824,
+        "worst_accuracy": 0.0392156862745098,
+        "p10_accuracy": 0.0392156862745098,
+        "bottom3_accuracy": 0.09803921568627451,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.07058823529411765
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.10980392156862746
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.11176470588235295
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.12549019607843137
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.13137254901960785
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.13725490196078433
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.15098039215686274
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.1568627450980392
+          }
+        ]
+      },
+      {
+        "seed": 42,
+        "method": "fedavg",
+        "regime": "high_het",
+        "mean_accuracy": 0.07862745098039217,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.026143790849673203,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.045098039215686274
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.0803921568627451
+          }
+        ]
+      },
+      {
+        "seed": 55,
+        "method": "fedavg",
+        "regime": "high_het",
+        "mean_accuracy": 0.2187254901960784,
+        "worst_accuracy": 0.19607843137254902,
+        "p10_accuracy": 0.19607843137254902,
+        "bottom3_accuracy": 0.26143790849673204,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.07058823529411765
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.045098039215686274
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.1196078431372549
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.12745098039215685
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.13529411764705884
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.16666666666666669
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.20588235294117646
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.2235294117647059
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.24705882352941178
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2529411764705882
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.2803921568627451
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.28627450980392155
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.3196078431372549
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.3137254901960784
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.3411764705882353
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.3529411764705882
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.3568627450980392
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.3686274509803922
+          }
+        ]
+      },
+      {
+        "seed": 66,
+        "method": "fedavg",
+        "regime": "high_het",
+        "mean_accuracy": 0.31941176470588234,
+        "worst_accuracy": 0.47058823529411764,
+        "p10_accuracy": 0.47058823529411764,
+        "bottom3_accuracy": 0.5098039215686274,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.045098039215686274
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.08823529411764705
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.12941176470588237
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.18823529411764706
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.2607843137254902
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.30980392156862746
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.34509803921568627
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.39803921568627454
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.42745098039215684
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.4568627450980392
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.5137254901960784
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.5392156862745098
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.5627450980392157
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.5745098039215686
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.6039215686274509
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.6235294117647059
+          }
+        ]
+      },
+      {
+        "seed": 77,
+        "method": "fedavg",
+        "regime": "high_het",
+        "mean_accuracy": 0.20647058823529413,
+        "worst_accuracy": 0.29411764705882354,
+        "p10_accuracy": 0.29411764705882354,
+        "bottom3_accuracy": 0.3333333333333333,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.045098039215686274
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.041176470588235294
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.12549019607843137
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.13529411764705884
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.1411764705882353
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.14705882352941177
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.15294117647058825
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.16666666666666669
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.19215686274509805
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.23529411764705882
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.27647058823529413
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.31960784313725493
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.3392156862745098
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.3686274509803921
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.3862745098039216
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.39607843137254906
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.4196078431372549
+          }
+        ]
+      },
+      {
+        "seed": 88,
+        "method": "fedavg",
+        "regime": "high_het",
+        "mean_accuracy": 0.09627450980392158,
+        "worst_accuracy": 0.0392156862745098,
+        "p10_accuracy": 0.0392156862745098,
+        "bottom3_accuracy": 0.0784313725490196,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.07058823529411765
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.09215686274509803
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.10588235294117647
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.10980392156862746
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.11176470588235295
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.11372549019607843
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.1215686274509804
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.1215686274509804
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.13529411764705884
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.1392156862745098
+          }
+        ]
+      },
+      {
+        "seed": 99,
+        "method": "fedavg",
+        "regime": "high_het",
+        "mean_accuracy": 0.16647058823529412,
+        "worst_accuracy": 0.29411764705882354,
+        "p10_accuracy": 0.29411764705882354,
+        "bottom3_accuracy": 0.3333333333333333,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.045098039215686274
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.045098039215686274
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.08431372549019608
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.11372549019607843
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.08431372549019608
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.08823529411764705
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.10196078431372549
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.15490196078431373
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.1843137254901961
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.19607843137254904
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.2235294117647059
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.23137254901960783
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.3
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.3431372549019608
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.3843137254901961
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.42745098039215684
+          }
+        ]
+      },
+      {
+        "seed": 100,
+        "method": "fedavg",
+        "regime": "high_het",
+        "mean_accuracy": 0.07862745098039217,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.026143790849673203,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.045098039215686274
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.0803921568627451
+          }
+        ]
+      }
+    ]
+  },
+  "prototype_high_het": {
+    "method": "prototype",
+    "regime": "high_het",
+    "num_seeds": 10,
+    "mean_accuracy_avg": 0.2045686274509804,
+    "mean_accuracy_std": 0.009747353140529347,
+    "worst_accuracy_avg": 0.0,
+    "worst_accuracy_std": 0.0,
+    "p10_accuracy_avg": 0.0,
+    "p10_accuracy_std": 0.0,
+    "bottom3_accuracy_avg": 0.02875816993464052,
+    "bottom3_accuracy_std": 0.016931903466427402,
+    "collapse_rate": 0.0,
+    "collapse_count": 0,
+    "seeds": [
+      {
+        "seed": 11,
+        "method": "prototype",
+        "regime": "high_het",
+        "mean_accuracy": 0.20205882352941176,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.0588235294117647,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.07450980392156863
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.07450980392156863
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.1
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.08627450980392157
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.09411764705882353
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.15294117647058822
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.2058823529411765
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.1627450980392157
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.18235294117647058
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.18823529411764706
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.24901960784313726
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.20980392156862746
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.27254901960784317
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.32745098039215687
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.27058823529411763
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.28627450980392155
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.2176470588235294
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.3411764705882353
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.2450980392156863
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.3
+          }
+        ]
+      },
+      {
+        "seed": 22,
+        "method": "prototype",
+        "regime": "high_het",
+        "mean_accuracy": 0.21411764705882352,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.0196078431372549,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.056862745098039215
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.08235294117647059
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.09803921568627452
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.11176470588235295
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.13725490196078433
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.13137254901960785
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.14509803921568626
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.15294117647058822
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.2607843137254902
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.23137254901960783
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.2784313725490196
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2980392156862745
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.2431372549019608
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.3
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.28431372549019607
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.31176470588235294
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.292156862745098
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.2980392156862745
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.27647058823529413
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.292156862745098
+          }
+        ]
+      },
+      {
+        "seed": 33,
+        "method": "prototype",
+        "regime": "high_het",
+        "mean_accuracy": 0.20127450980392156,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.0196078431372549,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.0784313725490196
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0803921568627451
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.09411764705882353
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.08823529411764705
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.13725490196078433
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.13137254901960785
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.16862745098039217
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.14509803921568626
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.19803921568627453
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.19411764705882353
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.2607843137254902
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.23137254901960785
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.30980392156862746
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.22549019607843138
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.27254901960784317
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.24705882352941178
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.3156862745098039
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.2705882352941177
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.29411764705882354
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.2823529411764706
+          }
+        ]
+      },
+      {
+        "seed": 42,
+        "method": "prototype",
+        "regime": "high_het",
+        "mean_accuracy": 0.21019607843137256,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.032679738562091505,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.07058823529411765
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.08235294117647059
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.09019607843137255
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.09803921568627451
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.1568627450980392
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.13529411764705884
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.1764705882352941
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.15098039215686274
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.2156862745098039
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.20980392156862746
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.2901960784313725
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.3
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.2431372549019608
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.18823529411764706
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.25882352941176473
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.30392156862745096
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.37058823529411766
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.3137254901960784
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.26862745098039215
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.2803921568627451
+          }
+        ]
+      },
+      {
+        "seed": 55,
+        "method": "prototype",
+        "regime": "high_het",
+        "mean_accuracy": 0.20215686274509803,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.026143790849673203,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.09607843137254903
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.06470588235294118
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0784313725490196
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.11176470588235295
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.1784313725490196
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.12549019607843137
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.15490196078431373
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.2019607843137255
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.16666666666666666
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.19803921568627453
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.2156862745098039
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2235294117647059
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.25686274509803925
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.26862745098039215
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.30980392156862746
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.27647058823529413
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.2647058823529412
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.2941176470588235
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.292156862745098
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.2647058823529412
+          }
+        ]
+      },
+      {
+        "seed": 66,
+        "method": "prototype",
+        "regime": "high_het",
+        "mean_accuracy": 0.20323529411764704,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.0196078431372549,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.07254901960784313
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.07254901960784313
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.08431372549019608
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.06862745098039216
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.12941176470588237
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.08627450980392157
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.2019607843137255
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.15490196078431373
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.22941176470588234
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.23333333333333334
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.2529411764705882
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2156862745098039
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.21960784313725493
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.2529411764705882
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.27254901960784317
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.2823529411764706
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.31176470588235294
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.3235294117647059
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.292156862745098
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.307843137254902
+          }
+        ]
+      },
+      {
+        "seed": 77,
+        "method": "prototype",
+        "regime": "high_het",
+        "mean_accuracy": 0.20098039215686275,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.013071895424836602,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.06470588235294118
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.08431372549019608
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0784313725490196
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.1568627450980392
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.14705882352941177
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.18627450980392157
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.20392156862745098
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.1568627450980392
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.20392156862745098
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.2686274509803922
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.23529411764705882
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2647058823529412
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.2705882352941177
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.2803921568627451
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.25882352941176473
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.28431372549019607
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.2529411764705882
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.2647058823529412
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.20588235294117646
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.15098039215686274
+          }
+        ]
+      },
+      {
+        "seed": 88,
+        "method": "prototype",
+        "regime": "high_het",
+        "mean_accuracy": 0.20598039215686276,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.013071895424836602,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.06470588235294118
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.1
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.09215686274509803
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.15098039215686274
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.10980392156862746
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.1764705882352941
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.21372549019607842
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.25882352941176473
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.17254901960784313
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.19215686274509805
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.24705882352941178
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2529411764705882
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.25098039215686274
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.2705882352941177
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.2431372549019608
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.25098039215686274
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.2431372549019608
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.2803921568627451
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.27647058823529413
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.27254901960784317
+          }
+        ]
+      },
+      {
+        "seed": 99,
+        "method": "prototype",
+        "regime": "high_het",
+        "mean_accuracy": 0.1843137254901961,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.0588235294117647,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.06666666666666667
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.06274509803921569
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.07058823529411765
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.13137254901960785
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.13333333333333333
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.13725490196078433
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.14705882352941177
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.1549019607843137
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.1627450980392157
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.19803921568627453
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.19607843137254904
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2372549019607843
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.27254901960784317
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.2156862745098039
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.2568627450980392
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.24313725490196075
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.22745098039215686
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.24705882352941178
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.23137254901960785
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.29411764705882354
+          }
+        ]
+      },
+      {
+        "seed": 100,
+        "method": "prototype",
+        "regime": "high_het",
+        "mean_accuracy": 0.22137254901960784,
+        "worst_accuracy": 0.0,
+        "p10_accuracy": 0.0,
+        "bottom3_accuracy": 0.026143790849673203,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.0784313725490196
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.08431372549019608
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.11372549019607843
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.09215686274509804
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.1627450980392157
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.2215686274509804
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.17843137254901958
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.21372549019607842
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.19607843137254902
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.2372549019607843
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.24313725490196075
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2705882352941177
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.296078431372549
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.2823529411764706
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.3509803921568627
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.2666666666666667
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.2941176470588235
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.25882352941176473
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.2901960784313725
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.296078431372549
+          }
+        ]
+      }
+    ]
+  },
+  "fedavg_low_het": {
+    "method": "fedavg",
+    "regime": "low_het",
+    "num_seeds": 10,
+    "mean_accuracy_avg": 0.205995,
+    "mean_accuracy_std": 0.06748453048616603,
+    "worst_accuracy_avg": 0.318,
+    "worst_accuracy_std": 0.09922477289243627,
+    "p10_accuracy_avg": 0.318,
+    "p10_accuracy_std": 0.09922477289243627,
+    "bottom3_accuracy_avg": 0.36566666666666664,
+    "bottom3_accuracy_std": 0.111958435850206,
+    "collapse_rate": 0.0,
+    "collapse_count": 0,
+    "seeds": [
+      {
+        "seed": 11,
+        "method": "fedavg",
+        "regime": "low_het",
+        "mean_accuracy": 0.17003333333333334,
+        "worst_accuracy": 0.305,
+        "p10_accuracy": 0.305,
+        "bottom3_accuracy": 0.3433333333333333,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.0595
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.081
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.08299999999999999
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.0865
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.093
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.1005
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.10149999999999999
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.10900000000000001
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.1065
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.1125
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.1095
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.12250000000000001
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.118
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.137
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.15
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.1645
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.1845
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.2045
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.22749999999999998
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.256
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.272
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.2935
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.3085
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.323
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.34700000000000003
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.377
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.39649999999999996
+          }
+        ]
+      },
+      {
+        "seed": 22,
+        "method": "fedavg",
+        "regime": "low_het",
+        "mean_accuracy": 0.24148333333333336,
+        "worst_accuracy": 0.39,
+        "p10_accuracy": 0.39,
+        "bottom3_accuracy": 0.46166666666666667,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0595
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.057999999999999996
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.1085
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.118
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.1265
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.139
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.15350000000000003
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.1635
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.172
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.202
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.259
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.28450000000000003
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.288
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.3355
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.355
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.362
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.376
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.39849999999999997
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.4225
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.4525
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.475
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.5105
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.5265
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.5475000000000001
+          }
+        ]
+      },
+      {
+        "seed": 33,
+        "method": "fedavg",
+        "regime": "low_het",
+        "mean_accuracy": 0.20036666666666667,
+        "worst_accuracy": 0.295,
+        "p10_accuracy": 0.295,
+        "bottom3_accuracy": 0.34833333333333333,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.0685
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.098
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.1
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.10149999999999999
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.1115
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.119
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.12150000000000001
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.1325
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.1365
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.145
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.16
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.188
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.2045
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.205
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.2665
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.2705
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.3035
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.3285
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.3275
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.359
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.356
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.3915
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.395
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.4095
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.4185
+          }
+        ]
+      },
+      {
+        "seed": 42,
+        "method": "fedavg",
+        "regime": "low_het",
+        "mean_accuracy": 0.12198333333333333,
+        "worst_accuracy": 0.165,
+        "p10_accuracy": 0.165,
+        "bottom3_accuracy": 0.18833333333333332,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0595
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.088
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.08349999999999999
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.0925
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.096
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.10400000000000001
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.1155
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.11499999999999999
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.1125
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.121
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.121
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.12150000000000001
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.1295
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.128
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.137
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.14150000000000001
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.1575
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.16599999999999998
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.17550000000000002
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.19649999999999998
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.1995
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.202
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.21400000000000002
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.22999999999999998
+          }
+        ]
+      },
+      {
+        "seed": 55,
+        "method": "fedavg",
+        "regime": "low_het",
+        "mean_accuracy": 0.19575,
+        "worst_accuracy": 0.305,
+        "p10_accuracy": 0.305,
+        "bottom3_accuracy": 0.355,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.0305
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0465
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.094
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0965
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.0865
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.10500000000000001
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.10500000000000001
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.11000000000000001
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.1135
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.12150000000000001
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.12150000000000001
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.125
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.135
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.13799999999999998
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.14650000000000002
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.156
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.162
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.1875
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.2165
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.254
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.28500000000000003
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.296
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.3245
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.35350000000000004
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.365
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.3935
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.39699999999999996
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.41550000000000004
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.433
+          }
+        ]
+      },
+      {
+        "seed": 66,
+        "method": "fedavg",
+        "regime": "low_het",
+        "mean_accuracy": 0.3388333333333333,
+        "worst_accuracy": 0.5,
+        "p10_accuracy": 0.5,
+        "bottom3_accuracy": 0.555,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.0595
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.081
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.081
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.1115
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.11300000000000002
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.121
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.125
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.1575
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.178
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.2015
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2385
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.2575
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.296
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.34249999999999997
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.3605
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.3665
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.42699999999999994
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.4255
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.4575
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.49749999999999994
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.508
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.521
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.5375
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.5780000000000001
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.579
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.5974999999999999
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.623
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.627
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.6375
+          }
+        ]
+      },
+      {
+        "seed": 77,
+        "method": "fedavg",
+        "regime": "low_het",
+        "mean_accuracy": 0.2966166666666667,
+        "worst_accuracy": 0.44,
+        "p10_accuracy": 0.44,
+        "bottom3_accuracy": 0.5116666666666666,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.0875
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0935
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.10500000000000001
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.11750000000000001
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.13999999999999999
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.1605
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.1805
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.21150000000000002
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2125
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.23900000000000002
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.256
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.2895
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.288
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.335
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.329
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.354
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.35550000000000004
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.397
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.414
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.43499999999999994
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.476
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.496
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.5085
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.5255
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.549
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.5735
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.5940000000000001
+          }
+        ]
+      },
+      {
+        "seed": 88,
+        "method": "fedavg",
+        "regime": "low_het",
+        "mean_accuracy": 0.17980000000000002,
+        "worst_accuracy": 0.285,
+        "p10_accuracy": 0.285,
+        "bottom3_accuracy": 0.31,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0595
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.07050000000000001
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.0995
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.10500000000000001
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.101
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.1075
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.10600000000000001
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.1105
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.1315
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.141
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.1525
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.1575
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.161
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.189
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.1955
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.20600000000000002
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.229
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.236
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.258
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.277
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.3035
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.323
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.3355
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.3415
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.372
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.391
+          }
+        ]
+      },
+      {
+        "seed": 99,
+        "method": "fedavg",
+        "regime": "low_het",
+        "mean_accuracy": 0.15718333333333334,
+        "worst_accuracy": 0.255,
+        "p10_accuracy": 0.255,
+        "bottom3_accuracy": 0.28833333333333333,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.0915
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.0985
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.10400000000000001
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.1045
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.1055
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.1075
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.11699999999999999
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.11750000000000001
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.151
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.136
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.17099999999999999
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.19
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.24300000000000002
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.236
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.269
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.2785
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.2985
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.31
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.34950000000000003
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.34199999999999997
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.3675
+          }
+        ]
+      },
+      {
+        "seed": 100,
+        "method": "fedavg",
+        "regime": "low_het",
+        "mean_accuracy": 0.1579,
+        "worst_accuracy": 0.24,
+        "p10_accuracy": 0.24,
+        "bottom3_accuracy": 0.295,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.05900000000000001
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.058499999999999996
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.093
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.0915
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.1
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.11100000000000002
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.11100000000000002
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.1105
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.121
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.1275
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.127
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.1345
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.1305
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.135
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.1385
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.155
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.152
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.176
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.19649999999999998
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.22800000000000004
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.2645
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.2925
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.324
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.32999999999999996
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.37
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.365
+          }
+        ]
+      }
+    ]
+  },
+  "prototype_low_het": {
+    "method": "prototype",
+    "regime": "low_het",
+    "num_seeds": 10,
+    "mean_accuracy_avg": 0.29059833333333335,
+    "mean_accuracy_std": 0.03215723566408587,
+    "worst_accuracy_avg": 0.049,
+    "worst_accuracy_std": 0.020520991962161846,
+    "p10_accuracy_avg": 0.049,
+    "p10_accuracy_std": 0.020520991962161846,
+    "bottom3_accuracy_avg": 0.08116666666666666,
+    "bottom3_accuracy_std": 0.027588801628715985,
+    "collapse_rate": 0.0,
+    "collapse_count": 0,
+    "seeds": [
+      {
+        "seed": 11,
+        "method": "prototype",
+        "regime": "low_het",
+        "mean_accuracy": 0.2605166666666667,
+        "worst_accuracy": 0.01,
+        "p10_accuracy": 0.01,
+        "bottom3_accuracy": 0.045000000000000005,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.079
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.10350000000000001
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.122
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.1695
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.181
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.1705
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.22949999999999998
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.188
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.24100000000000002
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.2475
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.28700000000000003
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2705
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.23900000000000002
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.273
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.27399999999999997
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.271
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.2905
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.284
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.28500000000000003
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.2835
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.27149999999999996
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.304
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.298
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.316
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.3795
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.3645
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.372
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.36150000000000004
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.315
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.3445
+          }
+        ]
+      },
+      {
+        "seed": 22,
+        "method": "prototype",
+        "regime": "low_het",
+        "mean_accuracy": 0.3472666666666667,
+        "worst_accuracy": 0.04,
+        "p10_accuracy": 0.04,
+        "bottom3_accuracy": 0.06333333333333334,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.0785
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.10500000000000001
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.1405
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.1805
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.166
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.2625
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.2585
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.3185
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.2785
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.341
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.3885
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.341
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.374
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.36
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.3435
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.3815
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.397
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.4505
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.40800000000000003
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.39
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.4755
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.42800000000000005
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.45549999999999996
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.44000000000000006
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.454
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.4655
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.421
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.47050000000000003
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.446
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.39849999999999997
+          }
+        ]
+      },
+      {
+        "seed": 33,
+        "method": "prototype",
+        "regime": "low_het",
+        "mean_accuracy": 0.27730000000000005,
+        "worst_accuracy": 0.07,
+        "p10_accuracy": 0.07,
+        "bottom3_accuracy": 0.10833333333333334,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.07
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.10200000000000001
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.08549999999999999
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.1365
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.1015
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.14450000000000002
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.1975
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.22200000000000003
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.2395
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.22199999999999998
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.262
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.23850000000000002
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.20600000000000002
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.253
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.2875
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.313
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.33049999999999996
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.371
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.347
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.3305
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.3895
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.3915
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.425
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.3485
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.3375
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.4
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.3855
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.3725
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.382
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.42699999999999994
+          }
+        ]
+      },
+      {
+        "seed": 42,
+        "method": "prototype",
+        "regime": "low_het",
+        "mean_accuracy": 0.25351666666666667,
+        "worst_accuracy": 0.035,
+        "p10_accuracy": 0.035,
+        "bottom3_accuracy": 0.05333333333333334,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.092
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.091
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.129
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.14450000000000002
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.1655
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.14550000000000002
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.152
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.1795
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.172
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.1975
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.2535
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.27749999999999997
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.2925
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.281
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.27149999999999996
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.192
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.252
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.275
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.356
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.3615
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.306
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.3055
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.29300000000000004
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.325
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.35550000000000004
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.3135
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.34249999999999997
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.34199999999999997
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.3465
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.395
+          }
+        ]
+      },
+      {
+        "seed": 55,
+        "method": "prototype",
+        "regime": "low_het",
+        "mean_accuracy": 0.2733333333333334,
+        "worst_accuracy": 0.07,
+        "p10_accuracy": 0.07,
+        "bottom3_accuracy": 0.11333333333333333,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.0655
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.0995
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.1035
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.11099999999999999
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.0995
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.1385
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.11400000000000002
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.151
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.1825
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.2385
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.3045
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.2625
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.321
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.292
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.318
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.3165
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.29500000000000004
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.3265
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.35150000000000003
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.3415
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.355
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.3725
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.3875
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.358
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.303
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.3935
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.3825
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.40650000000000003
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.385
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.42400000000000004
+          }
+        ]
+      },
+      {
+        "seed": 66,
+        "method": "prototype",
+        "regime": "low_het",
+        "mean_accuracy": 0.30360000000000004,
+        "worst_accuracy": 0.04,
+        "p10_accuracy": 0.04,
+        "bottom3_accuracy": 0.10333333333333333,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.079
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.11000000000000001
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.131
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.157
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.10400000000000001
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.21200000000000002
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.20800000000000002
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.21000000000000002
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.22549999999999998
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.2605
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.2585
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.255
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.34900000000000003
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.2705
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.3065
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.364
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.3175
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.376
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.37
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.343
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.377
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.41850000000000004
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.40449999999999997
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.4385
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.4585
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.413
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.386
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.4335
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.44800000000000006
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.42349999999999993
+          }
+        ]
+      },
+      {
+        "seed": 77,
+        "method": "prototype",
+        "regime": "low_het",
+        "mean_accuracy": 0.32748333333333335,
+        "worst_accuracy": 0.035,
+        "p10_accuracy": 0.035,
+        "bottom3_accuracy": 0.055,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.05600000000000001
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.11750000000000001
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.185
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.14350000000000002
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.175
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.2415
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.221
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.22349999999999998
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.27149999999999996
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.2895
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.3105
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.35700000000000004
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.3255
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.361
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.3365
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.378
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.383
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.374
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.457
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.39
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.41050000000000003
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.3665
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.396
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.40099999999999997
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.461
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.429
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.45499999999999996
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.413
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.446
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.45
+          }
+        ]
+      },
+      {
+        "seed": 88,
+        "method": "prototype",
+        "regime": "low_het",
+        "mean_accuracy": 0.32203333333333334,
+        "worst_accuracy": 0.075,
+        "p10_accuracy": 0.075,
+        "bottom3_accuracy": 0.11666666666666665,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.07050000000000001
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.11750000000000001
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.1255
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.156
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.1375
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.15650000000000003
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.248
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.189
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.2895
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.3015
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.29100000000000004
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.31
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.3195
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.39649999999999996
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.39449999999999996
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.3605
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.4245
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.417
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.3675
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.3565
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.396
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.3885
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.422
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.4845
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.39649999999999996
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.46699999999999997
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.4305
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.3695
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.4295
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.44800000000000006
+          }
+        ]
+      },
+      {
+        "seed": 99,
+        "method": "prototype",
+        "regime": "low_het",
+        "mean_accuracy": 0.26798333333333335,
+        "worst_accuracy": 0.055,
+        "p10_accuracy": 0.055,
+        "bottom3_accuracy": 0.06666666666666667,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.05750000000000001
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.1085
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.093
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.1345
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.20750000000000002
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.1585
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.1665
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.1925
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.1675
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.2415
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.1995
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.23399999999999999
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.298
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.3155
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.3025
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.34199999999999997
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.2785
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.33649999999999997
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.28250000000000003
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.322
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.369
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.348
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.2875
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.3685
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.3145
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.37350000000000005
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.4145
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.3875
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.389
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.34900000000000003
+          }
+        ]
+      },
+      {
+        "seed": 100,
+        "method": "prototype",
+        "regime": "low_het",
+        "mean_accuracy": 0.27294999999999997,
+        "worst_accuracy": 0.06,
+        "p10_accuracy": 0.06,
+        "bottom3_accuracy": 0.08666666666666667,
+        "rounds_data": [
+          {
+            "round": 0,
+            "mean_client_accuracy": 0.072
+          },
+          {
+            "round": 1,
+            "mean_client_accuracy": 0.084
+          },
+          {
+            "round": 2,
+            "mean_client_accuracy": 0.10900000000000001
+          },
+          {
+            "round": 3,
+            "mean_client_accuracy": 0.124
+          },
+          {
+            "round": 4,
+            "mean_client_accuracy": 0.14650000000000002
+          },
+          {
+            "round": 5,
+            "mean_client_accuracy": 0.13799999999999998
+          },
+          {
+            "round": 6,
+            "mean_client_accuracy": 0.1275
+          },
+          {
+            "round": 7,
+            "mean_client_accuracy": 0.24700000000000003
+          },
+          {
+            "round": 8,
+            "mean_client_accuracy": 0.2145
+          },
+          {
+            "round": 9,
+            "mean_client_accuracy": 0.24900000000000003
+          },
+          {
+            "round": 10,
+            "mean_client_accuracy": 0.28900000000000003
+          },
+          {
+            "round": 11,
+            "mean_client_accuracy": 0.291
+          },
+          {
+            "round": 12,
+            "mean_client_accuracy": 0.2785
+          },
+          {
+            "round": 13,
+            "mean_client_accuracy": 0.2705
+          },
+          {
+            "round": 14,
+            "mean_client_accuracy": 0.3085
+          },
+          {
+            "round": 15,
+            "mean_client_accuracy": 0.29300000000000004
+          },
+          {
+            "round": 16,
+            "mean_client_accuracy": 0.284
+          },
+          {
+            "round": 17,
+            "mean_client_accuracy": 0.3035
+          },
+          {
+            "round": 18,
+            "mean_client_accuracy": 0.414
+          },
+          {
+            "round": 19,
+            "mean_client_accuracy": 0.364
+          },
+          {
+            "round": 20,
+            "mean_client_accuracy": 0.311
+          },
+          {
+            "round": 21,
+            "mean_client_accuracy": 0.34249999999999997
+          },
+          {
+            "round": 22,
+            "mean_client_accuracy": 0.4165
+          },
+          {
+            "round": 23,
+            "mean_client_accuracy": 0.34199999999999997
+          },
+          {
+            "round": 24,
+            "mean_client_accuracy": 0.369
+          },
+          {
+            "round": 25,
+            "mean_client_accuracy": 0.3145
+          },
+          {
+            "round": 26,
+            "mean_client_accuracy": 0.359
+          },
+          {
+            "round": 27,
+            "mean_client_accuracy": 0.346
+          },
+          {
+            "round": 28,
+            "mean_client_accuracy": 0.41950000000000004
+          },
+          {
+            "round": 29,
+            "mean_client_accuracy": 0.361
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -17,10 +17,20 @@ class TrainingConfig:
     weight_decay: float = 0.0
     lambda_cluster: float = 0.1
     max_samples_per_client: int | None = None
+    aggregation_mode: str = "prototype"
+    fedprox_mu: float = 0.0
+    early_stopping_enabled: bool = False
+    early_stopping_patience: int = 5
+    early_stopping_min_delta: float = 0.0
+    max_unlimited_rounds: int = 10000
+
+    # Ablation study toggles
+    use_clustering: bool = True
+    use_guidance: bool = True
 
     def validate(self) -> None:
-        if self.rounds <= 0:
-            raise ValueError("rounds must be positive")
+        if self.rounds == 0 or self.rounds < -1:
+            raise ValueError("rounds must be positive, or -1 for unlimited")
         if self.local_epochs <= 0:
             raise ValueError("local_epochs must be positive")
         if self.cluster_aware_epochs <= 0:
@@ -33,3 +43,15 @@ class TrainingConfig:
             raise ValueError("lambda_cluster must be non-negative")
         if self.max_samples_per_client is not None and self.max_samples_per_client <= 0:
             raise ValueError("max_samples_per_client must be positive when set")
+        if self.aggregation_mode not in {"prototype", "fedavg", "fedprox"}:
+            raise ValueError("aggregation_mode must be one of: 'prototype', 'fedavg', 'fedprox'")
+        if self.fedprox_mu < 0.0:
+            raise ValueError("fedprox_mu must be non-negative")
+        if self.early_stopping_patience < 0:
+            raise ValueError("early_stopping_patience must be non-negative")
+        if self.early_stopping_min_delta < 0.0:
+            raise ValueError("early_stopping_min_delta must be non-negative")
+        if self.max_unlimited_rounds <= 0:
+            raise ValueError("max_unlimited_rounds must be positive")
+        if self.rounds == -1 and not self.early_stopping_enabled:
+            raise ValueError("unlimited rounds (-1) requires early_stopping_enabled=True")

@@ -1,0 +1,55 @@
+{
+  "final_metrics": {
+    "mean_client_accuracy": 0.05600000000000001,
+    "worst_client_accuracy": 0.0,
+    "p10_client_accuracy": 0.0,
+    "bottom3_client_accuracy": 0.02666666666666667,
+    "worst_group_accuracy": 0.05600000000000001
+  },
+  "communication": {
+    "client_to_server_bytes": 6585810,
+    "server_to_client_bytes": 6585675,
+    "total_bytes": 13171485
+  },
+  "convergence": {
+    "mean_client_accuracy": [
+      0.05600000000000001,
+      0.05600000000000001,
+      0.05600000000000001
+    ],
+    "worst_client_accuracy": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "p10_client_accuracy": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bottom3_client_accuracy": [
+      0.02666666666666667,
+      0.02666666666666667,
+      0.02666666666666667
+    ],
+    "worst_group_accuracy": [
+      0.05600000000000001,
+      0.05600000000000001,
+      0.05600000000000001
+    ]
+  },
+  "run_summary": {
+    "rounds_configured": 3,
+    "rounds_executed": 3,
+    "stopped_early": false,
+    "termination_reason": "completed_configured_rounds",
+    "early_stopping_metric": "mean_client_accuracy",
+    "early_stopping_enabled": false,
+    "early_stopping_patience": 5,
+    "early_stopping_min_delta": 0.0,
+    "max_unlimited_rounds": 10000,
+    "best_metric": 0.0,
+    "best_round": null,
+    "rounds_without_improvement": 0
+  }
+}

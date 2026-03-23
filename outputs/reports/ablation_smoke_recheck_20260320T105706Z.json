@@ -1,0 +1,279 @@
+{
+  "meta": {
+    "run_name": "ablation_smoke_recheck_20260320T105706Z",
+    "dataset": "femnist",
+    "rounds": 3,
+    "num_clients": 4,
+    "local_epochs": 1,
+    "cluster_epochs": 1,
+    "batch_size": 32,
+    "max_samples_per_client": 64,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "seeds": [
+      11,
+      22
+    ],
+    "preset": "smoke"
+  },
+  "variants": {
+    "fedavg_baseline": {
+      "config": {
+        "aggregation_mode": "fedavg",
+        "lambda_cluster": 0.0,
+        "num_clusters": 1,
+        "shared_dim": 64,
+        "sigma": 1.0,
+        "fedavg_backbone": "small_cnn"
+      },
+      "runs": [
+        {
+          "final_metrics": {
+            "mean_client_accuracy": 0.08333333333333333,
+            "worst_client_accuracy": 0.0,
+            "worst_group_accuracy": 0.08333333333333333
+          },
+          "communication": {
+            "client_to_server_bytes": 3951486,
+            "server_to_client_bytes": 3951405,
+            "total_bytes": 7902891
+          },
+          "convergence": {
+            "mean_client_accuracy": [
+              0.05555555555555555,
+              0.08333333333333333,
+              0.08333333333333333
+            ],
+            "worst_client_accuracy": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "worst_group_accuracy": [
+              0.05555555555555555,
+              0.08333333333333333,
+              0.08333333333333333
+            ]
+          },
+          "run_summary": {
+            "rounds_configured": 3,
+            "rounds_executed": 3,
+            "stopped_early": false,
+            "termination_reason": "completed_configured_rounds",
+            "early_stopping_metric": "mean_client_accuracy",
+            "early_stopping_enabled": false,
+            "early_stopping_patience": 5,
+            "early_stopping_min_delta": 0.0,
+            "max_unlimited_rounds": 10000,
+            "best_metric": 0.0,
+            "best_round": null,
+            "rounds_without_improvement": 0
+          }
+        },
+        {
+          "final_metrics": {
+            "mean_client_accuracy": 0.08333333333333333,
+            "worst_client_accuracy": 0.0,
+            "worst_group_accuracy": 0.08333333333333333
+          },
+          "communication": {
+            "client_to_server_bytes": 3951486,
+            "server_to_client_bytes": 3951405,
+            "total_bytes": 7902891
+          },
+          "convergence": {
+            "mean_client_accuracy": [
+              0.0,
+              0.08333333333333333,
+              0.08333333333333333
+            ],
+            "worst_client_accuracy": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "worst_group_accuracy": [
+              0.0,
+              0.08333333333333333,
+              0.08333333333333333
+            ]
+          },
+          "run_summary": {
+            "rounds_configured": 3,
+            "rounds_executed": 3,
+            "stopped_early": false,
+            "termination_reason": "completed_configured_rounds",
+            "early_stopping_metric": "mean_client_accuracy",
+            "early_stopping_enabled": false,
+            "early_stopping_patience": 5,
+            "early_stopping_min_delta": 0.0,
+            "max_unlimited_rounds": 10000,
+            "best_metric": 0.0,
+            "best_round": null,
+            "rounds_without_improvement": 0
+          }
+        }
+      ]
+    },
+    "prototype_lambda_0_1": {
+      "config": {
+        "aggregation_mode": "prototype",
+        "lambda_cluster": 0.1,
+        "num_clusters": 2,
+        "shared_dim": 64,
+        "sigma": 1.0,
+        "fedavg_backbone": "small_cnn"
+      },
+      "runs": [
+        {
+          "final_metrics": {
+            "mean_client_accuracy": 0.027777777777777776,
+            "worst_client_accuracy": 0.0,
+            "worst_group_accuracy": 0.0
+          },
+          "communication": {
+            "client_to_server_bytes": 210807,
+            "server_to_client_bytes": 3718318,
+            "total_bytes": 3929125
+          },
+          "convergence": {
+            "mean_client_accuracy": [
+              0.0,
+              0.027777777777777776,
+              0.027777777777777776
+            ],
+            "worst_client_accuracy": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "worst_group_accuracy": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "run_summary": {
+            "rounds_configured": 3,
+            "rounds_executed": 3,
+            "stopped_early": false,
+            "termination_reason": "completed_configured_rounds",
+            "early_stopping_metric": "mean_client_accuracy",
+            "early_stopping_enabled": false,
+            "early_stopping_patience": 5,
+            "early_stopping_min_delta": 0.0,
+            "max_unlimited_rounds": 10000,
+            "best_metric": 0.0,
+            "best_round": null,
+            "rounds_without_improvement": 0
+          }
+        },
+        {
+          "final_metrics": {
+            "mean_client_accuracy": 0.08333333333333333,
+            "worst_client_accuracy": 0.0,
+            "worst_group_accuracy": 0.08333333333333333
+          },
+          "communication": {
+            "client_to_server_bytes": 208377,
+            "server_to_client_bytes": 3548658,
+            "total_bytes": 3757035
+          },
+          "convergence": {
+            "mean_client_accuracy": [
+              0.05555555555555555,
+              0.08333333333333333,
+              0.08333333333333333
+            ],
+            "worst_client_accuracy": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "worst_group_accuracy": [
+              0.041666666666666664,
+              0.08333333333333333,
+              0.08333333333333333
+            ]
+          },
+          "run_summary": {
+            "rounds_configured": 3,
+            "rounds_executed": 3,
+            "stopped_early": false,
+            "termination_reason": "completed_configured_rounds",
+            "early_stopping_metric": "mean_client_accuracy",
+            "early_stopping_enabled": false,
+            "early_stopping_patience": 5,
+            "early_stopping_min_delta": 0.0,
+            "max_unlimited_rounds": 10000,
+            "best_metric": 0.0,
+            "best_round": null,
+            "rounds_without_improvement": 0
+          }
+        }
+      ]
+    }
+  },
+  "aggregate": {
+    "fedavg_baseline": {
+      "runs": 2,
+      "mean_client_accuracy": {
+        "values": [
+          0.08333333333333333,
+          0.08333333333333333
+        ],
+        "mean": 0.08333333333333333,
+        "std": 0.0,
+        "ci95": 0.0
+      },
+      "worst_client_accuracy": {
+        "values": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std": 0.0,
+        "ci95": 0.0
+      },
+      "total_communication_bytes": {
+        "values": [
+          7902891.0,
+          7902891.0
+        ],
+        "mean": 7902891.0,
+        "std": 0.0,
+        "ci95": 0.0
+      }
+    },
+    "prototype_lambda_0_1": {
+      "runs": 2,
+      "mean_client_accuracy": {
+        "values": [
+          0.027777777777777776,
+          0.08333333333333333
+        ],
+        "mean": 0.05555555555555555,
+        "std": 0.039283710065919304,
+        "ci95": 0.054444444444444434
+      },
+      "worst_client_accuracy": {
+        "values": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std": 0.0,
+        "ci95": 0.0
+      },
+      "total_communication_bytes": {
+        "values": [
+          3929125.0,
+          3757035.0
+        ],
+        "mean": 3843080.0,
+        "std": 121686.00597439296,
+        "ci95": 168648.19999999998
+      }
+    }
+  }
+}

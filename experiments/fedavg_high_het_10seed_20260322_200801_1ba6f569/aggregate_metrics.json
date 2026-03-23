@@ -1,0 +1,23 @@
+{
+  "method": "fedavg",
+  "regime": "high_het",
+  "num_seeds": 10,
+  "mean_accuracy_avg": 0.09309803921568627,
+  "mean_accuracy_std": 0.014797189310229263,
+  "mean_accuracy_min": 0.07480392156862745,
+  "mean_accuracy_max": 0.1265686274509804,
+  "mean_accuracy_ci_lower": 0.07665686274509803,
+  "mean_accuracy_ci_upper": 0.12109803921568629,
+  "worst_accuracy_avg": 0.050980392156862744,
+  "worst_accuracy_std": 0.04050178662700567,
+  "worst_accuracy_min": 0.0,
+  "worst_accuracy_max": 0.1568627450980392,
+  "collapse_rate": 0.2,
+  "collapse_count": 2,
+  "collapse_rate_sensitive": 0.6,
+  "collapse_count_sensitive": 6,
+  "stability_variance_avg": 0.02815470376296537,
+  "stability_variance_std": 0.015724200330669753,
+  "avg_bytes_per_round": 0.0,
+  "total_communication_cost": 0.0
+}

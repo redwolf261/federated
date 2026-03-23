@@ -1,0 +1,25 @@
+{
+  "experiment_id": "fedavg_low_het_10seed_20260322_181744_86cfd50d",
+  "name": "fedavg_low_het_10seed",
+  "description": "Low heterogeneity regime where methods should perform similarly",
+  "git_commit_hash": "343ff206f49de94b6217d9c09b927822579e927b",
+  "start_timestamp": "2026-03-22T18:17:44.142797",
+  "method": "fedavg",
+  "regime": "low_het",
+  "dataset_name": "femnist",
+  "num_clients": 10,
+  "rounds": 30,
+  "local_epochs": 1,
+  "batch_size": 64,
+  "learning_rate": 0.005,
+  "seed_list": [
+    11
+  ],
+  "end_timestamp": null,
+  "max_samples_per_client": 1000,
+  "collapse_threshold": 0.1,
+  "collapse_threshold_sensitive": 0.15,
+  "use_clustering": true,
+  "use_guidance": true,
+  "additional_config": null
+}

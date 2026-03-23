@@ -1,0 +1,92 @@
+[
+  {
+    "seed": 11,
+    "method": "prototype",
+    "regime": "high_het",
+    "mean_accuracy": 0.8234,
+    "worst_accuracy": 0.7123,
+    "p10_accuracy": 0.7456,
+    "bottom3_accuracy": 0.7234,
+    "collapsed": false,
+    "collapsed_sensitive": false,
+    "stability_variance": 0.0123,
+    "rounds_data": [
+      {
+        "round": 0,
+        "mean_client_accuracy": 0.2345
+      },
+      {
+        "round": 1,
+        "mean_client_accuracy": 0.5678
+      },
+      {
+        "round": 2,
+        "mean_client_accuracy": 0.8234
+      }
+    ],
+    "total_bytes_sent": 0,
+    "execution_time_seconds": 45.2,
+    "bytes_per_round": null,
+    "errors": null
+  },
+  {
+    "seed": 22,
+    "method": "prototype",
+    "regime": "high_het",
+    "mean_accuracy": 0.8456,
+    "worst_accuracy": 0.7345,
+    "p10_accuracy": 0.7678,
+    "bottom3_accuracy": 0.7456,
+    "collapsed": false,
+    "collapsed_sensitive": false,
+    "stability_variance": 0.0098,
+    "rounds_data": [
+      {
+        "round": 0,
+        "mean_client_accuracy": 0.2456
+      },
+      {
+        "round": 1,
+        "mean_client_accuracy": 0.5789
+      },
+      {
+        "round": 2,
+        "mean_client_accuracy": 0.8456
+      }
+    ],
+    "total_bytes_sent": 0,
+    "execution_time_seconds": 47.8,
+    "bytes_per_round": null,
+    "errors": null
+  },
+  {
+    "seed": 33,
+    "method": "prototype",
+    "regime": "high_het",
+    "mean_accuracy": 0.8012,
+    "worst_accuracy": 0.689,
+    "p10_accuracy": 0.7123,
+    "bottom3_accuracy": 0.6999,
+    "collapsed": false,
+    "collapsed_sensitive": false,
+    "stability_variance": 0.0156,
+    "rounds_data": [
+      {
+        "round": 0,
+        "mean_client_accuracy": 0.2123
+      },
+      {
+        "round": 1,
+        "mean_client_accuracy": 0.5456
+      },
+      {
+        "round": 2,
+        "mean_client_accuracy": 0.8012
+      }
+    ],
+    "total_bytes_sent": 0,
+    "execution_time_seconds": 43.1,
+    "bytes_per_round": null,
+    "errors": null
+  }
+]

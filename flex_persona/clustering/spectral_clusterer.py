@@ -26,12 +26,25 @@ class SpectralClusterer:
         if self.num_clusters > n:
             raise ValueError("num_clusters cannot exceed number of clients")
 
+        affinity_matrix = torch.nan_to_num(
+            affinity_matrix,
+            nan=0.0,
+            posinf=1.0,
+            neginf=0.0,
+        )
         laplacian = GraphLaplacianBuilder.build_unnormalized_laplacian(affinity_matrix)
         eigenvalues, eigenvectors = torch.linalg.eigh(laplacian)
 
         _ = eigenvalues
         embedding = eigenvectors[:, : self.num_clusters].detach().cpu().numpy()
         embedding = self._row_normalize(embedding)
+        embedding = np.nan_to_num(embedding, nan=0.0, posinf=0.0, neginf=0.0)
+
+        # Rarely, a pathological round yields a degenerate all-zero embedding.
+        # Add a tiny deterministic jitter so KMeans can proceed reproducibly.
+        if np.allclose(embedding, 0.0):
+            rng = np.random.default_rng(self.random_state)
+            embedding = rng.normal(loc=0.0, scale=1e-6, size=embedding.shape)
 
         kmeans = KMeans(
             n_clusters=self.num_clusters,

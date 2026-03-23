@@ -1,0 +1,21 @@
+[
+  {
+    "seed": 11,
+    "method": "prototype",
+    "regime": "high_het",
+    "mean_accuracy": 0.0,
+    "worst_accuracy": 0.0,
+    "p10_accuracy": 0.0,
+    "bottom3_accuracy": 0.0,
+    "collapsed": true,
+    "collapsed_sensitive": true,
+    "stability_variance": 0.0,
+    "rounds_data": [],
+    "total_bytes_sent": 0,
+    "execution_time_seconds": 13.764856576919556,
+    "bytes_per_round": null,
+    "errors": [
+      "Wasserstein LP failed: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)"
+    ]
+  }
+]

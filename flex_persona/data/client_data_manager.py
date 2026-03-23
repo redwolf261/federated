@@ -108,17 +108,40 @@ class ClientDataManager:
             x_tensor = x_tensor[:max_samples]
             y_tensor = y_tensor[:max_samples]
 
-        dataset = TensorDataset(x_tensor, y_tensor)
+        total_samples = int(y_tensor.shape[0])
+        if total_samples <= 1:
+            train_x = x_tensor
+            train_y = y_tensor
+            eval_x = x_tensor
+            eval_y = y_tensor
+        else:
+            generator = torch.Generator()
+            generator.manual_seed(int(self.config.random_seed + client_id))
+
+            permutation = torch.randperm(total_samples, generator=generator)
+            eval_size = max(1, int(total_samples * 0.2))
+            eval_size = min(eval_size, total_samples - 1)
+
+            eval_indices = permutation[:eval_size]
+            train_indices = permutation[eval_size:]
+
+            train_x = x_tensor[train_indices]
+            train_y = y_tensor[train_indices]
+            eval_x = x_tensor[eval_indices]
+            eval_y = y_tensor[eval_indices]
+
+        train_dataset = TensorDataset(train_x, train_y)
+        eval_dataset = TensorDataset(eval_x, eval_y)
         batch_size = self.config.training.batch_size
 
         train_loader = DataLoader(
-            dataset,
+            train_dataset,
             batch_size=batch_size,
             shuffle=True,
             num_workers=0,
         )
         eval_loader = DataLoader(
-            dataset,
+            eval_dataset,
             batch_size=batch_size,
             shuffle=False,
             num_workers=0,
@@ -134,6 +157,6 @@ class ClientDataManager:
             client_id=client_id,
             train_loader=train_loader,
             eval_loader=eval_loader,
-            num_samples=int(y_tensor.shape[0]),
+            num_samples=total_samples,
             class_histogram=class_hist,
         )

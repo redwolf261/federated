@@ -1,0 +1,25 @@
+{
+  "experiment_id": "prototype_high_het_10seed_20260322_181730_dee26092",
+  "name": "prototype_high_het_10seed",
+  "description": "High heterogeneity regime designed to trigger collapse in FedAvg",
+  "git_commit_hash": "343ff206f49de94b6217d9c09b927822579e927b",
+  "start_timestamp": "2026-03-22T18:17:30.322882",
+  "method": "prototype",
+  "regime": "high_het",
+  "dataset_name": "femnist",
+  "num_clients": 10,
+  "rounds": 20,
+  "local_epochs": 3,
+  "batch_size": 32,
+  "learning_rate": 0.01,
+  "seed_list": [
+    11
+  ],
+  "end_timestamp": "2026-03-22T18:17:44.093377",
+  "max_samples_per_client": 256,
+  "collapse_threshold": 0.1,
+  "collapse_threshold_sensitive": 0.15,
+  "use_clustering": true,
+  "use_guidance": true,
+  "additional_config": null
+}

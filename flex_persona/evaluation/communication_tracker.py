@@ -20,15 +20,21 @@ class CommunicationTracker:
     def _estimate_bytes(payload: object) -> int:
         return len(pickle.dumps(payload, protocol=pickle.HIGHEST_PROTOCOL))
 
-    def bytes_client_to_server(self, message: ClientToServerMessage) -> int:
-        size = self._estimate_bytes(message)
+    def bytes_client_to_server_payload(self, payload: object) -> int:
+        size = self._estimate_bytes(payload)
         self.client_to_server_bytes += size
         return size
 
-    def bytes_server_to_client(self, message: ServerToClientMessage) -> int:
-        size = self._estimate_bytes(message)
+    def bytes_server_to_client_payload(self, payload: object) -> int:
+        size = self._estimate_bytes(payload)
         self.server_to_client_bytes += size
         return size
+
+    def bytes_client_to_server(self, message: ClientToServerMessage) -> int:
+        return self.bytes_client_to_server_payload(message)
+
+    def bytes_server_to_client(self, message: ServerToClientMessage) -> int:
+        return self.bytes_server_to_client_payload(message)
 
     def log_round(
         self,

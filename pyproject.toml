@@ -23,8 +23,6 @@ dependencies = [
   "streamlit>=1.36"
 ]
 
-[tool.setuptools]
-packages = ["flex_persona"]
-
-[tool.setuptools.package-dir]
-"" = "."
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["flex_persona*"]

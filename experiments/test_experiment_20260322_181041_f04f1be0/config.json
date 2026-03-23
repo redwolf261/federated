@@ -1,0 +1,27 @@
+{
+  "experiment_id": "test_experiment_20260322_181041_f04f1be0",
+  "name": "test_experiment_demo",
+  "description": "Testing the standardized artifact management system",
+  "git_commit_hash": "343ff206f49de94b6217d9c09b927822579e927b",
+  "start_timestamp": "2026-03-22T18:10:41.418992",
+  "method": "prototype",
+  "regime": "high_het",
+  "dataset_name": "femnist",
+  "num_clients": 10,
+  "rounds": 20,
+  "local_epochs": 3,
+  "batch_size": 32,
+  "learning_rate": 0.01,
+  "seed_list": [
+    11,
+    22,
+    33
+  ],
+  "end_timestamp": "2026-03-22T18:10:41.418992",
+  "max_samples_per_client": 256,
+  "collapse_threshold": 0.1,
+  "collapse_threshold_sensitive": 0.15,
+  "use_clustering": true,
+  "use_guidance": true,
+  "additional_config": null
+}
