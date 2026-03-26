@@ -1,0 +1,24 @@
+{
+  "config": {
+    "dataset_name": "femnist",
+    "num_clients": 50,
+    "dirichlet_alpha": 0.5,
+    "fl_rounds": 100,
+    "local_epochs": 5,
+    "batch_size": 32,
+    "learning_rate": 0.01,
+    "momentum": 0.9,
+    "weight_decay": 0.0001,
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "split_info": {
+    "num_clients": 10,
+    "avg_class_diversity": 59.8,
+    "test_size": 162855,
+    "dirichlet_alpha": 0.5
+  }
+}

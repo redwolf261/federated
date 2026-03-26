@@ -117,6 +117,14 @@ class FederatedSimulator:
         return {key: tensor.detach().cpu().clone() for key, tensor in state.items()}
 
     @staticmethod
+    def _state_l2_norm(state: dict[str, torch.Tensor]) -> float:
+        total = 0.0
+        for tensor in state.values():
+            if torch.is_floating_point(tensor):
+                total += float(torch.sum(tensor.to(dtype=torch.float32) ** 2).item())
+        return float(total ** 0.5)
+
+    @staticmethod
     def _aggregate_fedavg_states(
         client_states: list[dict[str, torch.Tensor]],
         sample_counts: list[int],
@@ -184,6 +192,11 @@ class FederatedSimulator:
 
             global_state = self._aggregate_fedavg_states(client_states=client_states, sample_counts=sample_counts)
             self._global_state = {k: v.clone() for k, v in global_state.items()}
+            client_norms = {
+                str(client.client_id): self._state_l2_norm(local_state)
+                for client, local_state in zip(self.clients, client_states, strict=True)
+            }
+            global_norm = self._state_l2_norm(global_state)
 
             s2c_round_bytes = 0
             for client in self.clients:
@@ -200,6 +213,8 @@ class FederatedSimulator:
             state.metadata["fedavg"] = {
                 "num_uploaded_models": len(client_states),
                 "mean_samples_per_client": float(sum(sample_counts) / max(len(sample_counts), 1)),
+                "client_parameter_norms": client_norms,
+                "global_parameter_norm": float(global_norm),
             }
             if self.config.training.aggregation_mode == "fedprox":
                 state.metadata["fedprox"] = {"mu": float(self.config.training.fedprox_mu)}

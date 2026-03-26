@@ -18,6 +18,25 @@ class PartitionStrategies:
     """Collection of deterministic partitioning strategies."""
 
     @staticmethod
+    def iid_even(
+        num_samples: int,
+        num_clients: int,
+        seed: int,
+    ) -> PartitionResult:
+        if num_samples < 0:
+            raise ValueError("num_samples must be non-negative")
+        if num_clients <= 0:
+            raise ValueError("num_clients must be positive")
+
+        rng = np.random.default_rng(seed)
+        shuffled_indices = np.arange(num_samples, dtype=np.int64)
+        rng.shuffle(shuffled_indices)
+        splits = np.array_split(shuffled_indices, num_clients)
+        return PartitionResult(
+            client_indices={cid: np.array(split, dtype=np.int64) for cid, split in enumerate(splits)}
+        )
+
+    @staticmethod
     def by_writer_ids(writer_ids: Iterable[str], num_clients: int) -> PartitionResult:
         writer_ids_np = np.array(list(writer_ids))
         unique_writers = np.unique(writer_ids_np)

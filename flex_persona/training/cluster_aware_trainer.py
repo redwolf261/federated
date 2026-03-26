@@ -73,6 +73,24 @@ class ClusterAwareTrainer:
     def __init__(self) -> None:
         self.loss_composer = LossComposer()
         self.distance_calculator = WassersteinDistanceCalculator(prefer_pot=True)
+        self._optimizer: torch.optim.Optimizer | None = None
+        self._optimizer_signature: tuple[float, float] | None = None
+
+    def _get_optimizer(
+        self,
+        model: ClientModel,
+        learning_rate: float,
+        weight_decay: float,
+    ) -> torch.optim.Optimizer:
+        signature = (float(learning_rate), float(weight_decay))
+        if self._optimizer is None or self._optimizer_signature != signature:
+            self._optimizer = OptimizerFactory.adam(
+                model,
+                learning_rate=learning_rate,
+                weight_decay=weight_decay,
+            )
+            self._optimizer_signature = signature
+        return self._optimizer
 
     def train(
         self,
@@ -115,7 +133,7 @@ class ClusterAwareTrainer:
             - total_objective: local_loss + λ × cluster_loss
         """
         model.train()
-        optimizer = OptimizerFactory.adam(model, learning_rate=learning_rate, weight_decay=weight_decay)
+        optimizer = self._get_optimizer(model, learning_rate=learning_rate, weight_decay=weight_decay)
         cluster_class_prototypes = self._cluster_class_prototypes(cluster_distribution, device)
 
         total_local_loss = 0.0

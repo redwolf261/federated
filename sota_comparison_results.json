@@ -1,0 +1,279 @@
+{
+  "method_stats": {
+    "FedAvg": {
+      "mean_accuracy": 0.17833333333333332,
+      "std_accuracy": 0.05312459150169743,
+      "mean_worst_client": 0.17833333333333332,
+      "std_worst_client": 0.05312459150169743,
+      "mean_comm_cost": 608290200.0,
+      "std_comm_cost": 0.0,
+      "mean_convergence": 15.0,
+      "raw_results": [
+        "ComparisonResult(method_name='FedAvg', seed=42, final_accuracy=0.125, worst_client_accuracy=0.125, accuracy_std=0.0, convergence_rounds=15, communication_cost=608290200, client_accuracies=[0.125, 0.125, 0.125, 0.125])",
+        "ComparisonResult(method_name='FedAvg', seed=123, final_accuracy=0.15833333333333333, worst_client_accuracy=0.15833333333333333, accuracy_std=0.0, convergence_rounds=15, communication_cost=608290200, client_accuracies=[0.15833333333333333, 0.15833333333333333, 0.15833333333333333, 0.15833333333333333])",
+        "ComparisonResult(method_name='FedAvg', seed=456, final_accuracy=0.14166666666666666, worst_client_accuracy=0.14166666666666666, accuracy_std=0.0, convergence_rounds=15, communication_cost=608290200, client_accuracies=[0.14166666666666666, 0.14166666666666666, 0.14166666666666666, 0.14166666666666666])",
+        "ComparisonResult(method_name='FedAvg', seed=789, final_accuracy=0.275, worst_client_accuracy=0.275, accuracy_std=0.0, convergence_rounds=15, communication_cost=608290200, client_accuracies=[0.275, 0.275, 0.275, 0.275])",
+        "ComparisonResult(method_name='FedAvg', seed=999, final_accuracy=0.19166666666666668, worst_client_accuracy=0.19166666666666668, accuracy_std=0.0, convergence_rounds=15, communication_cost=608290200, client_accuracies=[0.19166666666666668, 0.19166666666666668, 0.19166666666666668, 0.19166666666666668])"
+      ]
+    },
+    "MOON": {
+      "mean_accuracy": 0.185,
+      "std_accuracy": 0.12011568497818169,
+      "mean_worst_client": 0.185,
+      "std_worst_client": 0.12011568497818169,
+      "mean_comm_cost": 608290200.0,
+      "std_comm_cost": 0.0,
+      "mean_convergence": 5.8,
+      "raw_results": [
+        "ComparisonResult(method_name='MOON', seed=42, final_accuracy=0.08333333333333333, worst_client_accuracy=0.08333333333333333, accuracy_std=0.0, convergence_rounds=3, communication_cost=608290200, client_accuracies=[0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333])",
+        "ComparisonResult(method_name='MOON', seed=123, final_accuracy=0.0, worst_client_accuracy=0.0, accuracy_std=0.0, convergence_rounds=3, communication_cost=608290200, client_accuracies=[0.0, 0.0, 0.0, 0.0])",
+        "ComparisonResult(method_name='MOON', seed=456, final_accuracy=0.275, worst_client_accuracy=0.275, accuracy_std=0.0, convergence_rounds=3, communication_cost=608290200, client_accuracies=[0.275, 0.275, 0.275, 0.275])",
+        "ComparisonResult(method_name='MOON', seed=789, final_accuracy=0.2916666666666667, worst_client_accuracy=0.2916666666666667, accuracy_std=0.0, convergence_rounds=9, communication_cost=608290200, client_accuracies=[0.2916666666666667, 0.2916666666666667, 0.2916666666666667, 0.2916666666666667])",
+        "ComparisonResult(method_name='MOON', seed=999, final_accuracy=0.275, worst_client_accuracy=0.275, accuracy_std=0.0, convergence_rounds=11, communication_cost=608290200, client_accuracies=[0.275, 0.275, 0.275, 0.275])"
+      ]
+    },
+    "FLEX-Persona": {
+      "mean_accuracy": 0.17833333333333332,
+      "std_accuracy": 0.05312459150169743,
+      "mean_worst_client": 0.17833333333333332,
+      "std_worst_client": 0.05312459150169743,
+      "mean_comm_cost": 158155452.0,
+      "std_comm_cost": 0.0,
+      "mean_convergence": 5.6,
+      "raw_results": [
+        "ComparisonResult(method_name='FLEX-Persona', seed=42, final_accuracy=0.125, worst_client_accuracy=0.125, accuracy_std=0.0, convergence_rounds=4, communication_cost=158155452, client_accuracies=[0.125, 0.125, 0.125, 0.125])",
+        "ComparisonResult(method_name='FLEX-Persona', seed=123, final_accuracy=0.15833333333333333, worst_client_accuracy=0.15833333333333333, accuracy_std=0.0, convergence_rounds=3, communication_cost=158155452, client_accuracies=[0.15833333333333333, 0.15833333333333333, 0.15833333333333333, 0.15833333333333333])",
+        "ComparisonResult(method_name='FLEX-Persona', seed=456, final_accuracy=0.14166666666666666, worst_client_accuracy=0.14166666666666666, accuracy_std=0.0, convergence_rounds=8, communication_cost=158155452, client_accuracies=[0.14166666666666666, 0.14166666666666666, 0.14166666666666666, 0.14166666666666666])",
+        "ComparisonResult(method_name='FLEX-Persona', seed=789, final_accuracy=0.275, worst_client_accuracy=0.275, accuracy_std=0.0, convergence_rounds=10, communication_cost=158155452, client_accuracies=[0.275, 0.275, 0.275, 0.275])",
+        "ComparisonResult(method_name='FLEX-Persona', seed=999, final_accuracy=0.19166666666666668, worst_client_accuracy=0.19166666666666668, accuracy_std=0.0, convergence_rounds=3, communication_cost=158155452, client_accuracies=[0.19166666666666668, 0.19166666666666668, 0.19166666666666668, 0.19166666666666668])"
+      ]
+    }
+  },
+  "raw_results": [
+    {
+      "method": "FedAvg",
+      "seed": 42,
+      "accuracy": 0.125,
+      "worst_client": 0.125,
+      "accuracy_std": 0.0,
+      "communication_cost": 608290200,
+      "convergence_rounds": 15,
+      "client_accuracies": [
+        0.125,
+        0.125,
+        0.125,
+        0.125
+      ]
+    },
+    {
+      "method": "FedAvg",
+      "seed": 123,
+      "accuracy": 0.15833333333333333,
+      "worst_client": 0.15833333333333333,
+      "accuracy_std": 0.0,
+      "communication_cost": 608290200,
+      "convergence_rounds": 15,
+      "client_accuracies": [
+        0.15833333333333333,
+        0.15833333333333333,
+        0.15833333333333333,
+        0.15833333333333333
+      ]
+    },
+    {
+      "method": "FedAvg",
+      "seed": 456,
+      "accuracy": 0.14166666666666666,
+      "worst_client": 0.14166666666666666,
+      "accuracy_std": 0.0,
+      "communication_cost": 608290200,
+      "convergence_rounds": 15,
+      "client_accuracies": [
+        0.14166666666666666,
+        0.14166666666666666,
+        0.14166666666666666,
+        0.14166666666666666
+      ]
+    },
+    {
+      "method": "FedAvg",
+      "seed": 789,
+      "accuracy": 0.275,
+      "worst_client": 0.275,
+      "accuracy_std": 0.0,
+      "communication_cost": 608290200,
+      "convergence_rounds": 15,
+      "client_accuracies": [
+        0.275,
+        0.275,
+        0.275,
+        0.275
+      ]
+    },
+    {
+      "method": "FedAvg",
+      "seed": 999,
+      "accuracy": 0.19166666666666668,
+      "worst_client": 0.19166666666666668,
+      "accuracy_std": 0.0,
+      "communication_cost": 608290200,
+      "convergence_rounds": 15,
+      "client_accuracies": [
+        0.19166666666666668,
+        0.19166666666666668,
+        0.19166666666666668,
+        0.19166666666666668
+      ]
+    },
+    {
+      "method": "MOON",
+      "seed": 42,
+      "accuracy": 0.08333333333333333,
+      "worst_client": 0.08333333333333333,
+      "accuracy_std": 0.0,
+      "communication_cost": 608290200,
+      "convergence_rounds": 3,
+      "client_accuracies": [
+        0.08333333333333333,
+        0.08333333333333333,
+        0.08333333333333333,
+        0.08333333333333333
+      ]
+    },
+    {
+      "method": "MOON",
+      "seed": 123,
+      "accuracy": 0.0,
+      "worst_client": 0.0,
+      "accuracy_std": 0.0,
+      "communication_cost": 608290200,
+      "convergence_rounds": 3,
+      "client_accuracies": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "method": "MOON",
+      "seed": 456,
+      "accuracy": 0.275,
+      "worst_client": 0.275,
+      "accuracy_std": 0.0,
+      "communication_cost": 608290200,
+      "convergence_rounds": 3,
+      "client_accuracies": [
+        0.275,
+        0.275,
+        0.275,
+        0.275
+      ]
+    },
+    {
+      "method": "MOON",
+      "seed": 789,
+      "accuracy": 0.2916666666666667,
+      "worst_client": 0.2916666666666667,
+      "accuracy_std": 0.0,
+      "communication_cost": 608290200,
+      "convergence_rounds": 9,
+      "client_accuracies": [
+        0.2916666666666667,
+        0.2916666666666667,
+        0.2916666666666667,
+        0.2916666666666667
+      ]
+    },
+    {
+      "method": "MOON",
+      "seed": 999,
+      "accuracy": 0.275,
+      "worst_client": 0.275,
+      "accuracy_std": 0.0,
+      "communication_cost": 608290200,
+      "convergence_rounds": 11,
+      "client_accuracies": [
+        0.275,
+        0.275,
+        0.275,
+        0.275
+      ]
+    },
+    {
+      "method": "FLEX-Persona",
+      "seed": 42,
+      "accuracy": 0.125,
+      "worst_client": 0.125,
+      "accuracy_std": 0.0,
+      "communication_cost": 158155452,
+      "convergence_rounds": 4,
+      "client_accuracies": [
+        0.125,
+        0.125,
+        0.125,
+        0.125
+      ]
+    },
+    {
+      "method": "FLEX-Persona",
+      "seed": 123,
+      "accuracy": 0.15833333333333333,
+      "worst_client": 0.15833333333333333,
+      "accuracy_std": 0.0,
+      "communication_cost": 158155452,
+      "convergence_rounds": 3,
+      "client_accuracies": [
+        0.15833333333333333,
+        0.15833333333333333,
+        0.15833333333333333,
+        0.15833333333333333
+      ]
+    },
+    {
+      "method": "FLEX-Persona",
+      "seed": 456,
+      "accuracy": 0.14166666666666666,
+      "worst_client": 0.14166666666666666,
+      "accuracy_std": 0.0,
+      "communication_cost": 158155452,
+      "convergence_rounds": 8,
+      "client_accuracies": [
+        0.14166666666666666,
+        0.14166666666666666,
+        0.14166666666666666,
+        0.14166666666666666
+      ]
+    },
+    {
+      "method": "FLEX-Persona",
+      "seed": 789,
+      "accuracy": 0.275,
+      "worst_client": 0.275,
+      "accuracy_std": 0.0,
+      "communication_cost": 158155452,
+      "convergence_rounds": 10,
+      "client_accuracies": [
+        0.275,
+        0.275,
+        0.275,
+        0.275
+      ]
+    },
+    {
+      "method": "FLEX-Persona",
+      "seed": 999,
+      "accuracy": 0.19166666666666668,
+      "worst_client": 0.19166666666666668,
+      "accuracy_std": 0.0,
+      "communication_cost": 158155452,
+      "convergence_rounds": 3,
+      "client_accuracies": [
+        0.19166666666666668,
+        0.19166666666666668,
+        0.19166666666666668,
+        0.19166666666666668
+      ]
+    }
+  ]
+}

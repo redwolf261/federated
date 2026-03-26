@@ -21,6 +21,8 @@ class ExperimentConfig:
     num_clients: int = DEFAULT_NUM_CLIENTS
     random_seed: int = DEFAULT_RANDOM_SEED
     output_dir: str = "outputs"
+    partition_mode: str = "natural"
+    dirichlet_alpha: float = 0.5
 
     model: ModelConfig = field(default_factory=ModelConfig)
     training: TrainingConfig = field(default_factory=TrainingConfig)
@@ -35,6 +37,10 @@ class ExperimentConfig:
             raise ValueError(
                 f"num_clients must be between {MIN_CLIENTS} and {MAX_CLIENTS}"
             )
+        if self.partition_mode not in {"natural", "iid", "dirichlet"}:
+            raise ValueError("partition_mode must be one of: 'natural', 'iid', 'dirichlet'")
+        if self.dirichlet_alpha <= 0.0:
+            raise ValueError("dirichlet_alpha must be positive")
 
         self.model.validate()
         self.training.validate()

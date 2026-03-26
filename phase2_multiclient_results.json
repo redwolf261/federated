@@ -1,0 +1,26 @@
+{
+  "1": {
+    "final_accuracy": 0.4725,
+    "worst_client": 0.4725,
+    "best_client": 0.4725,
+    "total_time": 41.15946865081787
+  },
+  "2": {
+    "final_accuracy": 0.11,
+    "worst_client": 0.11,
+    "best_client": 0.11,
+    "total_time": 31.150914669036865
+  },
+  "4": {
+    "final_accuracy": 0.5825,
+    "worst_client": 0.5825,
+    "best_client": 0.5825,
+    "total_time": 24.829883098602295
+  },
+  "8": {
+    "final_accuracy": 0.1575,
+    "worst_client": 0.1575,
+    "best_client": 0.1575,
+    "total_time": 26.360728979110718
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "dataset_name": "femnist",
+  "num_clients": 50,
+  "dirichlet_alpha": 0.5,
+  "fl_rounds": 100,
+  "local_epochs": 5,
+  "batch_size": 64,
+  "learning_rate": 0.003,
+  "optimizer_type": "adam",
+  "dropout_rate": 0.2,
+  "seeds": [
+    0,
+    1,
+    2
+  ]
+}

@@ -53,6 +53,7 @@ FLEX-Persona enables federated learning experiments where:
 ### Federated Learning
 - **Server-Side Clustering**: Spectral clustering on Wasserstein distance matrix
 - **Client Guidance**: Cluster prototype-based regularization during local training
+- **Multiple Aggregation Modes**: `prototype`, `fedavg`, and `fedprox`
 - **Round-Based Simulation**: Explicit phases: local_train → upload → cluster → broadcast → guidance → eval
 - **Convergence Tracking**: Logging of cluster assignments, distances, accuracy per round
 
@@ -288,15 +289,13 @@ config = ExperimentConfig(dataset_name="femnist")
 
 # Data
 config.num_clients = 20
-config.data.max_samples_per_client = 128
+config.training.max_samples_per_client = 128
 
 # Model
-config.model.backbone_type = "small_cnn"  # or "resnet8", "mlp"
-config.model.hidden_dims = {
-    "small_cnn": [32, 64],
-    "resnet8": [64],
-    "mlp": [128, 64],
-}
+config.model.shared_dim = 64
+config.model.client_backbones = [
+  "small_cnn", "resnet8", "mlp", "small_cnn",
+]
 
 # Training
 config.training.rounds = 10
@@ -306,6 +305,11 @@ config.training.batch_size = 32
 config.training.learning_rate = 0.01
 config.training.weight_decay = 1e-5
 config.training.lambda_cluster = 0.1  # Cluster guidance weight
+config.training.aggregation_mode = "prototype"  # or "fedavg", "fedprox"
+config.training.fedprox_mu = 0.01  # used when aggregation_mode="fedprox"
+config.training.early_stopping_enabled = True
+config.training.early_stopping_patience = 5
+config.training.early_stopping_min_delta = 0.001
 
 # Clustering
 config.clustering.num_clusters = 5
@@ -427,8 +431,9 @@ See [requirements.txt](requirements.txt) for complete list. Key packages:
 
 ## 🔮 Future Work
 
-- [ ] Model aggregation strategies (FedAvg, FedProx)
+- [x] Model aggregation strategies (FedAvg, FedProx)
 - [ ] Adaptive clustering (dynamic num_clusters)
+- [ ] Stronger FL baselines (SCAFFOLD, MOON)
 - [ ] Communication compression (quantization, sparsification)
 - [ ] Multi-GPU support
 - [ ] Production-grade async simulator

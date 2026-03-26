@@ -29,6 +29,7 @@ def test_single_round_fedavg_smoke() -> None:
     workspace_root = Path(__file__).resolve().parents[1]
     config = ExperimentConfig(dataset_name="femnist")
     config.num_clients = 3
+    config.partition_mode = "iid"
     config.training.rounds = 1
     config.training.local_epochs = 1
     config.training.max_samples_per_client = 64
@@ -43,6 +44,9 @@ def test_single_round_fedavg_smoke() -> None:
     assert state.similarity_matrix is None
     assert state.cluster_assignments is None
     assert state.metadata.get("aggregation_mode") == "fedavg"
+    fedavg_meta = state.metadata.get("fedavg", {})
+    assert "global_parameter_norm" in fedavg_meta
+    assert "client_parameter_norms" in fedavg_meta
 
 
 def test_early_stopping_smoke() -> None:

@@ -11,7 +11,7 @@ from torch.utils.data import DataLoader, TensorDataset
 
 from ..config.experiment_config import ExperimentConfig
 from .dataset_registry import DatasetRegistry
-from .partition_strategies import PartitionStrategies
+from .partition_strategies import PartitionResult, PartitionStrategies
 
 
 @dataclass
@@ -59,7 +59,11 @@ class ClientDataManager:
         if not isinstance(images, torch.Tensor) or not isinstance(labels, torch.Tensor):
             raise TypeError("Expected tensor payloads for FEMNIST images and labels")
 
-        partition = PartitionStrategies.by_writer_ids(writer_ids, self.config.num_clients)
+        partition = self._resolve_partition(
+            labels=labels,
+            writer_ids=writer_ids,
+            dataset_name="femnist",
+        )
         bundles: list[ClientDatasetBundle] = []
 
         for client_id, indices in partition.client_indices.items():
@@ -79,11 +83,10 @@ class ClientDataManager:
         if not isinstance(train_images, torch.Tensor) or not isinstance(train_labels, torch.Tensor):
             raise TypeError("Expected tensor payloads for CIFAR-100 train images and labels")
 
-        partition = PartitionStrategies.dirichlet_by_label(
+        partition = self._resolve_partition(
             labels=train_labels,
-            num_clients=self.config.num_clients,
-            alpha=0.5,
-            seed=self.config.random_seed,
+            writer_ids=None,
+            dataset_name="cifar100",
         )
 
         bundles: list[ClientDatasetBundle] = []
@@ -159,4 +162,39 @@ class ClientDataManager:
             eval_loader=eval_loader,
             num_samples=total_samples,
             class_histogram=class_hist,
+        )
+
+    def _resolve_partition(
+        self,
+        labels: torch.Tensor,
+        writer_ids: np.ndarray | None,
+        dataset_name: str,
+    ) -> PartitionResult:
+        mode = self.config.partition_mode
+
+        if mode == "iid":
+            return PartitionStrategies.iid_even(
+                num_samples=int(labels.shape[0]),
+                num_clients=self.config.num_clients,
+                seed=self.config.random_seed,
+            )
+
+        if mode == "dirichlet":
+            return PartitionStrategies.dirichlet_by_label(
+                labels=labels,
+                num_clients=self.config.num_clients,
+                alpha=self.config.dirichlet_alpha,
+                seed=self.config.random_seed,
+            )
+
+        if dataset_name == "femnist":
+            if writer_ids is None:
+                raise ValueError("writer_ids are required for FEMNIST natural partitioning")
+            return PartitionStrategies.by_writer_ids(writer_ids, self.config.num_clients)
+
+        return PartitionStrategies.dirichlet_by_label(
+            labels=labels,
+            num_clients=self.config.num_clients,
+            alpha=self.config.dirichlet_alpha,
+            seed=self.config.random_seed,
         )
