@@ -9,13 +9,15 @@ from dataclasses import dataclass
 class TrainingConfig:
     """Hyperparameters for local and cluster-aware optimization."""
 
-    rounds: int = 50
-    local_epochs: int = 1
+    rounds: int = 100
+    local_epochs: int = 20
     cluster_aware_epochs: int = 1
     batch_size: int = 64
     learning_rate: float = 1e-3
     weight_decay: float = 0.0
     lambda_cluster: float = 0.1
+    lambda_cluster_center: float = 0.01
+    cluster_center_warmup_rounds: int = 8
     max_samples_per_client: int | None = None
     aggregation_mode: str = "prototype"
     fedprox_mu: float = 0.0
@@ -41,6 +43,10 @@ class TrainingConfig:
             raise ValueError("learning_rate must be positive")
         if self.lambda_cluster < 0.0:
             raise ValueError("lambda_cluster must be non-negative")
+        if self.lambda_cluster_center < 0.0:
+            raise ValueError("lambda_cluster_center must be non-negative")
+        if self.cluster_center_warmup_rounds <= 0:
+            raise ValueError("cluster_center_warmup_rounds must be positive")
         if self.max_samples_per_client is not None and self.max_samples_per_client <= 0:
             raise ValueError("max_samples_per_client must be positive when set")
         if self.aggregation_mode not in {"prototype", "fedavg", "fedprox"}:

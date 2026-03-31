@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import torch
 import torch.nn.functional as F
+from typing import Optional
 from torch.utils.data import DataLoader
 
 from ..models.client_model import ClientModel
@@ -73,8 +74,6 @@ class ClusterAwareTrainer:
     def __init__(self) -> None:
         self.loss_composer = LossComposer()
         self.distance_calculator = WassersteinDistanceCalculator(prefer_pot=True)
-        self._optimizer: torch.optim.Optimizer | None = None
-        self._optimizer_signature: tuple[float, float] | None = None
 
     def _get_optimizer(
         self,
@@ -82,15 +81,12 @@ class ClusterAwareTrainer:
         learning_rate: float,
         weight_decay: float,
     ) -> torch.optim.Optimizer:
-        signature = (float(learning_rate), float(weight_decay))
-        if self._optimizer is None or self._optimizer_signature != signature:
-            self._optimizer = OptimizerFactory.adam(
-                model,
-                learning_rate=learning_rate,
-                weight_decay=weight_decay,
-            )
-            self._optimizer_signature = signature
-        return self._optimizer
+        # Always create a new optimizer per model for safety
+        return OptimizerFactory.adam(
+            model,
+            learning_rate=learning_rate,
+            weight_decay=weight_decay,
+        )
 
     def train(
         self,
@@ -103,6 +99,9 @@ class ClusterAwareTrainer:
         cluster_aware_epochs: int,
         learning_rate: float,
         weight_decay: float,
+        cluster_feature_mean: Optional[torch.Tensor] = None,
+        lambda_cluster_center: float = 0.0,
+        cluster_center_warmup_scale: float = 1.0,
     ) -> dict[str, float]:
         """Train a client model with cluster guidance.
 
@@ -132,6 +131,9 @@ class ClusterAwareTrainer:
             - cluster_loss: Wasserstein distance between final and cluster distributions
             - total_objective: local_loss + λ × cluster_loss
         """
+
+        import torch.cuda.amp as amp
+        scaler = amp.GradScaler(enabled=(device == 'cuda'))
         model.train()
         optimizer = self._get_optimizer(model, learning_rate=learning_rate, weight_decay=weight_decay)
         cluster_class_prototypes = self._cluster_class_prototypes(cluster_distribution, device)
@@ -142,26 +144,36 @@ class ClusterAwareTrainer:
 
         for _ in range(cluster_aware_epochs):
             for x_batch, y_batch in train_loader:
-                x_batch = x_batch.to(device)
-                y_batch = y_batch.to(device)
+                x_batch = x_batch.to(device, non_blocking=True)
+                y_batch = y_batch.to(device, non_blocking=True)
 
                 optimizer.zero_grad()
-                logits = model.forward_task(x_batch)
-                local_loss = self.loss_composer.local_task_loss(logits, y_batch)
-                shared_features = model.forward_shared(x_batch)
-                cluster_alignment_loss = self._batch_cluster_alignment_loss(
-                    shared_features=shared_features,
-                    labels=y_batch,
-                    cluster_class_prototypes=cluster_class_prototypes,
-                )
-
-                total_loss = self.loss_composer.total_loss(
-                    local_loss=local_loss,
-                    cluster_loss=cluster_alignment_loss,
-                    lambda_cluster=lambda_cluster,
-                )
-                total_loss.backward()
-                optimizer.step()
+                with amp.autocast(enabled=(device == 'cuda')):
+                    logits = model.forward_task(x_batch)
+                    local_loss = self.loss_composer.local_task_loss(logits, y_batch)
+                    shared_features = model.forward_shared(x_batch)
+                    cluster_alignment_loss = self._batch_cluster_alignment_loss(
+                        shared_features=shared_features,
+                        labels=y_batch,
+                        cluster_class_prototypes=cluster_class_prototypes,
+                    )
+                    # Structured alignment: client batch mean -> assigned cluster center.
+                    cluster_center_reg = 0.0
+                    if cluster_feature_mean is not None and lambda_cluster_center > 0.0:
+                        batch_mean = shared_features.mean(dim=0)
+                        cluster_center_reg = torch.norm(batch_mean - cluster_feature_mean, p=2) ** 2
+                    total_loss = self.loss_composer.total_loss(
+                        local_loss=local_loss,
+                        cluster_loss=cluster_alignment_loss,
+                        lambda_cluster=lambda_cluster,
+                    )
+                    if cluster_feature_mean is not None and lambda_cluster_center > 0.0:
+                        total_loss = total_loss + (
+                            lambda_cluster_center * float(cluster_center_warmup_scale) * cluster_center_reg
+                        )
+                scaler.scale(total_loss).backward()
+                scaler.step(optimizer)
+                scaler.update()
 
                 batch_size = int(y_batch.shape[0])
                 total_local_loss += float(local_loss.item()) * batch_size
@@ -296,19 +308,20 @@ class ClusterAwareTrainer:
 
         with torch.no_grad():
             for x_batch, y_batch in train_loader:
-                x_batch = x_batch.to(device)
-                y_batch = y_batch.to(device)
+                x_batch = x_batch.to(device, non_blocking=True)
+                y_batch = y_batch.to(device, non_blocking=True)
 
                 z = model.extract_features(x_batch)
                 h = model.project_shared(z)
-                features.append(h.detach().cpu())
-                labels.append(y_batch.detach().cpu())
+                features.append(h.detach())  # keep on device
+                labels.append(y_batch.detach())
 
         if not features:
             raise RuntimeError("Cannot compute cluster-aware loss on empty train_loader")
 
         all_features = torch.cat(features, dim=0)
         all_labels = torch.cat(labels, dim=0)
+        # Only move to CPU if needed by downstream code
         prototype_dict, class_counts = PrototypeExtractor.compute_class_prototypes(
             shared_features=all_features,
             labels=all_labels,

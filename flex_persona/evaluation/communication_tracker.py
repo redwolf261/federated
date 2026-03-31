@@ -5,7 +5,6 @@ from __future__ import annotations
 import pickle
 from dataclasses import dataclass, field
 
-from ..federated.messages import ClientToServerMessage, ServerToClientMessage
 
 
 @dataclass
@@ -30,10 +29,17 @@ class CommunicationTracker:
         self.server_to_client_bytes += size
         return size
 
-    def bytes_client_to_server(self, message: ClientToServerMessage) -> int:
+
+    def bytes_client_to_server(self, message) -> int:
+        # Import here to avoid circular import
+        from ..federated.messages import ClientToServerMessage
+        assert isinstance(message, ClientToServerMessage)
         return self.bytes_client_to_server_payload(message)
 
-    def bytes_server_to_client(self, message: ServerToClientMessage) -> int:
+    def bytes_server_to_client(self, message) -> int:
+        # Import here to avoid circular import
+        from ..federated.messages import ServerToClientMessage
+        assert isinstance(message, ServerToClientMessage)
         return self.bytes_server_to_client_payload(message)
 
     def log_round(

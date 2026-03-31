@@ -99,8 +99,8 @@ def test_alignment_training():
 
     # Create alignment configuration
     alignment_config = AlignmentConfig(
-        alignment_weight=0.1,
-        alignment_warmup_epochs=3,
+        alignment_weight=0.01,
+        alignment_warmup_epochs=8,
         alignment_schedule="linear",
         alignment_target="cosine"
     )

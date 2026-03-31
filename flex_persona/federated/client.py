@@ -210,6 +210,9 @@ class Client:
         learning_rate: float,
         weight_decay: float,
         lambda_cluster: float,
+        cluster_feature_mean: torch.Tensor | None = None,
+        lambda_cluster_center: float = 0.0,
+        cluster_center_warmup_scale: float = 1.0,
     ) -> dict[str, float]:
         self._last_cluster_id = int(message.cluster_id)
         self._last_cluster_distribution = message.cluster_prototype_distribution
@@ -224,6 +227,9 @@ class Client:
             cluster_aware_epochs=cluster_aware_epochs,
             learning_rate=learning_rate,
             weight_decay=weight_decay,
+            cluster_feature_mean=cluster_feature_mean,
+            lambda_cluster_center=lambda_cluster_center,
+            cluster_center_warmup_scale=cluster_center_warmup_scale,
         )
 
         output = {

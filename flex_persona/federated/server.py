@@ -38,8 +38,6 @@ import torch
 from ..clustering.cluster_aggregator import ClusterPrototypeAggregator
 from ..clustering.spectral_clusterer import SpectralClusterer
 from ..prototypes.prototype_distribution import PrototypeDistribution
-from ..similarity.similarity_graph_builder import SimilarityGraphBuilder
-from ..similarity.wasserstein_distance import WassersteinDistanceCalculator
 from .messages import ClientToServerMessage, ServerToClientMessage
 
 
@@ -71,20 +69,16 @@ class Server:
     def __init__(self, num_clusters: int, sigma: float, random_state: int = 42) -> None:
         self.num_clusters = num_clusters
         self.sigma = sigma
-        self.distance_calculator = WassersteinDistanceCalculator(prefer_pot=True)
-        self.graph_builder = SimilarityGraphBuilder()
         self.clusterer = SpectralClusterer(num_clusters=num_clusters, random_state=random_state)
         self.aggregator = ClusterPrototypeAggregator()
-
+        self._client_feature_means: dict[int, torch.Tensor] = {}
         self._client_messages: dict[int, ClientToServerMessage] = {}
 
-    def receive_client_messages(self, messages: list[ClientToServerMessage]) -> None:
-        """Store client prototype distributions for this round.
+    def receive_client_feature_means(self, feature_means: dict[int, torch.Tensor]) -> None:
+        """Store client feature means for this round (FRepAlign)."""
+        self._client_feature_means = feature_means.copy()
 
-        Args:
-            messages: List of ClientToServerMessage, each containing a client's
-                     prototype distribution.
-        """
+    def receive_client_messages(self, messages: list[ClientToServerMessage]) -> None:
         self._client_messages = {msg.client_id: msg for msg in messages}
 
     @property
@@ -103,42 +97,30 @@ class Server:
             for cid in self.client_ids
         }
 
-    def compute_wasserstein_matrix(self) -> torch.Tensor:
-        """Compute pairwise Wasserstein distances between client distributions.
+    def compute_feature_mean_similarity_matrix(self) -> torch.Tensor:
+        """Compute pairwise cosine similarity between client feature means."""
+        if not self._client_feature_means:
+            raise ValueError("No client feature means received.")
+        client_ids = sorted(self._client_feature_means.keys())
+        means = torch.stack([self._client_feature_means[cid] for cid in client_ids], dim=0)  # [N, D]
+        # Normalize for cosine similarity
+        means_norm = means / (means.norm(dim=1, keepdim=True) + 1e-8)
+        cosine = means_norm @ means_norm.t()  # [-1, 1]
+        similarity = (cosine + 1.0) * 0.5  # [0, 1]
+        similarity.fill_diagonal_(1.0)
+        return similarity
 
-        The Wasserstein distance W(μ_i, μ_j) measures the similarity of clients'
-        learned representations in the shared latent space. Lower distance means
-        more similar learned features → likely to benefit from shared cluster guidance.
-
-        Returns:
-            Symmetric distance matrix of shape [num_clients, num_clients].
-            d_ij = Wasserstein distance between client i and j's prototype distributions.
-        """
-        return self.distance_calculator.pairwise_wasserstein_matrix(self.get_client_distributions())
-
-    def build_similarity_and_adjacency(
-        self,
-        distance_matrix: torch.Tensor,
-    ) -> tuple[torch.Tensor, torch.Tensor]:
-        """Convert distances to affinities and build similarity graph.
-
-        Transforms Wasserstein distances into an affinity matrix using RBF kernel:
-            affinity_ij = exp(-distance_ij² / (2 σ²))
-
-        Then builds an adjacency matrix by connecting each node to its k-nearest
-        neighbors (where k is data-dependent, >= num_clusters).
-
-        Args:
-            distance_matrix: Pairwise distance matrix from compute_wasserstein_matrix().
-
-        Returns:
-            Tuple of:
-            - affinity: RBF kernel matrix, shape [num_clients, num_clients].
-            - adjacency: Boolean adjacency matrix for spectral clustering graph.
-        """
-        affinity = self.graph_builder.build_affinity_matrix(distance_matrix, sigma=self.sigma)
-        adjacency = self.graph_builder.build_adjacency_matrix(affinity)
-        return affinity, adjacency
+    def build_similarity_and_adjacency(self, similarity_matrix: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        """Build adjacency matrix for clustering from similarity matrix."""
+        # For FRepAlign, similarity_matrix is already cosine similarity [N, N]
+        # Optionally, threshold or kNN for adjacency
+        N = similarity_matrix.shape[0]
+        k = min(self.num_clusters + 1, N)  # include self in kNN neighborhood
+        adjacency = torch.zeros_like(similarity_matrix, dtype=torch.bool)
+        for i in range(N):
+            topk = torch.topk(similarity_matrix[i], k=k).indices
+            adjacency[i, topk] = True
+        return similarity_matrix, adjacency
 
     def cluster_clients(self, affinity_matrix: torch.Tensor) -> torch.Tensor:
         """Perform spectral clustering on similarity affinity matrix.

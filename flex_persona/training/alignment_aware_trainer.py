@@ -27,12 +27,12 @@ from dataclasses import dataclass
 @dataclass
 class AlignmentConfig:
     """Configuration for alignment-aware training."""
-    alignment_weight: float = 0.1          # Weight for alignment loss
-    alignment_warmup_epochs: int = 5       # Epochs to warm up alignment loss
+    alignment_weight: float = 0.01         # Weight for alignment loss
+    alignment_warmup_epochs: int = 15      # Epochs to warm up alignment loss
     alignment_schedule: str = "linear"     # "linear", "cosine", or "constant"
     alignment_target: str = "cosine"       # "cosine", "mse", or "kl"
     temperature: float = 0.1               # Temperature for cosine similarity
-    min_alignment_weight: float = 0.01     # Minimum alignment weight
+    min_alignment_weight: float = 0.005    # Minimum alignment weight
 
 
 class AlignmentAwareTrainer:

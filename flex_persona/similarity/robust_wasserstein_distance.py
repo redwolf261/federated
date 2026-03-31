@@ -89,6 +89,14 @@ class RobustWassersteinDistanceCalculator:
         b = mu_j_norm.weights.detach().cpu().numpy().astype(np.float64)
         M = cost.detach().cpu().numpy().astype(np.float64)
 
+        # --- OT NUMERICAL STABILIZATION PATCH ---
+        # Stronger epsilon smoothing for extreme Non-IID
+        eps = 1e-6
+        a = np.clip(a + eps, eps, None)
+        b = np.clip(b + eps, eps, None)
+        a = a / a.sum()
+        b = b / b.sum()
+
         # Additional validation on numpy arrays
         if np.any(np.isnan(a)) or np.any(np.isnan(b)) or np.any(np.isnan(M)):
             print(f"Warning: NaN values in transport problem {mu_i.client_id} <-> {mu_j.client_id}")
@@ -98,8 +106,12 @@ class RobustWassersteinDistanceCalculator:
             print(f"Warning: Zero marginal sums {mu_i.client_id} <-> {mu_j.client_id}")
             return self.fallback_distance
 
-        # Try POT first if preferred
+        # Try entropic OT (Sinkhorn) for stability if POT is available
         if self.prefer_pot:
+            pot_value = self._wasserstein_with_sinkhorn(a, b, M, reg=0.08)  # Higher reg for stability
+            if pot_value is not None and pot_value >= 0 and not np.isnan(pot_value):
+                return pot_value
+            # Fallback to EMD if Sinkhorn fails
             pot_value = self._wasserstein_with_pot(a, b, M)
             if pot_value is not None and pot_value >= 0 and not np.isnan(pot_value):
                 return pot_value
@@ -110,7 +122,24 @@ class RobustWassersteinDistanceCalculator:
             return self._wasserstein_with_linprog(a, b, M)
         except Exception as e:
             print(f"Warning: LP solver failed for {mu_i.client_id} <-> {mu_j.client_id}: {e}")
-            return self.fallback_distance
+            # Log OT failure for analysis
+            if hasattr(self, 'ot_failure_count'):
+                self.ot_failure_count += 1
+            else:
+                self.ot_failure_count = 1
+            return 1.0  # Max dissimilarity fallback
+    @staticmethod
+    def _wasserstein_with_sinkhorn(a: np.ndarray, b: np.ndarray, M: np.ndarray, reg: float = 0.01) -> Optional[float]:
+        try:
+            import ot  # type: ignore
+            if a.shape[0] == 0 or b.shape[0] == 0:
+                return None
+            value = float(ot.sinkhorn2(a, b, M, reg))
+            if np.isnan(value) or np.isinf(value) or value < 0:
+                return None
+            return value
+        except Exception:
+            return None
 
     @staticmethod
     def _wasserstein_with_pot(a: np.ndarray, b: np.ndarray, M: np.ndarray) -> Optional[float]:

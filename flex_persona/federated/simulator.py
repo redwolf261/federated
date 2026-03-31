@@ -160,6 +160,7 @@ class FederatedSimulator:
         if self.config.training.aggregation_mode == "fedprox":
             reference_state = self._global_state or self._serialized_model_state(self.clients[0].model)
 
+        # Local training
         for client in self.clients:
             local_metrics = client.train_local(
                 local_epochs=self.config.training.local_epochs,
@@ -219,16 +220,47 @@ class FederatedSimulator:
             if self.config.training.aggregation_mode == "fedprox":
                 state.metadata["fedprox"] = {"mu": float(self.config.training.fedprox_mu)}
         else:
+            # FRepAlign: Extract feature means from all clients.
+            from flex_persona.training.feature_mean_utils import get_client_feature_mean
+
+            client_feature_means: dict[int, torch.Tensor] = {}
+            for client in self.clients:
+                mu = get_client_feature_mean(client.model, client.train_loader, client.device)
+                if mu is None:
+                    raise RuntimeError(f"Client {client.client_id} has no feature mean.")
+                client_feature_means[client.client_id] = mu
+
+            # Send feature means to server and compute similarity.
+            self.server.receive_client_feature_means(client_feature_means)
+            state.similarity_matrix = self.server.compute_feature_mean_similarity_matrix()
+            state.similarity_matrix, state.adjacency_matrix = self.server.build_similarity_and_adjacency(
+                state.similarity_matrix
+            )
+            state.distance_matrix = 1.0 - state.similarity_matrix
+            state.cluster_assignments = self.server.cluster_clients(state.similarity_matrix)
+
+            # Compute cluster centers from feature means and build per-client center lookup.
+            cluster_member_means: dict[int, list[torch.Tensor]] = {}
+            client_to_cluster: dict[int, int] = {}
+            for idx, client_id in enumerate(state.client_ids):
+                cluster_id = int(state.cluster_assignments[idx].item())
+                client_to_cluster[client_id] = cluster_id
+                cluster_member_means.setdefault(cluster_id, []).append(client_feature_means[client_id])
+
+            cluster_centers = {
+                cluster_id: torch.stack(member_means, dim=0).mean(dim=0)
+                for cluster_id, member_means in cluster_member_means.items()
+            }
+
+            lambda_cluster_center = float(self.config.training.lambda_cluster_center)
+            warmup_rounds = max(int(self.config.training.cluster_center_warmup_rounds), 1)
+            cluster_center_warmup_scale = min(1.0, float(round_idx + 1) / float(warmup_rounds))
+
             upload_messages = [client.build_upload_message(round_idx) for client in self.clients]
             c2s_round_bytes = sum(self.communication_tracker.bytes_client_to_server(msg) for msg in upload_messages)
             self.server.receive_client_messages(upload_messages)
 
             state.client_distributions = self.server.get_client_distributions()
-            state.distance_matrix = self.server.compute_wasserstein_matrix()
-            state.similarity_matrix, state.adjacency_matrix = self.server.build_similarity_and_adjacency(
-                state.distance_matrix
-            )
-            state.cluster_assignments = self.server.cluster_clients(state.similarity_matrix)
             state.cluster_distributions = self.server.compute_cluster_distributions(state.cluster_assignments)
 
             broadcast_messages = self.server.build_broadcast_messages(
@@ -241,18 +273,27 @@ class FederatedSimulator:
             self.communication_tracker.log_round(round_idx, c2s_bytes=c2s_round_bytes, s2c_bytes=s2c_round_bytes)
 
             message_by_client = {msg.client_id: msg for msg in broadcast_messages}
-
             for client in self.clients:
+                cluster_id = client_to_cluster[client.client_id]
                 metrics = client.apply_cluster_guidance(
                     message=message_by_client[client.client_id],
                     cluster_aware_epochs=self.config.training.cluster_aware_epochs,
                     learning_rate=self.config.training.learning_rate,
                     weight_decay=self.config.training.weight_decay,
                     lambda_cluster=self.config.training.lambda_cluster,
+                    cluster_feature_mean=cluster_centers[cluster_id],
+                    lambda_cluster_center=lambda_cluster_center,
+                    cluster_center_warmup_scale=cluster_center_warmup_scale,
                 )
                 state.local_metrics[client.client_id].update(metrics)
 
             state.metadata["aggregation_mode"] = "prototype"
+            state.metadata["structured_alignment"] = {
+                "lambda_cluster_center": lambda_cluster_center,
+                "cluster_center_warmup_scale": cluster_center_warmup_scale,
+                "cluster_center_warmup_rounds": warmup_rounds,
+                "num_clusters_active": int(len(cluster_centers)),
+            }
 
         client_accuracy = {client.client_id: client.evaluate_accuracy() for client in self.clients}
         mean_accuracy = self.evaluator.mean_client_accuracy(client_accuracy)

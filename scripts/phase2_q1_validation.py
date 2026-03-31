@@ -1,18 +1,130 @@
-"""Phase 2: Multi-Client Federated Validation (Q1-Grade).
 
-Usage:
-    python scripts/phase2_q1_validation.py --stage 0   # Centralized baseline
-    python scripts/phase2_q1_validation.py --stage 1   # IID 2-client sanity
-    python scripts/phase2_q1_validation.py --stage 2   # Scale clients (IID)
-    python scripts/phase2_q1_validation.py --stage 3   # Non-IID Dirichlet
-    python scripts/phase2_q1_validation.py --stage 4   # Client diagnostics
-    python scripts/phase2_q1_validation.py --stage 5   # Communication accounting
-    python scripts/phase2_q1_validation.py --stage 6   # SCAFFOLD/MOON baselines
-    python scripts/phase2_q1_validation.py --stage 9   # Ablation study
-    python scripts/phase2_q1_validation.py --all        # Run stages 0-6,9
-"""
+def run_fedprox_sweep():
+    """Run FedProx for all (alpha, mu, seed) combinations and print results in strict format."""
+    alphas = [0.3, 0.1]
+    mus = [0.001, 0.01, 0.1]
+    seeds = [42, 123, 456]
+    num_clients = 10
+    rounds = 30
+    local_epochs = 20
+    lr = 0.003
+    batch_size = 64
+    max_samples = 20000
 
-from __future__ import annotations
+    # Load FedAvg baselines for comparison
+    with open(OUTPUT_DIR / "stage3_noniid.json", "r") as f:
+        fedavg_results = json.load(f)
+
+    for alpha in alphas:
+        for mu in mus:
+            all_accs, all_worst, all_stds, all_client_stds, all_p10, all_p90, all_gap = [], [], [], [], [], [], []
+            print(f"\nα = {alpha}, μ = {mu}")
+            exps = []
+            for seed in seeds:
+                r = run_fedprox_dirichlet(
+                    alpha=alpha, num_clients=num_clients, rounds=rounds,
+                    local_epochs=local_epochs, seed=seed, mu=mu, lr=lr, batch_size=batch_size, max_samples=max_samples
+                )
+                exps.append(r)
+                all_accs.append(r["mean_accuracy"])
+                all_worst.append(r["worst_accuracy"])
+                all_stds.append(r["std_across_clients"])
+                # Fairness quantification
+                client_accs = list(r["client_accuracies"].values())
+                all_client_stds.append(float(np.std(client_accs)))
+                all_p10.append(float(np.percentile(client_accs, 10)))
+                all_p90.append(float(np.percentile(client_accs, 90)))
+                all_gap.append(all_p90[-1] - all_p10[-1])
+            mean = float(np.mean(all_accs))
+            std = float(np.std(all_accs))
+            worst = float(np.mean(all_worst))
+            client_std = float(np.mean(all_client_stds))
+            p10 = float(np.mean(all_p10))
+            p90 = float(np.mean(all_p90))
+            gap = float(np.mean(all_gap))
+            print(f"* Mean: {mean:.4f}")
+            print(f"* Std: {std:.4f}")
+            print(f"* Worst client: {worst:.4f}")
+            print(f"* Client std: {client_std:.4f}")
+            print(f"* p10 / p90 / gap: {p10:.4f} / {p90:.4f} / {gap:.4f}")
+
+            # Comparison vs FedAvg
+            fedavg_key = f"alpha_{alpha}"
+            if fedavg_key in fedavg_results:
+                fedavg = fedavg_results[fedavg_key]
+                fedavg_mean = fedavg["mean"]
+                fedavg_worst = fedavg["mean_worst"]
+                fedavg_gap = fedavg["gap"] if "gap" in fedavg else None
+                print("\nComparison vs FedAvg:")
+                print(f"* Mean Δ: {mean - fedavg_mean:+.4f}")
+                print(f"* Worst-client Δ: {worst - fedavg_worst:+.4f}")
+                if fedavg_gap is not None:
+                    print(f"* Gap Δ: {gap - fedavg_gap:+.4f}")
+            else:
+                print("No FedAvg baseline found for comparison.")
+def run_fedprox_dirichlet(alpha: float, num_clients: int, rounds: int,
+                         local_epochs: int, seed: int, mu: float,
+                         lr: float = 0.003, batch_size: int = 64, max_samples: int = 20000) -> dict:
+    """Run FedProx with Dirichlet non-IID split."""
+    set_seed(seed)
+    print(f"    FedProx α={alpha} | μ={mu} | Clients={num_clients} | Seed={seed}")
+
+    cfg = ExperimentConfig(
+        experiment_name=f"fedprox_dir_a{alpha}_mu{mu}_s{seed}",
+        dataset_name="femnist",
+        num_clients=num_clients,
+        random_seed=seed,
+        partition_mode="dirichlet",
+        dirichlet_alpha=alpha,
+        output_dir=str(OUTPUT_DIR),
+    )
+    cfg.model.num_classes = FEMNIST_NUM_CLASSES
+    cfg.model.client_backbones = ["small_cnn"]
+    cfg.training.aggregation_mode = "fedprox"
+    cfg.training.fedprox_mu = mu
+    cfg.training.rounds = rounds
+    cfg.training.local_epochs = local_epochs
+    cfg.training.learning_rate = lr
+    cfg.training.batch_size = batch_size
+    cfg.training.max_samples_per_client = max_samples // num_clients
+
+    sim = FederatedSimulator(workspace_root=str(PROJECT_ROOT), config=cfg)
+    history = sim.run_experiment()
+
+    client_accs = {}
+    client_histograms = {}
+    for i, client in enumerate(sim.clients):
+        client_accs[client.client_id] = client.evaluate_accuracy()
+        if hasattr(client, 'train_loader') and hasattr(client.train_loader.dataset, 'tensors'):
+            labels = client.train_loader.dataset.tensors[1]
+            unique, counts = torch.unique(labels, return_counts=True)
+            class_hist = {int(k): int(v) for k, v in zip(unique, counts)}
+            client_histograms[client.client_id] = class_hist
+        elif hasattr(client, 'class_histogram'):
+            client_histograms[client.client_id] = client.class_histogram
+        else:
+            client_histograms[client.client_id] = {}
+
+    mean_acc = Evaluator.mean_client_accuracy(client_accs)
+    worst_acc = Evaluator.worst_client_accuracy(client_accs)
+    acc_values = list(client_accs.values())
+    std_clients = float(np.std(acc_values)) if acc_values else 0.0
+
+    acc_items = sorted(client_accs.items(), key=lambda x: x[1])
+    low_id, low_acc = acc_items[0]
+    high_id, high_acc = acc_items[-1]
+    print(f"      mean={mean_acc:.4f}, worst={worst_acc:.4f}, std_clients={std_clients:.4f}")
+    print(f"      LOW client {low_id}: acc={low_acc:.4f}, samples={sum(client_histograms[low_id].values())}, class_dist={client_histograms[low_id]}")
+    print(f"      HIGH client {high_id}: acc={high_acc:.4f}, samples={sum(client_histograms[high_id].values())}, class_dist={client_histograms[high_id]}")
+
+
+    return {
+        "alpha": alpha, "num_clients": num_clients, "seed": seed, "mu": mu,
+        "mean_accuracy": mean_acc, "worst_accuracy": worst_acc,
+        "std_across_clients": std_clients,
+        "client_accuracies": {str(k): v for k, v in client_accs.items()},
+        "client_histograms": client_histograms,
+    }
 
 import argparse
 import copy
@@ -298,7 +410,7 @@ def run_stage2(centralized_acc: float | None = None):
 
     configs = [
         {"num_clients": 5, "rounds": 10, "local_epochs": 1},
-        {"num_clients": 10, "rounds": 10, "local_epochs": 1},
+        {"num_clients": 10, "rounds": 10, "local_epochs": 5},  # Robustness check: E=5 for 10-client scaling
     ]
     seeds = [42, 123, 456]
     all_results = {}
@@ -366,22 +478,40 @@ def run_fedavg_dirichlet(alpha: float, num_clients: int, rounds: int,
     history = sim.run_experiment()
 
     client_accs = {}
-    for client in sim.clients:
+    client_histograms = {}
+    for i, client in enumerate(sim.clients):
         client_accs[client.client_id] = client.evaluate_accuracy()
+        # Access class_histogram from data manager
+        if hasattr(client, 'train_loader') and hasattr(client.train_loader.dataset, 'tensors'):
+            # Try to infer class histogram from training labels
+            labels = client.train_loader.dataset.tensors[1]
+            unique, counts = torch.unique(labels, return_counts=True)
+            class_hist = {int(k): int(v) for k, v in zip(unique, counts)}
+            client_histograms[client.client_id] = class_hist
+        elif hasattr(client, 'class_histogram'):
+            client_histograms[client.client_id] = client.class_histogram
+        else:
+            client_histograms[client.client_id] = {}
 
     mean_acc = Evaluator.mean_client_accuracy(client_accs)
     worst_acc = Evaluator.worst_client_accuracy(client_accs)
     acc_values = list(client_accs.values())
     std_clients = float(np.std(acc_values)) if acc_values else 0.0
 
-    print(f"      mean={mean_acc:.4f}, worst={worst_acc:.4f}, "
-          f"std_clients={std_clients:.4f}")
+    # Identify lowest and highest accuracy clients
+    acc_items = sorted(client_accs.items(), key=lambda x: x[1])
+    low_id, low_acc = acc_items[0]
+    high_id, high_acc = acc_items[-1]
+    print(f"      mean={mean_acc:.4f}, worst={worst_acc:.4f}, std_clients={std_clients:.4f}")
+    print(f"      LOW client {low_id}: acc={low_acc:.4f}, samples={sum(client_histograms[low_id].values())}, class_dist={client_histograms[low_id]}")
+    print(f"      HIGH client {high_id}: acc={high_acc:.4f}, samples={sum(client_histograms[high_id].values())}, class_dist={client_histograms[high_id]}")
 
     return {
         "alpha": alpha, "num_clients": num_clients, "seed": seed,
         "mean_accuracy": mean_acc, "worst_accuracy": worst_acc,
         "std_across_clients": std_clients,
         "client_accuracies": {str(k): v for k, v in client_accs.items()},
+        "client_histograms": client_histograms,
     }
 
 
@@ -391,7 +521,7 @@ def run_stage3(centralized_acc: float | None = None):
     print("  STAGE 3: NON-IID DIRICHLET")
     print("█"*60)
 
-    alphas = [1.0, 0.5, 0.1]
+    alphas = [0.1]  # Now run only α=0.1 for severe Non-IID
     seeds = [42, 123, 456]
     all_results = {}
 
@@ -402,13 +532,22 @@ def run_stage3(centralized_acc: float | None = None):
         print(f"\n  --- α = {alpha} ---")
         for seed in seeds:
             r = run_fedavg_dirichlet(
-                alpha=alpha, num_clients=10, rounds=20,
-                local_epochs=3, seed=seed,
+                alpha=alpha, num_clients=10, rounds=10,
+                local_epochs=5, seed=seed, lr=0.003
             )
             exps.append(r)
             accs.append(r["mean_accuracy"])
             worsts.append(r["worst_accuracy"])
             stds.append(r["std_across_clients"])
+
+        # Fairness quantification: p10, p90, gap
+        all_client_accs = []
+        for exp in exps:
+            all_client_accs.extend(list(exp["client_accuracies"].values()))
+        all_client_accs = np.array(all_client_accs)
+        p10 = float(np.percentile(all_client_accs, 10))
+        p90 = float(np.percentile(all_client_accs, 90))
+        gap = p90 - p10
 
         summary = {
             "mean": float(np.mean(accs)),
@@ -416,10 +555,13 @@ def run_stage3(centralized_acc: float | None = None):
             "mean_worst": float(np.mean(worsts)),
             "mean_client_std": float(np.mean(stds)),
             "experiments": exps,
+            "p10": p10,
+            "p90": p90,
+            "gap": gap,
         }
         drop = (centralized_acc - summary["mean"]) if centralized_acc else None
         print(f"  α={alpha}: {summary['mean']:.4f} ± {summary['std']:.4f}, "
-              f"worst={summary['mean_worst']:.4f}"
+              f"worst={summary['mean_worst']:.4f}, p10={p10:.4f}, p90={p90:.4f}, gap={gap:.4f}"
               + (f", drop={drop:.4f}" if drop is not None else ""))
         all_results[key] = summary
 
@@ -601,6 +743,12 @@ def run_scaffold(num_clients: int, rounds: int, local_epochs: int,
 
     for b in bundles:
         scaffold.init_client(b.client_id, global_model)
+        # Move all c_local tensors to DEVICE
+        for n in scaffold.c_locals[b.client_id]:
+            scaffold.c_locals[b.client_id][n] = scaffold.c_locals[b.client_id][n].to(DEVICE)
+    # Move all c_global tensors to DEVICE
+    for n in scaffold.c_global:
+        scaffold.c_global[n] = scaffold.c_global[n].to(DEVICE)
 
     round_accs = []
     for rnd in range(1, rounds + 1):
@@ -616,6 +764,11 @@ def run_scaffold(num_clients: int, rounds: int, local_epochs: int,
 
             c_local = scaffold.c_locals[cid]
             c_global = scaffold.c_global
+            # Ensure all control variates are on DEVICE
+            for n in c_local:
+                c_local[n] = c_local[n].to(DEVICE)
+            for n in c_global:
+                c_global[n] = c_global[n].to(DEVICE)
 
             # Local training with SCAFFOLD correction
             local_model.train()
@@ -643,12 +796,16 @@ def run_scaffold(num_clients: int, rounds: int, local_epochs: int,
                     if not p_global.requires_grad:
                         continue
                     p_local = dict(local_model.named_parameters())[n]
-                    delta[n] = (p_local.data.cpu() - p_global.data.cpu())
-                    # Update c_local
-                    new_c = (c_local[n]
-                             - c_global[n]
-                             + (p_global.data.cpu() - p_local.data.cpu()) / (K * lr))
-                    scaffold.c_locals[cid][n] = new_c
+                    # Ensure all are on DEVICE for arithmetic
+                    p_local_data = p_local.data.to(DEVICE)
+                    p_global_data = p_global.data.to(DEVICE)
+                    # Ensure c_local and c_global are on DEVICE
+                    c_local_n = c_local[n].to(DEVICE)
+                    c_global_n = c_global[n].to(DEVICE)
+                    delta[n] = (p_local_data - p_global_data).to('cpu')
+                    # Update c_local (store on DEVICE)
+                    new_c = (c_local_n - c_global_n + (p_global_data - p_local_data) / (K * lr))
+                    scaffold.c_locals[cid][n] = new_c.detach().clone().to(DEVICE)
 
             client_deltas.append(delta)
             sample_counts.append(bundle.num_samples)
@@ -659,15 +816,15 @@ def run_scaffold(num_clients: int, rounds: int, local_epochs: int,
             for n, p in global_model.named_parameters():
                 if not p.requires_grad:
                     continue
-                agg_delta = torch.zeros_like(p.data.cpu())
-                agg_c_delta = torch.zeros_like(p.data.cpu())
+                agg_delta = torch.zeros_like(p.data)
+                agg_c_delta = torch.zeros_like(p.data)
                 for i, (delta, ns) in enumerate(zip(client_deltas, sample_counts)):
                     w = ns / total_n
-                    agg_delta += w * delta[n]
-                    agg_c_delta += (scaffold.c_locals[bundles[i].client_id][n]
-                                    / num_clients)
-                p.data.add_(agg_delta.to(DEVICE))
-                scaffold.c_global[n] = agg_c_delta
+                    # Ensure delta and c_local are on DEVICE
+                    agg_delta += w * delta[n].to(DEVICE)
+                    agg_c_delta += (scaffold.c_locals[bundles[i].client_id][n].to(DEVICE) / num_clients)
+                p.data.add_(agg_delta)
+                scaffold.c_global[n] = agg_c_delta.detach().clone().to(DEVICE)
 
         # Evaluate
         global_model.eval()
