@@ -132,8 +132,8 @@ class ClusterAwareTrainer:
             - total_objective: local_loss + λ × cluster_loss
         """
 
-        import torch.cuda.amp as amp
-        scaler = amp.GradScaler(enabled=(device == 'cuda'))
+        import torch
+        scaler = torch.amp.GradScaler(enabled=(device == 'cuda'))
         model.train()
         optimizer = self._get_optimizer(model, learning_rate=learning_rate, weight_decay=weight_decay)
         cluster_class_prototypes = self._cluster_class_prototypes(cluster_distribution, device)
@@ -148,7 +148,7 @@ class ClusterAwareTrainer:
                 y_batch = y_batch.to(device, non_blocking=True)
 
                 optimizer.zero_grad()
-                with amp.autocast(enabled=(device == 'cuda')):
+                with torch.amp.autocast(device_type='cuda', enabled=(device == 'cuda')):
                     logits = model.forward_task(x_batch)
                     local_loss = self.loss_composer.local_task_loss(logits, y_batch)
                     shared_features = model.forward_shared(x_batch)
@@ -161,6 +161,7 @@ class ClusterAwareTrainer:
                     cluster_center_reg = 0.0
                     if cluster_feature_mean is not None and lambda_cluster_center > 0.0:
                         batch_mean = shared_features.mean(dim=0)
+                        cluster_feature_mean = cluster_feature_mean.to(batch_mean.device)
                         cluster_center_reg = torch.norm(batch_mean - cluster_feature_mean, p=2) ** 2
                     total_loss = self.loss_composer.total_loss(
                         local_loss=local_loss,
@@ -245,12 +246,12 @@ class ClusterAwareTrainer:
         labels: torch.Tensor,
         cluster_class_prototypes: dict[int, torch.Tensor],
     ) -> torch.Tensor:
-        """Compute per-batch alignment loss between client and cluster prototypes.
+        """Compute per-batch alignment loss using cosine similarity between client and cluster prototypes.
 
         For each class in the batch:
         1. Extract batch samples belonging to that class
         2. Compute client's mean prototype for that class from batch features
-        3. Compute MSE to cluster's mean prototype for that class
+        3. Compute 1 - cosine similarity to cluster's mean prototype for that class
         4. Average over all classes
 
         This loss is differentiable w.r.t. the model parameters (especially the adapter),
@@ -263,7 +264,7 @@ class ClusterAwareTrainer:
             cluster_class_prototypes: Dict mapping class_id → cluster prototype tensor.
 
         Returns:
-            Scalar tensor (0 if no valid classes in batch, otherwise MSE loss).
+            Scalar tensor (0 if no valid classes in batch, otherwise mean cosine loss).
         """
         losses: list[torch.Tensor] = []
 
@@ -272,7 +273,9 @@ class ClusterAwareTrainer:
             if not bool(mask.any()):
                 continue
             client_proto = shared_features[mask].mean(dim=0)
-            losses.append(F.mse_loss(client_proto, cluster_proto))
+            # Cosine similarity: 1 - cosine_similarity (higher is worse)
+            cosine_loss = 1.0 - F.cosine_similarity(client_proto, cluster_proto, dim=0)
+            losses.append(cosine_loss)
 
         if not losses:
             return shared_features.new_zeros(())

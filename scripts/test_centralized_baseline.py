@@ -7,6 +7,7 @@ Tracks the specific metrics needed to diagnose training health:
 - Alignment score progression
 """
 
+
 import sys
 from pathlib import Path
 import torch
@@ -15,6 +16,11 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
 import json
+
+# Force GPU usage for all training
+if not torch.cuda.is_available():
+    raise RuntimeError("CUDA GPU is required for this experiment. Please run on a machine with a CUDA-capable GPU.")
+DEVICE = "cuda"
 
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))

@@ -152,7 +152,9 @@ from flex_persona.models.client_model import ClientModel
 from flex_persona.models.adapter_network import AdapterNetwork
 from flex_persona.models.initialization import initialize_module_weights
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+if not torch.cuda.is_available():
+    raise RuntimeError("CUDA GPU is required for this experiment. Please run on a machine with a CUDA-capable GPU.")
+DEVICE = "cuda"
 OUTPUT_DIR = PROJECT_ROOT / "outputs" / "phase2_q1"
 FEMNIST_NUM_CLASSES = 62
 

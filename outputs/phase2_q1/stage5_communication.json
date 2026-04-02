@@ -108,23 +108,23 @@
   },
   "prototype": {
     "client_to_server_bytes": 8459500,
-    "server_to_client_bytes": 900711206,
-    "total_bytes": 909170706,
+    "server_to_client_bytes": 848397560,
+    "total_bytes": 856857060,
     "per_round": {
       "1": {
         "client_to_server": 422975,
-        "server_to_client": 66770390,
-        "total": 67193365
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "2": {
         "client_to_server": 422975,
-        "server_to_client": 66890262,
-        "total": 67313237
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "3": {
         "client_to_server": 422975,
-        "server_to_client": 47665671,
-        "total": 48088646
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "4": {
         "client_to_server": 422975,
@@ -153,68 +153,68 @@
       },
       "9": {
         "client_to_server": 422975,
-        "server_to_client": 40788070,
-        "total": 41211045
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "10": {
         "client_to_server": 422975,
-        "server_to_client": 40788070,
-        "total": 41211045
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "11": {
         "client_to_server": 422975,
-        "server_to_client": 40788070,
-        "total": 41211045
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "12": {
         "client_to_server": 422975,
-        "server_to_client": 40788070,
-        "total": 41211045
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "13": {
         "client_to_server": 422975,
-        "server_to_client": 40788070,
-        "total": 41211045
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "14": {
         "client_to_server": 422975,
-        "server_to_client": 40788070,
-        "total": 41211045
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "15": {
         "client_to_server": 422975,
-        "server_to_client": 42516718,
-        "total": 42939693
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "16": {
         "client_to_server": 422975,
-        "server_to_client": 47601111,
-        "total": 48024086
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "17": {
         "client_to_server": 422975,
-        "server_to_client": 42112990,
-        "total": 42535965
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "18": {
         "client_to_server": 422975,
-        "server_to_client": 40789465,
-        "total": 41212440
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "19": {
         "client_to_server": 422975,
-        "server_to_client": 42516718,
-        "total": 42939693
+        "server_to_client": 42419878,
+        "total": 42842853
       },
       "20": {
         "client_to_server": 422975,
-        "server_to_client": 47020071,
-        "total": 47443046
+        "server_to_client": 42419878,
+        "total": 42842853
       }
     }
   },
-  "compression_ratio": 0.6428609350548118,
-  "reduction_percent": 35.713906494518824,
+  "compression_ratio": 0.6058707426060832,
+  "reduction_percent": 39.41292573939168,
   "config": {
     "num_clients": 10,
     "rounds": 20,

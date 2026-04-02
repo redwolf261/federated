@@ -9,8 +9,8 @@ from dataclasses import dataclass
 class TrainingConfig:
     """Hyperparameters for local and cluster-aware optimization."""
 
-    rounds: int = 100
-    local_epochs: int = 20
+    rounds: int = 100  # Increased for full convergence
+    local_epochs: int = 20  # Increased for meaningful training
     cluster_aware_epochs: int = 1
     batch_size: int = 64
     learning_rate: float = 1e-3

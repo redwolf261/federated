@@ -58,13 +58,16 @@ class AdapterNetwork(nn.Module):
         self.proj = nn.Linear(input_dim, shared_dim)
 
     def forward(self, features: torch.Tensor) -> torch.Tensor:
-        """Project client features into the shared latent space.
+        """Project client features into the shared latent space with L2 normalization.
 
         Args:
             features: Tensor of shape (batch_size, input_dim) containing client-specific
                      feature representations from the backbone.
 
         Returns:
-            Tensor of shape (batch_size, shared_dim) in the shared latent space.
+            Tensor of shape (batch_size, shared_dim) in the shared latent space, L2-normalized.
         """
-        return self.proj(features)
+        projected = self.proj(features)
+        # L2 normalize along the feature dimension (last axis)
+        normalized = torch.nn.functional.normalize(projected, p=2, dim=-1)
+        return normalized

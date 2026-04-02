@@ -13,11 +13,17 @@ Tests:
 
 import sys
 from pathlib import Path
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
+
+# Force GPU usage for all training
+if not torch.cuda.is_available():
+    raise RuntimeError("CUDA GPU is required for this experiment. Please run on a machine with a CUDA-capable GPU.")
+DEVICE = "cuda"
 import matplotlib.pyplot as plt
 
 # Add project root to path

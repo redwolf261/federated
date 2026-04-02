@@ -1,0 +1,10 @@
+{
+  "final_train_accuracy": 0.9568571428571429,
+  "final_val_accuracy": 0.5793333333333334,
+  "final_alignment_loss": -0.09999181093140082,
+  "final_alignment_score": 0.9999180929227309,
+  "alignment_warmup_epochs": 15,
+  "criteria_passed": 1,
+  "total_criteria": 4,
+  "system_healthy": false
+}
