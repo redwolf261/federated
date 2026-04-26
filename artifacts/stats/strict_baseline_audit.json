@@ -1,0 +1,167 @@
+{
+  "checks": {
+    "A1_centralized": {
+      "accuracy": 0.696,
+      "losses": [
+        1.624639382171631,
+        1.133830198764801,
+        0.9211605668067933,
+        0.7800811560630798,
+        0.6756545341968536,
+        0.5863946273326873,
+        0.508426718878746,
+        0.4390397737264633,
+        0.38269549503326417,
+        0.32297213789224627,
+        0.2726719963669777,
+        0.23112108864784242,
+        0.19957799710631371,
+        0.16768988879323005,
+        0.15231429600119592,
+        0.13979924586117268,
+        0.11996475908756256,
+        0.10952786388099194,
+        0.11056944316327572,
+        0.0944712825000286
+      ],
+      "split_sizes": {
+        "train": 40000,
+        "test": 10000
+      }
+    },
+    "A2_one_client_fedavg": {
+      "centralized_accuracy": 0.696,
+      "fedavg_1client_accuracy": 0.519,
+      "abs_gap": 0.17699999999999994
+    },
+    "B1_weight_aggregation_identity": {
+      "n1": 103.0,
+      "n2": 103.0,
+      "l2_diff": 1.2778090484216217e-06,
+      "pass_threshold": 1e-06,
+      "pass": false
+    },
+    "B2_no_training_sanity": {
+      "round_means": [
+        0.0784313725490196,
+        0.0784313725490196,
+        0.0784313725490196,
+        0.0784313725490196,
+        0.0784313725490196
+      ],
+      "round_total_bytes": [
+        9892000.0,
+        9892000.0,
+        9892000.0,
+        9892000.0,
+        9892000.0
+      ],
+      "accuracy_span": 0.0,
+      "pass": true
+    },
+    "B3_iid_2client_equivalence": {
+      "centralized_accuracy": 0.696,
+      "fedavg_2client_accuracy": 0.52,
+      "abs_gap": 0.17599999999999993
+    },
+    "C1_moon_mu0_equals_fedavg": {
+      "fedavg_mean": 0.24509803921568626,
+      "moon_mu0_mean": 0.303921568627451,
+      "abs_gap": 0.05882352941176475
+    },
+    "C2_representation_consistency": {
+      "uses_forward_shared": true,
+      "uses_forward_task_for_contrastive": false
+    },
+    "C3_loss_scale": {
+      "ce_losses": [
+        2.337902069091797,
+        2.3203530311584473,
+        2.3526370525360107,
+        2.311251163482666
+      ],
+      "contrastive_losses": [
+        0.6931471824645996,
+        0.6931471824645996,
+        0.6931471824645996,
+        0.6931472420692444
+      ],
+      "ce_mean": 2.3305358290672302,
+      "contrastive_mean": 0.6931471973657608,
+      "contrastive_to_ce_ratio": 0.29741967006925824
+    },
+    "D1_scaffold_source_equation": {
+      "has_grad_add_cglobal_minus_clocal": true,
+      "has_clocal_update": true,
+      "has_cglobal_update": true
+    },
+    "D2_scaffold_fedavg_equivalence_proxy": {
+      "fedavg_mean": 0.24509803921568626,
+      "scaffold_mean": 0.08823529411764706,
+      "abs_gap": 0.1568627450980392
+    },
+    "D3_scaffold_vs_fedavg_non_iid": {
+      "fedavg": [
+        0.23155080213903742,
+        0.22254901960784315,
+        0.09346592985020094
+      ],
+      "scaffold": [
+        0.0679144385026738,
+        0.14509803921568626,
+        0.1839106077213494
+      ],
+      "mean_fedavg": 0.1825219171990272,
+      "mean_scaffold": 0.13230769514656981
+    },
+    "E1_initialization_hash": {
+      "hash_model_1": "670eee6d2e36d2f9b2deae47e2a7db3055694e706f222ac71e307936f407005c",
+      "hash_model_2": "670eee6d2e36d2f9b2deae47e2a7db3055694e706f222ac71e307936f407005c",
+      "identical": true
+    },
+    "E2_same_data_per_client": {
+      "fedavg_partition_fingerprint": "a821e3af0609e32d4537612ca588b995b954d50f6394d9e5c70225bdfa12729b",
+      "moon_partition_fingerprint": "a821e3af0609e32d4537612ca588b995b954d50f6394d9e5c70225bdfa12729b",
+      "identical": true
+    },
+    "E3_training_budget": {
+      "fedavg_total_updates_per_client": 800,
+      "centralized_total_updates": 1260
+    },
+    "E4_optimizer_state_persistence": {
+      "optimizer_id_round1": 2396524077200,
+      "optimizer_id_round2": 2396524077200,
+      "persisted": true
+    },
+    "F1_expected_ranking": {
+      "iid": {
+        "fedavg": 0.52,
+        "moon": 0.533,
+        "scaffold": 0.114
+      },
+      "non_iid": {
+        "fedavg": 0.23155080213903742,
+        "moon": 0.2415329768270945,
+        "scaffold": 0.0679144385026738
+      }
+    },
+    "F2_learning_curve_shape": {
+      "fedavg_non_iid_series": [
+        0.15811051693404635,
+        0.2162210338680927,
+        0.15811051693404635,
+        0.1837789661319073,
+        0.15811051693404635,
+        0.23155080213903742
+      ],
+      "sign_flips": 4
+    },
+    "G_minimal_gold_test": {
+      "fedavg": 0.52,
+      "moon": 0.533,
+      "scaffold": 0.114,
+      "centralized": 0.696,
+      "fedavg_gap_to_centralized": 0.17599999999999993
+    }
+  }
+}

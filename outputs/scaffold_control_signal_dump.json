@@ -1,0 +1,249 @@
+{
+  "config": {
+    "seed": 42,
+    "alpha": 1.0,
+    "num_clients": 2,
+    "rounds": 5,
+    "local_epochs": 1,
+    "lr": 0.003,
+    "batch_size": 64,
+    "max_samples": 20000
+  },
+  "per_round_core": [
+    {
+      "round": 1,
+      "mean_accuracy": 0.05449999999999999,
+      "grad_norm_mean": 1.0563508182161943,
+      "control_norm_mean": 0.5212895916947986,
+      "ratio_control_to_grad": 0.49348150510743555,
+      "c_global_norm": 0.44529106485303277,
+      "c_i_norms": [
+        0.5193106565718644,
+        0.5232685268177327
+      ]
+    },
+    {
+      "round": 2,
+      "mean_accuracy": 0.055249999999999994,
+      "grad_norm_mean": 1.223962596691155,
+      "control_norm_mean": 0.4304945329321641,
+      "ratio_control_to_grad": 0.351721967726757,
+      "c_global_norm": 0.19586519990792622,
+      "c_i_norms": [
+        0.42902547414731057,
+        0.4319635917170177
+      ]
+    },
+    {
+      "round": 3,
+      "mean_accuracy": 0.08625,
+      "grad_norm_mean": 2.2938136762202843,
+      "control_norm_mean": 0.48513344773883804,
+      "ratio_control_to_grad": 0.21149644924004224,
+      "c_global_norm": 0.19621090063138485,
+      "c_i_norms": [
+        0.48373435823387556,
+        0.4865325372438006
+      ]
+    },
+    {
+      "round": 4,
+      "mean_accuracy": 0.05325,
+      "grad_norm_mean": 3.3023747916934747,
+      "control_norm_mean": 0.5300477807455377,
+      "ratio_control_to_grad": 0.16050503476430866,
+      "c_global_norm": 0.18636962087877473,
+      "c_i_norms": [
+        0.5198993389037669,
+        0.5401962225873085
+      ]
+    },
+    {
+      "round": 5,
+      "mean_accuracy": 0.0775,
+      "grad_norm_mean": 3.8311993449358317,
+      "control_norm_mean": 0.5831134923216016,
+      "ratio_control_to_grad": 0.15220129255147596,
+      "c_global_norm": 0.1987213655779216,
+      "c_i_norms": [
+        0.5711398949407311,
+        0.595087089702472
+      ]
+    }
+  ],
+  "per_round_client_updates": [
+    {
+      "round": 1,
+      "client": 0,
+      "w_global_before_minus_w_local_after_norm": 0.19474148760039764,
+      "K": 125,
+      "lr": 0.003,
+      "computed_delta_norm": 0.5193106336010603,
+      "c_i_before_norm": 0.0,
+      "c_i_after_norm": 0.5193106565718644
+    },
+    {
+      "round": 1,
+      "client": 1,
+      "w_global_before_minus_w_local_after_norm": 0.19622569511016089,
+      "K": 125,
+      "lr": 0.003,
+      "computed_delta_norm": 0.5232685202937624,
+      "c_i_before_norm": 0.0,
+      "c_i_after_norm": 0.5232685268177327
+    },
+    {
+      "round": 2,
+      "client": 0,
+      "w_global_before_minus_w_local_after_norm": 0.08906595527470168,
+      "K": 125,
+      "lr": 0.003,
+      "computed_delta_norm": 0.23750921406587114,
+      "c_i_before_norm": 0.5193106565718644,
+      "c_i_after_norm": 0.42902547414731057
+    },
+    {
+      "round": 2,
+      "client": 1,
+      "w_global_before_minus_w_local_after_norm": 0.09061118148132363,
+      "K": 125,
+      "lr": 0.003,
+      "computed_delta_norm": 0.2416298172835297,
+      "c_i_before_norm": 0.5232685268177327,
+      "c_i_after_norm": 0.4319635917170177
+    },
+    {
+      "round": 3,
+      "client": 0,
+      "w_global_before_minus_w_local_after_norm": 0.07561678983112756,
+      "K": 125,
+      "lr": 0.003,
+      "computed_delta_norm": 0.20164477288300683,
+      "c_i_before_norm": 0.42902547414731057,
+      "c_i_after_norm": 0.48373435823387556
+    },
+    {
+      "round": 3,
+      "client": 1,
+      "w_global_before_minus_w_local_after_norm": 0.08190631772313259,
+      "K": 125,
+      "lr": 0.003,
+      "computed_delta_norm": 0.2184168472616869,
+      "c_i_before_norm": 0.4319635917170177,
+      "c_i_after_norm": 0.4865325372438006
+    },
+    {
+      "round": 4,
+      "client": 0,
+      "w_global_before_minus_w_local_after_norm": 0.07237091292269775,
+      "K": 125,
+      "lr": 0.003,
+      "computed_delta_norm": 0.192989101127194,
+      "c_i_before_norm": 0.48373435823387556,
+      "c_i_after_norm": 0.5198993389037669
+    },
+    {
+      "round": 4,
+      "client": 1,
+      "w_global_before_minus_w_local_after_norm": 0.07599358778166411,
+      "K": 125,
+      "lr": 0.003,
+      "computed_delta_norm": 0.20264956741777096,
+      "c_i_before_norm": 0.4865325372438006,
+      "c_i_after_norm": 0.5401962225873085
+    },
+    {
+      "round": 5,
+      "client": 0,
+      "w_global_before_minus_w_local_after_norm": 0.07602667857047624,
+      "K": 125,
+      "lr": 0.003,
+      "computed_delta_norm": 0.20273780952126996,
+      "c_i_before_norm": 0.5198993389037669,
+      "c_i_after_norm": 0.5711398949407311
+    },
+    {
+      "round": 5,
+      "client": 1,
+      "w_global_before_minus_w_local_after_norm": 0.08012948547653666,
+      "K": 125,
+      "lr": 0.003,
+      "computed_delta_norm": 0.2136786279374311,
+      "c_i_before_norm": 0.5401962225873085,
+      "c_i_after_norm": 0.595087089702472
+    }
+  ],
+  "persistence": {
+    "client_1_c_i_norms_over_rounds": [
+      0.5193106565718644,
+      0.42902547414731057,
+      0.48373435823387556,
+      0.5198993389037669,
+      0.5711398949407311
+    ],
+    "client_2_c_i_norms_over_rounds": [
+      0.5232685268177327,
+      0.4319635917170177,
+      0.4865325372438006,
+      0.5401962225873085,
+      0.595087089702472
+    ]
+  },
+  "update_order": {
+    "followed": "YES",
+    "evidence_trace": [
+      "round 1, client 0: load global model + c",
+      "round 1, client 0: train with correction",
+      "round 1, client 0: update c_i",
+      "round 1, client 1: load global model + c",
+      "round 1, client 1: train with correction",
+      "round 1, client 1: update c_i",
+      "round 1: aggregate w_local to w_global",
+      "round 1: update c_global = average(c_i)",
+      "round 2, client 0: load global model + c",
+      "round 2, client 0: train with correction",
+      "round 2, client 0: update c_i",
+      "round 2, client 1: load global model + c",
+      "round 2, client 1: train with correction",
+      "round 2, client 1: update c_i",
+      "round 2: aggregate w_local to w_global",
+      "round 2: update c_global = average(c_i)",
+      "round 3, client 0: load global model + c",
+      "round 3, client 0: train with correction",
+      "round 3, client 0: update c_i",
+      "round 3, client 1: load global model + c",
+      "round 3, client 1: train with correction",
+      "round 3, client 1: update c_i",
+      "round 3: aggregate w_local to w_global",
+      "round 3: update c_global = average(c_i)",
+      "round 4, client 0: load global model + c",
+      "round 4, client 0: train with correction",
+      "round 4, client 0: update c_i",
+      "round 4, client 1: load global model + c",
+      "round 4, client 1: train with correction",
+      "round 4, client 1: update c_i",
+      "round 4: aggregate w_local to w_global",
+      "round 4: update c_global = average(c_i)",
+      "round 5, client 0: load global model + c",
+      "round 5, client 0: train with correction",
+      "round 5, client 0: update c_i",
+      "round 5, client 1: load global model + c",
+      "round 5, client 1: train with correction",
+      "round 5, client 1: update c_i",
+      "round 5: aggregate w_local to w_global",
+      "round 5: update c_global = average(c_i)"
+    ],
+    "code_snippet": [
+      "for each client: load global weights/state, train with grad + (c - c_i), compute w_local, update c_i using (w_global - w_local)/(K*lr)",
+      "after all clients: aggregate model deltas into w_global, then update c = average(c_i)"
+    ]
+  },
+  "round2_one_batch": {
+    "round": 2,
+    "client": 0,
+    "batch_index": 0,
+    "raw_gradient_norm": 1.5537300795111584,
+    "applied_update_norm": 1.420203541909231,
+    "difference_norm": 0.13352653760192745
+  }
+}

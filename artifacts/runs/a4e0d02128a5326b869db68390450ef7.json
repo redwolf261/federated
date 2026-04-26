@@ -1,0 +1,203 @@
+{
+  "run_id": "a4e0d02128a5326b869db68390450ef7",
+  "method": "scaffold",
+  "alpha": 0.5,
+  "dataset": "cifar10",
+  "seed": 43,
+  "status": "SUCCESS",
+  "rounds_expected": 6,
+  "rounds_completed": 6,
+  "error": null,
+  "dataset_hash": "158cad7c184ceba2eac0670d7c333ad3ba21a173cb31e95e4beb01b44ab9bd7c",
+  "preprocessing": "dataset_loader_default",
+  "metrics": {
+    "per_round": [
+      {
+        "round": 1,
+        "global_metrics": {
+          "mean_client_accuracy": 0.10085251491901108,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.09803921568627451,
+            "1": 0.0196078431372549,
+            "2": 0.08695652173913043,
+            "3": 0.2549019607843137,
+            "4": 0.21568627450980393,
+            "5": 0.0196078431372549,
+            "6": 0.29411764705882354,
+            "7": 0.0,
+            "8": 0.0,
+            "9": 0.0196078431372549
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 2,
+        "global_metrics": {
+          "mean_client_accuracy": 0.08473998294970161,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.0392156862745098,
+            "2": 0.043478260869565216,
+            "3": 0.0196078431372549,
+            "4": 0.0,
+            "5": 0.39215686274509803,
+            "6": 0.0392156862745098,
+            "7": 0.058823529411764705,
+            "8": 0.058823529411764705,
+            "9": 0.19607843137254902
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 3,
+        "global_metrics": {
+          "mean_client_accuracy": 0.10085251491901108,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.09803921568627451,
+            "1": 0.0196078431372549,
+            "2": 0.08695652173913043,
+            "3": 0.2549019607843137,
+            "4": 0.21568627450980393,
+            "5": 0.0196078431372549,
+            "6": 0.29411764705882354,
+            "7": 0.0,
+            "8": 0.0,
+            "9": 0.0196078431372549
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 4,
+        "global_metrics": {
+          "mean_client_accuracy": 0.08473998294970161,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.0392156862745098,
+            "2": 0.043478260869565216,
+            "3": 0.0196078431372549,
+            "4": 0.0,
+            "5": 0.39215686274509803,
+            "6": 0.0392156862745098,
+            "7": 0.058823529411764705,
+            "8": 0.058823529411764705,
+            "9": 0.19607843137254902
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 5,
+        "global_metrics": {
+          "mean_client_accuracy": 0.10085251491901108,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.09803921568627451,
+            "1": 0.0196078431372549,
+            "2": 0.08695652173913043,
+            "3": 0.2549019607843137,
+            "4": 0.21568627450980393,
+            "5": 0.0196078431372549,
+            "6": 0.29411764705882354,
+            "7": 0.0,
+            "8": 0.0,
+            "9": 0.0196078431372549
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 6,
+        "global_metrics": {
+          "mean_client_accuracy": 0.08473998294970161,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.0392156862745098,
+            "2": 0.043478260869565216,
+            "3": 0.0196078431372549,
+            "4": 0.0,
+            "5": 0.39215686274509803,
+            "6": 0.0392156862745098,
+            "7": 0.058823529411764705,
+            "8": 0.058823529411764705,
+            "9": 0.19607843137254902
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      }
+    ],
+    "final": {
+      "mean_client_accuracy": 0.08473998294970161,
+      "worst_client_accuracy": 0.0,
+      "p10_client_accuracy": 0.0,
+      "client_accuracies": {
+        "0": 0.0,
+        "1": 0.0392156862745098,
+        "2": 0.043478260869565216,
+        "3": 0.0196078431372549,
+        "4": 0.0,
+        "5": 0.39215686274509803,
+        "6": 0.0392156862745098,
+        "7": 0.058823529411764705,
+        "8": 0.058823529411764705,
+        "9": 0.19607843137254902
+      }
+    }
+  },
+  "communication": {
+    "total_bytes": 296760000.0
+  },
+  "config": {
+    "method": "scaffold",
+    "dataset": "cifar10",
+    "alpha": 0.5,
+    "seed": 43,
+    "rounds": 6,
+    "local_epochs": 2,
+    "max_samples_per_client": 256,
+    "require_gpu": false
+  },
+  "execution": {
+    "attempts": 1,
+    "status": "success",
+    "last_error": null,
+    "saved_at": "2026-04-18T08:45:06.182585+00:00"
+  }
+}

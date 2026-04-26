@@ -1,0 +1,19 @@
+{
+  "scaffold_zero": {
+    "mean_accuracy": 0.5176666666666666,
+    "per_seed_accuracies": {
+      "42": 0.516,
+      "43": 0.528,
+      "44": 0.509
+    }
+  },
+  "fedavg_reference_same_config": {
+    "mean_accuracy": 0.49766666666666665,
+    "per_seed_accuracies": {
+      "42": 0.497,
+      "43": 0.503,
+      "44": 0.493
+    }
+  },
+  "delta_scaffold_fedavg": 0.019999999999999962
+}

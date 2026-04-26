@@ -56,7 +56,7 @@ class ClientModel(nn.Module):
         self.backbone = backbone
         self.adapter = adapter
         self.num_classes = num_classes
-        self.classifier = nn.Linear(backbone.output_dim, num_classes)
+        self.classifier = nn.Linear(adapter.shared_dim, num_classes)
 
     def forward_task(self, x: torch.Tensor) -> torch.Tensor:
         """Compute task predictions (labels).
@@ -70,7 +70,8 @@ class ClientModel(nn.Module):
             Logits of shape [batch_size, num_classes].
         """
         features = self.extract_features(x)
-        return self.classifier(features)
+        shared = self.project_shared(features)
+        return self.classifier(shared)
 
     def extract_features(self, x: torch.Tensor) -> torch.Tensor:
         """Extract client-specific features from the backbone.

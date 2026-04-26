@@ -1,0 +1,19 @@
+{
+  "moon_mu0": {
+    "mean_accuracy": 0.521,
+    "per_seed_accuracies": {
+      "42": 0.531,
+      "43": 0.51,
+      "44": 0.522
+    }
+  },
+  "fedavg_reference_same_config": {
+    "mean_accuracy": 0.49766666666666665,
+    "per_seed_accuracies": {
+      "42": 0.497,
+      "43": 0.503,
+      "44": 0.493
+    }
+  },
+  "delta_moon_fedavg": 0.023333333333333373
+}

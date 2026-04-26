@@ -1,0 +1,142 @@
+{
+  "block": "D",
+  "description": "Heterogeneity Sweep",
+  "alpha_values": [
+    0.05,
+    0.1,
+    0.5,
+    1.0,
+    10.0
+  ],
+  "per_alpha": {
+    "0.05": {
+      "flex_no_extra": {
+        "mean_accuracy": 0.864601263036252,
+        "std_across_seeds": 0.04823509747459624,
+        "worst_accuracy": 0.682142857142857,
+        "p10": 0.7469642857142857,
+        "n_seeds": 3
+      },
+      "fedavg_sgd": {
+        "mean_accuracy": 0.3250118453558352,
+        "std_across_seeds": 0.12260445076893459,
+        "worst_accuracy": 0.04416666666666667,
+        "p10": 0.07952380952380951,
+        "n_seeds": 3
+      }
+    },
+    "0.1": {
+      "flex_no_extra": {
+        "mean_accuracy": 0.7853287621170034,
+        "std_across_seeds": 0.012763131053293865,
+        "worst_accuracy": 0.6191203703703704,
+        "p10": 0.640912037037037,
+        "n_seeds": 3
+      },
+      "fedavg_sgd": {
+        "mean_accuracy": 0.4258483863144016,
+        "std_across_seeds": 0.019433563148089462,
+        "worst_accuracy": 0.19000000000000003,
+        "p10": 0.2063247663551402,
+        "n_seeds": 3
+      }
+    },
+    "0.5": {
+      "flex_no_extra": {
+        "mean_accuracy": 0.6422423059464254,
+        "std_across_seeds": 0.03078294989927783,
+        "worst_accuracy": 0.525,
+        "p10": 0.555,
+        "n_seeds": 3
+      },
+      "fedavg_sgd": {
+        "mean_accuracy": 0.49427237583682704,
+        "std_across_seeds": 0.016321748895027917,
+        "worst_accuracy": 0.3416666666666666,
+        "p10": 0.36566666666666664,
+        "n_seeds": 3
+      }
+    },
+    "1.0": {
+      "flex_no_extra": {
+        "mean_accuracy": 0.5517105263157894,
+        "std_across_seeds": 0.024522654270772513,
+        "worst_accuracy": 0.4691666666666667,
+        "p10": 0.48416666666666663,
+        "n_seeds": 3
+      },
+      "fedavg_sgd": {
+        "mean_accuracy": 0.5161973684210527,
+        "std_across_seeds": 0.0069792182609964585,
+        "worst_accuracy": 0.43500000000000005,
+        "p10": 0.45450000000000007,
+        "n_seeds": 3
+      }
+    },
+    "10.0": {
+      "flex_no_extra": {
+        "mean_accuracy": 0.45199999999999996,
+        "std_across_seeds": 0.006327848502189882,
+        "worst_accuracy": 0.41250000000000003,
+        "p10": 0.42225,
+        "n_seeds": 3
+      },
+      "fedavg_sgd": {
+        "mean_accuracy": 0.5372499999999999,
+        "std_across_seeds": 0.007452628171770544,
+        "worst_accuracy": 0.4975,
+        "p10": 0.51925,
+        "n_seeds": 3
+      }
+    }
+  },
+  "gains": {
+    "0.05": {
+      "flex_mean": 0.864601263036252,
+      "fedavg_mean": 0.3250118453558352,
+      "absolute_gain": 0.5395894176804168,
+      "relative_gain": 166.02146210691305,
+      "worst_gain": 0.6379761904761904,
+      "flex_std": 0.04823509747459624,
+      "fedavg_std": 0.12260445076893459
+    },
+    "0.1": {
+      "flex_mean": 0.7853287621170034,
+      "fedavg_mean": 0.4258483863144016,
+      "absolute_gain": 0.35948037580260184,
+      "relative_gain": 84.41510813597387,
+      "worst_gain": 0.4291203703703703,
+      "flex_std": 0.012763131053293865,
+      "fedavg_std": 0.019433563148089462
+    },
+    "0.5": {
+      "flex_mean": 0.6422423059464254,
+      "fedavg_mean": 0.49427237583682704,
+      "absolute_gain": 0.14796993010959836,
+      "relative_gain": 29.93692088478101,
+      "worst_gain": 0.1833333333333334,
+      "flex_std": 0.03078294989927783,
+      "fedavg_std": 0.016321748895027917
+    },
+    "1.0": {
+      "flex_mean": 0.5517105263157894,
+      "fedavg_mean": 0.5161973684210527,
+      "absolute_gain": 0.03551315789473675,
+      "relative_gain": 6.87976345237183,
+      "worst_gain": 0.03416666666666662,
+      "flex_std": 0.024522654270772513,
+      "fedavg_std": 0.0069792182609964585
+    },
+    "10.0": {
+      "flex_mean": 0.45199999999999996,
+      "fedavg_mean": 0.5372499999999999,
+      "absolute_gain": -0.08524999999999994,
+      "relative_gain": -15.867845509539311,
+      "worst_gain": -0.08499999999999996,
+      "flex_std": 0.006327848502189882,
+      "fedavg_std": 0.007452628171770544
+    }
+  },
+  "pattern": "heterogeneity_dependent",
+  "interpretation": "FLEX advantage decreases as heterogeneity decreases"
+}

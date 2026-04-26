@@ -1,0 +1,36 @@
+{
+  "phase": "phase10",
+  "timestamp": "2026-04-06T15:57:40.692376+00:00",
+  "claim_template": {
+    "problem": "FL fairness degradation under heterogeneity",
+    "method": "cluster-aware regularization in shared latent space",
+    "result": "TBD: fill with quantitative deltas from phase_4",
+    "cost": "TBD: fill with communication/compute deltas from phase_7",
+    "mechanism": "reduces representation drift via prototype and center alignment",
+    "limitation": "TBD: identify failure regimes from robustness/ablation"
+  },
+  "run_id": "run_20260406_155740_b9a50a14",
+  "config_hash": "b9a50a14266b98870621b6be0cd127d4a24d3424f72dacb9354afd07ce5208ad",
+  "git_commit": "c43d40cc2414efc40fb094becc22c7bbcae9298d",
+  "contract": {
+    "dataset": "femnist",
+    "model_architecture": "small_cnn",
+    "shared_dim": 64,
+    "preprocessing": "dataset_loader_default",
+    "evaluation_metrics": [
+      "mean_client_accuracy",
+      "worst_client_accuracy",
+      "p10_client_accuracy",
+      "p90_client_accuracy",
+      "p90_minus_p10_gap"
+    ],
+    "seed_protocol": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "artifact_dir": "experiments\\phase_10\\run_20260406_155740_b9a50a14"
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "phase9",
+  "timestamp": "2026-04-06T15:56:38.427044+00:00",
+  "assumptions": [
+    "Synchronous training rounds",
+    "No stragglers or dropped clients",
+    "Lossless communication",
+    "Equal aggregation weighting by sample count unless specified otherwise",
+    "Homogeneous architecture for FedAvg-compatible runs"
+  ],
+  "run_id": "run_20260406_155638_a0b41368",
+  "config_hash": "a0b41368c25a4319fef0dec6ddfa6a9bdad317dc8ee8713002787f9f4cfad43a",
+  "git_commit": "c43d40cc2414efc40fb094becc22c7bbcae9298d",
+  "contract": {
+    "dataset": "femnist",
+    "model_architecture": "small_cnn",
+    "shared_dim": 64,
+    "preprocessing": "dataset_loader_default",
+    "evaluation_metrics": [
+      "mean_client_accuracy",
+      "worst_client_accuracy",
+      "p10_client_accuracy",
+      "p90_client_accuracy",
+      "p90_minus_p10_gap"
+    ],
+    "seed_protocol": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "artifact_dir": "experiments\\phase_9\\run_20260406_155638_a0b41368"
+}

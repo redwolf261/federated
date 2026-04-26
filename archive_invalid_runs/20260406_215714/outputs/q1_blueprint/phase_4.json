@@ -1,0 +1,680 @@
+{
+  "phase": "phase4",
+  "timestamp": "2026-04-06T14:37:40.877307+00:00",
+  "comparison": [
+    {
+      "alpha": 1.0,
+      "method": "fedavg",
+      "mean": 0.06666666666666667,
+      "worst": 0.0,
+      "std": 0.0,
+      "gap": 0.16666666666666666
+    },
+    {
+      "alpha": 1.0,
+      "method": "prototype",
+      "mean": 0.15833333333333333,
+      "worst": 0.0,
+      "std": 0.0,
+      "gap": 0.3333333333333333
+    },
+    {
+      "alpha": 0.5,
+      "method": "fedavg",
+      "mean": 0.041666666666666664,
+      "worst": 0.0,
+      "std": 0.0,
+      "gap": 0.09166666666666663
+    },
+    {
+      "alpha": 0.5,
+      "method": "prototype",
+      "mean": 0.20833333333333334,
+      "worst": 0.0,
+      "std": 0.0,
+      "gap": 0.425
+    },
+    {
+      "alpha": 0.1,
+      "method": "fedavg",
+      "mean": 0.041666666666666664,
+      "worst": 0.0,
+      "std": 0.0,
+      "gap": 0.09166666666666663
+    },
+    {
+      "alpha": 0.1,
+      "method": "prototype",
+      "mean": 0.3083333333333333,
+      "worst": 0.08333333333333333,
+      "std": 0.0,
+      "gap": 0.3416666666666667
+    }
+  ],
+  "detailed_runs": [
+    {
+      "alpha": 1.0,
+      "method": "fedavg",
+      "seed": 42,
+      "metrics": {
+        "mean": 0.06666666666666667,
+        "worst": 0.0,
+        "p10": 0.0,
+        "p90": 0.16666666666666666,
+        "gap": 0.16666666666666666
+      },
+      "total_communication_bytes": 39853920,
+      "rounds": [
+        {
+          "round": 1,
+          "client_metrics": {
+            "0": {
+              "local_loss": 3.908920171933296
+            },
+            "1": {
+              "local_loss": 3.968336514937572
+            },
+            "2": {
+              "local_loss": 3.9210191812270727
+            },
+            "3": {
+              "local_loss": 3.890834154226841
+            },
+            "4": {
+              "local_loss": 3.9459389662131286
+            },
+            "5": {
+              "local_loss": 3.9529377191494675
+            },
+            "6": {
+              "local_loss": 3.9473833609849978
+            },
+            "7": {
+              "local_loss": 3.9105265812996106
+            },
+            "8": {
+              "local_loss": 3.9126167052831407
+            },
+            "9": {
+              "local_loss": 3.946209968664707
+            }
+          },
+          "global_metrics": {
+            "mean_client_accuracy": 0.06666666666666667,
+            "worst_client_accuracy": 0.0,
+            "p10_client_accuracy": 0.0,
+            "bottom3_client_accuracy": 0.0,
+            "worst_group_accuracy": 0.06666666666666667,
+            "client_accuracies": {
+              "0": 0.0,
+              "1": 0.16666666666666666,
+              "2": 0.16666666666666666,
+              "3": 0.16666666666666666,
+              "4": 0.0,
+              "5": 0.08333333333333333,
+              "6": 0.08333333333333333,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.0
+            }
+          },
+          "communication": {
+            "round_client_to_server_bytes": 19926960,
+            "round_server_to_client_bytes": 19926960,
+            "round_total_bytes": 39853920
+          }
+        }
+      ]
+    },
+    {
+      "alpha": 1.0,
+      "method": "prototype",
+      "seed": 42,
+      "metrics": {
+        "mean": 0.15833333333333333,
+        "worst": 0.0,
+        "p10": 0.0,
+        "p90": 0.3333333333333333,
+        "gap": 0.3333333333333333
+      },
+      "total_communication_bytes": 17517532,
+      "rounds": [
+        {
+          "round": 1,
+          "client_metrics": {
+            "0": {
+              "local_loss": 3.908920171933296,
+              "cluster_id": 0.0,
+              "cluster_support_size": 158.0,
+              "cluster_local_loss": 3.707444429397583,
+              "cluster_alignment_loss": 0.4469264783920386,
+              "cluster_loss": 0.0,
+              "total_objective": 3.707444429397583
+            },
+            "1": {
+              "local_loss": 3.976681146866236,
+              "cluster_id": 1.0,
+              "cluster_support_size": 68.0,
+              "cluster_local_loss": 3.818672369687985,
+              "cluster_alignment_loss": 0.19782473528996491,
+              "cluster_loss": 0.0,
+              "total_objective": 3.818672369687985
+            },
+            "2": {
+              "local_loss": 3.9041787416507034,
+              "cluster_id": 0.0,
+              "cluster_support_size": 158.0,
+              "cluster_local_loss": 3.7405223418504763,
+              "cluster_alignment_loss": 0.4784830663448725,
+              "cluster_loss": 0.0,
+              "total_objective": 3.7405223418504763
+            },
+            "3": {
+              "local_loss": 3.9495021257645044,
+              "cluster_id": 0.0,
+              "cluster_support_size": 158.0,
+              "cluster_local_loss": 3.751139310690073,
+              "cluster_alignment_loss": 0.4140943250594995,
+              "cluster_loss": 0.0,
+              "total_objective": 3.751139310690073
+            },
+            "4": {
+              "local_loss": 3.894947431026361,
+              "cluster_id": 1.0,
+              "cluster_support_size": 68.0,
+              "cluster_local_loss": 3.68580978955978,
+              "cluster_alignment_loss": 0.1943662560138947,
+              "cluster_loss": 0.0,
+              "total_objective": 3.68580978955978
+            },
+            "5": {
+              "local_loss": 4.005723415276943,
+              "cluster_id": 0.0,
+              "cluster_support_size": 158.0,
+              "cluster_local_loss": 3.832281638414432,
+              "cluster_alignment_loss": 0.33833303054173786,
+              "cluster_loss": 0.0,
+              "total_objective": 3.832281638414432
+            },
+            "6": {
+              "local_loss": 3.958200680903899,
+              "cluster_id": 1.0,
+              "cluster_support_size": 68.0,
+              "cluster_local_loss": 3.7872095230298166,
+              "cluster_alignment_loss": 0.24379808321977273,
+              "cluster_loss": 0.0,
+              "total_objective": 3.7872095230298166
+            },
+            "7": {
+              "local_loss": 3.866014847388634,
+              "cluster_id": 0.0,
+              "cluster_support_size": 158.0,
+              "cluster_local_loss": 3.678635829534286,
+              "cluster_alignment_loss": 0.48769208559623134,
+              "cluster_loss": 0.0,
+              "total_objective": 3.678635829534286
+            },
+            "8": {
+              "local_loss": 3.9440637735220103,
+              "cluster_id": 0.0,
+              "cluster_support_size": 158.0,
+              "cluster_local_loss": 3.7821013621794872,
+              "cluster_alignment_loss": 0.42835733141654575,
+              "cluster_loss": 0.0,
+              "total_objective": 3.7821013621794872
+            },
+            "9": {
+              "local_loss": 3.9636309574811888,
+              "cluster_id": 0.0,
+              "cluster_support_size": 158.0,
+              "cluster_local_loss": 3.7839793669871793,
+              "cluster_alignment_loss": 0.37671406452472395,
+              "cluster_loss": 0.0,
+              "total_objective": 3.7839793669871793
+            }
+          },
+          "global_metrics": {
+            "mean_client_accuracy": 0.15833333333333333,
+            "worst_client_accuracy": 0.0,
+            "p10_client_accuracy": 0.0,
+            "bottom3_client_accuracy": 0.0,
+            "worst_group_accuracy": 0.1111111111111111,
+            "client_accuracies": {
+              "0": 0.0,
+              "1": 0.16666666666666666,
+              "2": 0.16666666666666666,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.25,
+              "6": 0.16666666666666666,
+              "7": 0.3333333333333333,
+              "8": 0.16666666666666666,
+              "9": 0.3333333333333333
+            }
+          },
+          "communication": {
+            "round_client_to_server_bytes": 198590,
+            "round_server_to_client_bytes": 17318942,
+            "round_total_bytes": 17517532
+          }
+        }
+      ]
+    },
+    {
+      "alpha": 0.5,
+      "method": "fedavg",
+      "seed": 42,
+      "metrics": {
+        "mean": 0.041666666666666664,
+        "worst": 0.0,
+        "p10": 0.0,
+        "p90": 0.09166666666666663,
+        "gap": 0.09166666666666663
+      },
+      "total_communication_bytes": 39853920,
+      "rounds": [
+        {
+          "round": 1,
+          "client_metrics": {
+            "0": {
+              "local_loss": 3.8784257081838756
+            },
+            "1": {
+              "local_loss": 3.8703455986120763
+            },
+            "2": {
+              "local_loss": 3.894550879796346
+            },
+            "3": {
+              "local_loss": 3.8743591736524534
+            },
+            "4": {
+              "local_loss": 3.8635711547655935
+            },
+            "5": {
+              "local_loss": 3.95743814492837
+            },
+            "6": {
+              "local_loss": 3.950362260525043
+            },
+            "7": {
+              "local_loss": 3.8194905122121177
+            },
+            "8": {
+              "local_loss": 3.9253065219292274
+            },
+            "9": {
+              "local_loss": 3.7960514410948143
+            }
+          },
+          "global_metrics": {
+            "mean_client_accuracy": 0.041666666666666664,
+            "worst_client_accuracy": 0.0,
+            "p10_client_accuracy": 0.0,
+            "bottom3_client_accuracy": 0.0,
+            "worst_group_accuracy": 0.041666666666666664,
+            "client_accuracies": {
+              "0": 0.0,
+              "1": 0.0,
+              "2": 0.08333333333333333,
+              "3": 0.0,
+              "4": 0.0,
+              "5": 0.08333333333333333,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.16666666666666666,
+              "9": 0.08333333333333333
+            }
+          },
+          "communication": {
+            "round_client_to_server_bytes": 19926960,
+            "round_server_to_client_bytes": 19926960,
+            "round_total_bytes": 39853920
+          }
+        }
+      ]
+    },
+    {
+      "alpha": 0.5,
+      "method": "prototype",
+      "seed": 42,
+      "metrics": {
+        "mean": 0.20833333333333334,
+        "worst": 0.0,
+        "p10": 0.0,
+        "p90": 0.425,
+        "gap": 0.425
+      },
+      "total_communication_bytes": 14555940,
+      "rounds": [
+        {
+          "round": 1,
+          "client_metrics": {
+            "0": {
+              "local_loss": 3.8784257081838756,
+              "cluster_id": 0.0,
+              "cluster_support_size": 125.0,
+              "cluster_local_loss": 3.686623609983004,
+              "cluster_alignment_loss": 0.3223061210069901,
+              "cluster_loss": 0.0,
+              "total_objective": 3.686623609983004
+            },
+            "1": {
+              "local_loss": 3.861078610787025,
+              "cluster_id": 0.0,
+              "cluster_support_size": 125.0,
+              "cluster_local_loss": 3.657915176489414,
+              "cluster_alignment_loss": 0.39118975477340895,
+              "cluster_loss": 0.0,
+              "total_objective": 3.657915176489414
+            },
+            "2": {
+              "local_loss": 3.908310816838191,
+              "cluster_id": 1.0,
+              "cluster_support_size": 84.0,
+              "cluster_local_loss": 3.7413862485152025,
+              "cluster_alignment_loss": 0.3776946472815978,
+              "cluster_loss": 0.0,
+              "total_objective": 3.7413862485152025
+            },
+            "3": {
+              "local_loss": 3.918475860204452,
+              "cluster_id": 1.0,
+              "cluster_support_size": 84.0,
+              "cluster_local_loss": 3.7169220936604037,
+              "cluster_alignment_loss": 0.2695056834282019,
+              "cluster_loss": 0.0,
+              "total_objective": 3.7169220936604037
+            },
+            "4": {
+              "local_loss": 3.845824094919058,
+              "cluster_id": 1.0,
+              "cluster_support_size": 84.0,
+              "cluster_local_loss": 3.6435546875,
+              "cluster_alignment_loss": 0.20312446776108864,
+              "cluster_loss": 0.0,
+              "total_objective": 3.6435546875
+            },
+            "5": {
+              "local_loss": 3.9607875591669326,
+              "cluster_id": 0.0,
+              "cluster_support_size": 125.0,
+              "cluster_local_loss": 3.7828901486519055,
+              "cluster_alignment_loss": 0.31321137990707004,
+              "cluster_loss": 0.0,
+              "total_objective": 3.7828901486519055
+            },
+            "6": {
+              "local_loss": 3.95948837353633,
+              "cluster_id": 0.0,
+              "cluster_support_size": 125.0,
+              "cluster_local_loss": 3.7940579927884617,
+              "cluster_alignment_loss": 0.40054875688675123,
+              "cluster_loss": 0.0,
+              "total_objective": 3.7940579927884617
+            },
+            "7": {
+              "local_loss": 3.857822760557517,
+              "cluster_id": 1.0,
+              "cluster_support_size": 84.0,
+              "cluster_local_loss": 3.6722505948482413,
+              "cluster_alignment_loss": 0.25712370528624606,
+              "cluster_loss": 0.0,
+              "total_objective": 3.6722505948482413
+            },
+            "8": {
+              "local_loss": 3.9438952788328514,
+              "cluster_id": 0.0,
+              "cluster_support_size": 125.0,
+              "cluster_local_loss": 3.793770025937985,
+              "cluster_alignment_loss": 0.37725787590711546,
+              "cluster_loss": 0.0,
+              "total_objective": 3.793770025937985
+            },
+            "9": {
+              "local_loss": 3.8473666998056264,
+              "cluster_id": 0.0,
+              "cluster_support_size": 125.0,
+              "cluster_local_loss": 3.6165113815894494,
+              "cluster_alignment_loss": 0.37869019768176937,
+              "cluster_loss": 0.0,
+              "total_objective": 3.6165113815894494
+            }
+          },
+          "global_metrics": {
+            "mean_client_accuracy": 0.20833333333333334,
+            "worst_client_accuracy": 0.0,
+            "p10_client_accuracy": 0.0,
+            "bottom3_client_accuracy": 0.05555555555555555,
+            "worst_group_accuracy": 0.16666666666666666,
+            "client_accuracies": {
+              "0": 0.0,
+              "1": 0.16666666666666666,
+              "2": 0.08333333333333333,
+              "3": 0.5,
+              "4": 0.4166666666666667,
+              "5": 0.08333333333333333,
+              "6": 0.16666666666666666,
+              "7": 0.08333333333333333,
+              "8": 0.16666666666666666,
+              "9": 0.4166666666666667
+            }
+          },
+          "communication": {
+            "round_client_to_server_bytes": 184820,
+            "round_server_to_client_bytes": 14371120,
+            "round_total_bytes": 14555940
+          }
+        }
+      ]
+    },
+    {
+      "alpha": 0.1,
+      "method": "fedavg",
+      "seed": 42,
+      "metrics": {
+        "mean": 0.041666666666666664,
+        "worst": 0.0,
+        "p10": 0.0,
+        "p90": 0.09166666666666663,
+        "gap": 0.09166666666666663
+      },
+      "total_communication_bytes": 39853920,
+      "rounds": [
+        {
+          "round": 1,
+          "client_metrics": {
+            "0": {
+              "local_loss": 3.7552018960316977
+            },
+            "1": {
+              "local_loss": 3.7856141603910007
+            },
+            "2": {
+              "local_loss": 3.8383281230926514
+            },
+            "3": {
+              "local_loss": 3.829233407974243
+            },
+            "4": {
+              "local_loss": 3.764857518367278
+            },
+            "5": {
+              "local_loss": 3.8244187159416003
+            },
+            "6": {
+              "local_loss": 3.8208825343694444
+            },
+            "7": {
+              "local_loss": 3.864569217730791
+            },
+            "8": {
+              "local_loss": 3.8350247725462303
+            },
+            "9": {
+              "local_loss": 3.7424639493991165
+            }
+          },
+          "global_metrics": {
+            "mean_client_accuracy": 0.041666666666666664,
+            "worst_client_accuracy": 0.0,
+            "p10_client_accuracy": 0.0,
+            "bottom3_client_accuracy": 0.0,
+            "worst_group_accuracy": 0.041666666666666664,
+            "client_accuracies": {
+              "0": 0.08333333333333333,
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.08333333333333333,
+              "4": 0.16666666666666666,
+              "5": 0.0,
+              "6": 0.0,
+              "7": 0.0,
+              "8": 0.0,
+              "9": 0.08333333333333333
+            }
+          },
+          "communication": {
+            "round_client_to_server_bytes": 19926960,
+            "round_server_to_client_bytes": 19926960,
+            "round_total_bytes": 39853920
+          }
+        }
+      ]
+    },
+    {
+      "alpha": 0.1,
+      "method": "prototype",
+      "seed": 42,
+      "metrics": {
+        "mean": 0.3083333333333333,
+        "worst": 0.08333333333333333,
+        "p10": 0.08333333333333333,
+        "p90": 0.425,
+        "gap": 0.3416666666666667
+      },
+      "total_communication_bytes": 8743736,
+      "rounds": [
+        {
+          "round": 1,
+          "client_metrics": {
+            "0": {
+              "local_loss": 3.7552018960316977,
+              "cluster_id": 1.0,
+              "cluster_support_size": 86.0,
+              "cluster_local_loss": 3.4542142489017587,
+              "cluster_alignment_loss": 0.2269553018686099,
+              "cluster_loss": 0.0,
+              "total_objective": 3.4542142489017587
+            },
+            "1": {
+              "local_loss": 3.7997395197550454,
+              "cluster_id": 1.0,
+              "cluster_support_size": 86.0,
+              "cluster_local_loss": 3.525152732164432,
+              "cluster_alignment_loss": 0.2116129138530829,
+              "cluster_loss": 0.0,
+              "total_objective": 3.525152732164432
+            },
+            "2": {
+              "local_loss": 3.8798411381550326,
+              "cluster_id": 1.0,
+              "cluster_support_size": 86.0,
+              "cluster_local_loss": 3.6548226918929663,
+              "cluster_alignment_loss": 0.31673110677645755,
+              "cluster_loss": 0.0,
+              "total_objective": 3.6548226918929663
+            },
+            "3": {
+              "local_loss": 3.9120444701268124,
+              "cluster_id": 0.0,
+              "cluster_support_size": 39.0,
+              "cluster_local_loss": 3.647811492284139,
+              "cluster_alignment_loss": 0.19237462010903236,
+              "cluster_loss": 0.0,
+              "total_objective": 3.647811492284139
+            },
+            "4": {
+              "local_loss": 3.785243816864796,
+              "cluster_id": 1.0,
+              "cluster_support_size": 86.0,
+              "cluster_local_loss": 3.5082256610576925,
+              "cluster_alignment_loss": 0.394236975755447,
+              "cluster_loss": 0.0,
+              "total_objective": 3.5082256610576925
+            },
+            "5": {
+              "local_loss": 3.8351535430321326,
+              "cluster_id": 0.0,
+              "cluster_support_size": 39.0,
+              "cluster_local_loss": 3.5879907730298166,
+              "cluster_alignment_loss": 0.11020684777162014,
+              "cluster_loss": 0.0,
+              "total_objective": 3.5879907730298166
+            },
+            "6": {
+              "local_loss": 3.834357726268279,
+              "cluster_id": 0.0,
+              "cluster_support_size": 39.0,
+              "cluster_local_loss": 3.5874774761689014,
+              "cluster_alignment_loss": 0.21861941042618874,
+              "cluster_loss": 0.0,
+              "total_objective": 3.5874774761689014
+            },
+            "7": {
+              "local_loss": 3.890457055507562,
+              "cluster_id": 1.0,
+              "cluster_support_size": 86.0,
+              "cluster_local_loss": 3.66054437099359,
+              "cluster_alignment_loss": 0.27543316857937056,
+              "cluster_loss": 0.0,
+              "total_objective": 3.66054437099359
+            },
+            "8": {
+              "local_loss": 3.7904141560578957,
+              "cluster_id": 1.0,
+              "cluster_support_size": 86.0,
+              "cluster_local_loss": 3.491974659455128,
+              "cluster_alignment_loss": 0.21999104129962432,
+              "cluster_loss": 0.0,
+              "total_objective": 3.491974659455128
+            },
+            "9": {
+              "local_loss": 3.739379198123247,
+              "cluster_id": 1.0,
+              "cluster_support_size": 86.0,
+              "cluster_local_loss": 3.4823843087905493,
+              "cluster_alignment_loss": 0.3742011716732612,
+              "cluster_loss": 0.0,
+              "total_objective": 3.4823843087905493
+            }
+          },
+          "global_metrics": {
+            "mean_client_accuracy": 0.3083333333333333,
+            "worst_client_accuracy": 0.08333333333333333,
+            "p10_client_accuracy": 0.08333333333333333,
+            "bottom3_client_accuracy": 0.16666666666666666,
+            "worst_group_accuracy": 0.2222222222222222,
+            "client_accuracies": {
+              "0": 0.3333333333333333,
+              "1": 0.5,
+              "2": 0.3333333333333333,
+              "3": 0.25,
+              "4": 0.3333333333333333,
+              "5": 0.08333333333333333,
+              "6": 0.3333333333333333,
+              "7": 0.16666666666666666,
+              "8": 0.4166666666666667,
+              "9": 0.3333333333333333
+            }
+          },
+          "communication": {
+            "round_client_to_server_bytes": 116780,
+            "round_server_to_client_bytes": 8626956,
+            "round_total_bytes": 8743736
+          }
+        }
+      ]
+    }
+  ]
+}

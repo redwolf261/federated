@@ -1,0 +1,178 @@
+{
+  "run_id": "af375b8d19082f4fbc2dba1436230e49",
+  "method": "scaffold",
+  "alpha": 0.3,
+  "dataset": "cifar10",
+  "seed": 7,
+  "status": "SUCCESS",
+  "rounds_expected": 5,
+  "rounds_completed": 5,
+  "error": null,
+  "dataset_hash": "2cd478097b3251d9e17ceb709426b0069c65e4675b4b7dd049fa17c5fe1db1ed",
+  "preprocessing": "dataset_loader_default",
+  "metrics": {
+    "per_round": [
+      {
+        "round": 1,
+        "global_metrics": {
+          "mean_client_accuracy": 0.20166666666666666,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.5,
+            "2": 0.4,
+            "3": 0.75,
+            "4": 0.16666666666666666,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.2,
+            "8": 0.0,
+            "9": 0.0
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 2,
+        "global_metrics": {
+          "mean_client_accuracy": 0.041666666666666664,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.25,
+            "4": 0.0,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.16666666666666666,
+            "9": 0.0
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 3,
+        "global_metrics": {
+          "mean_client_accuracy": 0.20166666666666666,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.5,
+            "2": 0.4,
+            "3": 0.75,
+            "4": 0.16666666666666666,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.2,
+            "8": 0.0,
+            "9": 0.0
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 4,
+        "global_metrics": {
+          "mean_client_accuracy": 0.041666666666666664,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.25,
+            "4": 0.0,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.16666666666666666,
+            "9": 0.0
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 5,
+        "global_metrics": {
+          "mean_client_accuracy": 0.20166666666666666,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.5,
+            "2": 0.4,
+            "3": 0.75,
+            "4": 0.16666666666666666,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.2,
+            "8": 0.0,
+            "9": 0.0
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      }
+    ],
+    "final": {
+      "mean_client_accuracy": 0.20166666666666666,
+      "worst_client_accuracy": 0.0,
+      "p10_client_accuracy": 0.0,
+      "client_accuracies": {
+        "0": 0.0,
+        "1": 0.5,
+        "2": 0.4,
+        "3": 0.75,
+        "4": 0.16666666666666666,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.2,
+        "8": 0.0,
+        "9": 0.0
+      }
+    }
+  },
+  "communication": {
+    "total_bytes": 247300000.0
+  },
+  "config": {
+    "method": "scaffold",
+    "dataset": "cifar10",
+    "alpha": 0.3,
+    "seed": 7,
+    "rounds": 5,
+    "local_epochs": 1,
+    "max_samples_per_client": 64,
+    "require_gpu": false
+  },
+  "execution": {
+    "attempts": 1,
+    "status": "success",
+    "last_error": null,
+    "saved_at": "2026-04-13T19:44:59.775058+00:00"
+  }
+}

@@ -29,14 +29,17 @@ class TrainingConfig:
     # Ablation study toggles
     use_clustering: bool = True
     use_guidance: bool = True
+    ablation_mode: str = "full"
 
     def validate(self) -> None:
+
         if self.rounds == 0 or self.rounds < -1:
             raise ValueError("rounds must be positive, or -1 for unlimited")
         if self.local_epochs <= 0:
             raise ValueError("local_epochs must be positive")
-        if self.cluster_aware_epochs <= 0:
-            raise ValueError("cluster_aware_epochs must be positive")
+        if self.cluster_aware_epochs < 0:
+            raise ValueError("cluster_aware_epochs must be non-negative")
+
         if self.batch_size <= 0:
             raise ValueError("batch_size must be positive")
         if self.learning_rate <= 0.0:
@@ -61,3 +64,5 @@ class TrainingConfig:
             raise ValueError("max_unlimited_rounds must be positive")
         if self.rounds == -1 and not self.early_stopping_enabled:
             raise ValueError("unlimited rounds (-1) requires early_stopping_enabled=True")
+        if self.ablation_mode not in {"full", "no_clustering", "random_clusters", "no_guidance", "no_prototype_sharing", "self_only", "shuffled_prototypes", "noise_prototypes"}:
+            raise ValueError("ablation_mode must be one of: 'full', 'no_clustering', 'random_clusters', 'no_guidance', 'no_prototype_sharing', 'self_only', 'shuffled_prototypes', 'noise_prototypes'")

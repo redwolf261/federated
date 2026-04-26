@@ -1,0 +1,56 @@
+{
+  "config": {
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "iid_alpha": 1.0,
+    "num_clients": 2,
+    "rounds": 10,
+    "local_epochs": 1,
+    "lr": 0.003,
+    "batch_size": 64,
+    "max_samples": 20000
+  },
+  "fedavg_anchor": {
+    "mean_accuracy": 0.83175,
+    "std": 0.007992183681572868,
+    "per_seed": {
+      "42": 0.8240000000000001,
+      "123": 0.8285,
+      "456": 0.84275
+    }
+  },
+  "moon_invariant": {
+    "mean_accuracy": 0.8266666666666665,
+    "std": 0.009348202441586736,
+    "per_seed": {
+      "42": 0.823,
+      "123": 0.8175,
+      "456": 0.8394999999999999
+    },
+    "delta_vs_fedavg": 0.00508333333333344,
+    "threshold": 0.05,
+    "pass": true
+  },
+  "scaffold_invariant": {
+    "mean_accuracy": 0.23808333333333334,
+    "std": 0.08847088347146885,
+    "per_seed": {
+      "42": 0.18175000000000002,
+      "123": 0.16949999999999998,
+      "456": 0.363
+    },
+    "delta_vs_fedavg": 0.5936666666666667,
+    "threshold": 0.05,
+    "pass": false
+  },
+  "overfit_test": {
+    "fedavg_train_acc": 0.9925,
+    "moon_train_acc": 0.99,
+    "scaffold_train_acc": 0.9925,
+    "threshold": 0.95,
+    "pass": true
+  }
+}

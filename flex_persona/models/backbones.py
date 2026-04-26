@@ -13,7 +13,7 @@ class FeatureBackbone(nn.Module):
 
 
 class SmallCNNBackbone(FeatureBackbone):
-    def __init__(self, in_channels: int = 3) -> None:
+    def __init__(self, in_channels: int = 3, input_height: int = 28, input_width: int = 28) -> None:
         super().__init__()
         self.features = nn.Sequential(
             nn.Conv2d(in_channels, 32, kernel_size=3, padding=1),
@@ -27,9 +27,10 @@ class SmallCNNBackbone(FeatureBackbone):
             # CRITICAL FIX: Remove AdaptiveAvgPool2d to preserve spatial information
             # AdaptiveAvgPool2d((1, 1)) was destroying spatial structure needed for FEMNIST
         )
-        # CRITICAL FIX: Update output dimension to reflect preserved spatial information
-        # After conv layers: 28x28 -> 14x14 -> 7x7, so final size is 128 * 7 * 7
-        self.output_dim = 128 * 7 * 7  # 6272 instead of 128
+        # After two 2x2 pooling layers, spatial resolution is quartered.
+        pooled_h = max(int(input_height) // 4, 1)
+        pooled_w = max(int(input_width) // 4, 1)
+        self.output_dim = 128 * pooled_h * pooled_w
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.features(x)

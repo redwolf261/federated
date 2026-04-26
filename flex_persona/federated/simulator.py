@@ -2,9 +2,15 @@
 
 from __future__ import annotations
 
+import math
+import os
+import platform
 from pathlib import Path
+from typing import Mapping
 
+import numpy as np
 import torch
+
 
 from ..config.experiment_config import ExperimentConfig
 from ..data.client_data_manager import ClientDataManager
@@ -14,9 +20,12 @@ from ..evaluation.group_metrics import GroupMetrics
 from ..evaluation.metrics import Evaluator
 from ..evaluation.report_builder import ReportBuilder
 from ..models.model_factory import ModelFactory
+from ..utils.seed import set_global_seed
 from .client import Client
 from .round_state import RoundState
 from .server import Server
+from ..prototypes.prototype_distribution import PrototypeDistribution
+
 
 
 class FederatedSimulator:
@@ -26,8 +35,10 @@ class FederatedSimulator:
         self.workspace_root = Path(workspace_root)
         self.config = config
         self.config.validate()
+        set_global_seed(int(self.config.random_seed), deterministic=True)
 
         self.data_manager = ClientDataManager(self.workspace_root, self.config)
+        self._client_bundles = []
         self.clients = self._build_clients()
         self._global_state: dict[str, torch.Tensor] | None = None
         if self.config.training.aggregation_mode in {"fedavg", "fedprox"}:
@@ -37,27 +48,42 @@ class FederatedSimulator:
             num_clusters=self.config.clustering.num_clusters,
             sigma=self.config.similarity.sigma,
             random_state=self.config.clustering.random_state,
+            mode=self.config.training.ablation_mode,
         )
+
         self.evaluator = Evaluator()
         self.group_metrics = GroupMetrics()
         self.communication_tracker = CommunicationTracker()
         self.convergence_logger = ConvergenceLogger()
         self.report_builder = ReportBuilder()
         self._last_run_summary: dict[str, object] = {
+            "run_status": "SUCCESS",
             "rounds_configured": int(self.config.training.rounds),
             "rounds_executed": 0,
             "stopped_early": False,
             "termination_reason": "completed_configured_rounds",
+            "error_message": None,
             "early_stopping_metric": "mean_client_accuracy",
             "best_metric": 0.0,
             "best_round": None,
             "rounds_without_improvement": 0,
         }
 
+    @staticmethod
+    def _assert_finite_metrics(metrics: Mapping[object, float], context: str) -> None:
+        for key, value in metrics.items():
+            if not math.isfinite(float(value)):
+                raise FloatingPointError(f"Non-finite metric detected at {context}.{key}: {value}")
+
     def _build_clients(self) -> list[Client]:
         bundles = self.data_manager.build_client_bundles()
+        self._client_bundles = bundles
         clients: list[Client] = []
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+        cuda_visible = os.environ.get("CUDA_VISIBLE_DEVICES", None)
+        if cuda_visible is not None and cuda_visible.strip() in {"", "-1"}:
+            device = "cpu"
+        else:
+            device = "cuda" if torch.cuda.is_available() else "cpu"
 
         for bundle in bundles:
             model = ModelFactory.build_client_model(
@@ -77,6 +103,13 @@ class FederatedSimulator:
             )
 
         return clients
+
+    @staticmethod
+    def _state_float32_bytes(state: dict[str, torch.Tensor]) -> int:
+        total_params = 0
+        for tensor in state.values():
+            total_params += int(tensor.numel())
+        return int(total_params * 4)
 
     def _validate_fedavg_compatibility(self) -> None:
         if not self.clients:
@@ -111,8 +144,91 @@ class FederatedSimulator:
         for client in self.clients[1:]:
             client.model.load_state_dict(global_state, strict=True)
 
+    def _apply_self_only(self, messages: list) -> list:
+        """Replace each client's cluster prototype with their own original prototype."""
+        client_dists = self.server.get_client_distributions()
+        new_messages = []
+        for msg in messages:
+            client_id = msg.client_id
+            own_dist = client_dists[client_id]
+            support_dict = {
+                int(label.item()): own_dist.support_points[idx]
+                for idx, label in enumerate(own_dist.support_labels)
+            }
+            from .messages import ServerToClientMessage
+            new_msg = ServerToClientMessage(
+                client_id=client_id,
+                round_idx=msg.round_idx,
+                cluster_id=msg.cluster_id,
+                cluster_prototype_distribution=own_dist,
+                cluster_prototype_dict=support_dict,
+                similarity_weights=msg.similarity_weights,
+                metadata=msg.metadata,
+            )
+            new_messages.append(new_msg)
+        return new_messages
+
+    def _apply_shuffled_prototypes(self, messages: list, round_idx: int) -> list:
+        """Shuffle cluster prototype assignments across clients."""
+        rng = np.random.default_rng(self.config.random_seed + round_idx)
+        cluster_dists = [msg.cluster_prototype_distribution for msg in messages]
+        indices = list(range(len(cluster_dists)))
+        rng.shuffle(indices)
+        shuffled_dists = [cluster_dists[i] for i in indices]
+        new_messages = []
+        for msg, dist in zip(messages, shuffled_dists):
+            support_dict = {
+                int(label.item()): dist.support_points[idx]
+                for idx, label in enumerate(dist.support_labels)
+            }
+            from .messages import ServerToClientMessage
+            new_msg = ServerToClientMessage(
+                client_id=msg.client_id,
+                round_idx=msg.round_idx,
+                cluster_id=msg.cluster_id,
+                cluster_prototype_distribution=dist,
+                cluster_prototype_dict=support_dict,
+                similarity_weights=msg.similarity_weights,
+                metadata=msg.metadata,
+            )
+            new_messages.append(new_msg)
+        return new_messages
+
+    def _apply_noise_prototypes(self, messages: list) -> list:
+        """Replace cluster prototypes with random noise of same shape and scale."""
+        new_messages = []
+        for msg in messages:
+            orig_dist = msg.cluster_prototype_distribution
+            support_points = orig_dist.support_points
+            support_labels = orig_dist.support_labels
+            orig_mean = float(support_points.mean())
+            orig_std = float(support_points.std())
+            noise = torch.randn_like(support_points) * orig_std + orig_mean
+            noise_dist = PrototypeDistribution(
+                support_points=noise,
+                support_labels=support_labels,
+                num_support=orig_dist.num_support,
+            )
+            support_dict = {
+                int(label.item()): noise[idx]
+                for idx, label in enumerate(support_labels)
+            }
+            from .messages import ServerToClientMessage
+            new_msg = ServerToClientMessage(
+                client_id=msg.client_id,
+                round_idx=msg.round_idx,
+                cluster_id=msg.cluster_id,
+                cluster_prototype_distribution=noise_dist,
+                cluster_prototype_dict=support_dict,
+                similarity_weights=msg.similarity_weights,
+                metadata=msg.metadata,
+            )
+            new_messages.append(new_msg)
+        return new_messages
+
     @staticmethod
     def _serialized_model_state(model: torch.nn.Module) -> dict[str, torch.Tensor]:
+
         state = model.state_dict()
         return {key: tensor.detach().cpu().clone() for key, tensor in state.items()}
 
@@ -171,9 +287,26 @@ class FederatedSimulator:
                 else 0.0,
                 reference_state=reference_state,
             )
+            self._assert_finite_metrics(local_metrics, context=f"client_{client.client_id}.local")
             state.local_metrics[client.client_id] = local_metrics
 
-        if self.config.training.aggregation_mode in {"fedavg", "fedprox"}:
+        if self.config.training.ablation_mode == "no_prototype_sharing":
+            # Skip prototype exchange entirely - local training only
+            c2s_round_bytes = 0
+            s2c_round_bytes = 0
+            for client in self.clients:
+                model_state = self._serialized_model_state(client.model)
+                model_bytes = self._state_float32_bytes(model_state)
+                c2s_round_bytes += int(model_bytes)
+                s2c_round_bytes += int(model_bytes)
+            self.communication_tracker.log_round(round_idx, c2s_bytes=c2s_round_bytes, s2c_bytes=s2c_round_bytes)
+            state.metadata["aggregation_mode"] = "prototype"
+            state.metadata["structured_alignment"] = {
+                "ablation_mode": "no_prototype_sharing",
+                "note": "No prototype exchange performed",
+            }
+        elif self.config.training.aggregation_mode in {"fedavg", "fedprox"}:
+
             client_states: list[dict[str, torch.Tensor]] = []
             sample_counts: list[int] = []
             c2s_round_bytes = 0
@@ -181,13 +314,8 @@ class FederatedSimulator:
             for client in self.clients:
                 num_samples = int(len(client.train_loader.dataset))
                 local_state = self._serialized_model_state(client.model)
-                payload = {
-                    "client_id": client.client_id,
-                    "round_idx": round_idx,
-                    "num_samples": num_samples,
-                    "state_dict": local_state,
-                }
-                c2s_round_bytes += self.communication_tracker.bytes_client_to_server_payload(payload)
+                model_bytes = self._state_float32_bytes(local_state)
+                c2s_round_bytes += model_bytes
                 client_states.append(local_state)
                 sample_counts.append(max(num_samples, 1))
 
@@ -202,12 +330,11 @@ class FederatedSimulator:
             s2c_round_bytes = 0
             for client in self.clients:
                 client.model.load_state_dict(global_state, strict=True)
-                payload = {
-                    "client_id": client.client_id,
-                    "round_idx": round_idx,
-                    "global_state_dict": global_state,
-                }
-                s2c_round_bytes += self.communication_tracker.bytes_server_to_client_payload(payload)
+                model_bytes = self._state_float32_bytes(global_state)
+                s2c_round_bytes += model_bytes
+
+            self.communication_tracker.client_to_server_bytes += int(c2s_round_bytes)
+            self.communication_tracker.server_to_client_bytes += int(s2c_round_bytes)
 
             self.communication_tracker.log_round(round_idx, c2s_bytes=c2s_round_bytes, s2c_bytes=s2c_round_bytes)
             state.metadata["aggregation_mode"] = self.config.training.aggregation_mode
@@ -237,7 +364,12 @@ class FederatedSimulator:
                 state.similarity_matrix
             )
             state.distance_matrix = 1.0 - state.similarity_matrix
-            state.cluster_assignments = self.server.cluster_clients(state.similarity_matrix)
+            state.cluster_assignments = self.server.cluster_clients(
+                state.similarity_matrix,
+                round_idx=round_idx,
+                num_clients=len(state.client_ids),
+            )
+
 
             # Compute cluster centers from feature means and build per-client center lookup.
             cluster_member_means: dict[int, list[torch.Tensor]] = {}
@@ -257,7 +389,7 @@ class FederatedSimulator:
             cluster_center_warmup_scale = min(1.0, float(round_idx + 1) / float(warmup_rounds))
 
             upload_messages = [client.build_upload_message(round_idx) for client in self.clients]
-            c2s_round_bytes = sum(self.communication_tracker.bytes_client_to_server(msg) for msg in upload_messages)
+            c2s_structured_bytes = sum(self.communication_tracker.bytes_client_to_server(msg) for msg in upload_messages)
             self.server.receive_client_messages(upload_messages)
 
             state.client_distributions = self.server.get_client_distributions()
@@ -269,7 +401,27 @@ class FederatedSimulator:
                 cluster_distributions=state.cluster_distributions,
                 affinity_matrix=state.similarity_matrix,
             )
-            s2c_round_bytes = sum(self.communication_tracker.bytes_server_to_client(msg) for msg in broadcast_messages)
+
+            # Apply Block G prototype corruption modes
+            if self.config.training.ablation_mode == "self_only":
+                broadcast_messages = self._apply_self_only(broadcast_messages)
+            elif self.config.training.ablation_mode == "shuffled_prototypes":
+                broadcast_messages = self._apply_shuffled_prototypes(broadcast_messages, round_idx)
+            elif self.config.training.ablation_mode == "noise_prototypes":
+                broadcast_messages = self._apply_noise_prototypes(broadcast_messages)
+
+            s2c_structured_bytes = sum(self.communication_tracker.bytes_server_to_client(msg) for msg in broadcast_messages)
+
+
+            # Use normalized model-size accounting for all methods.
+            c2s_round_bytes = 0
+            s2c_round_bytes = 0
+            for client in self.clients:
+                model_state = self._serialized_model_state(client.model)
+                model_bytes = self._state_float32_bytes(model_state)
+                c2s_round_bytes += int(model_bytes)
+                s2c_round_bytes += int(model_bytes)
+
             self.communication_tracker.log_round(round_idx, c2s_bytes=c2s_round_bytes, s2c_bytes=s2c_round_bytes)
 
             message_by_client = {msg.client_id: msg for msg in broadcast_messages}
@@ -293,9 +445,14 @@ class FederatedSimulator:
                 "cluster_center_warmup_scale": cluster_center_warmup_scale,
                 "cluster_center_warmup_rounds": warmup_rounds,
                 "num_clusters_active": int(len(cluster_centers)),
+                "structured_message_bytes": {
+                    "client_to_server": int(c2s_structured_bytes),
+                    "server_to_client": int(s2c_structured_bytes),
+                },
             }
 
         client_accuracy = {client.client_id: client.evaluate_accuracy() for client in self.clients}
+        self._assert_finite_metrics(client_accuracy, context=f"round_{round_idx}.client_accuracy")
         mean_accuracy = self.evaluator.mean_client_accuracy(client_accuracy)
         worst_client_accuracy = self.evaluator.worst_client_accuracy(client_accuracy)
         p10_client_accuracy = self.evaluator.p10_client_accuracy(client_accuracy)
@@ -322,6 +479,7 @@ class FederatedSimulator:
             "p10_client_accuracy": p10_client_accuracy,
             "bottom3_client_accuracy": bottom3_client_accuracy,
             "worst_group_accuracy": worst_group_accuracy,
+            "client_accuracies": {str(k): float(v) for k, v in client_accuracy.items()},
         }
         state.metadata["communication"] = {
             "round_client_to_server_bytes": int(c2s_round_bytes),
@@ -353,14 +511,34 @@ class FederatedSimulator:
         configured_rounds = int(self.config.training.rounds)
         max_unlimited_rounds = int(self.config.training.max_unlimited_rounds)
         termination_reason = "completed_configured_rounds"
+        error_message: str | None = None
 
         round_idx = 1
         while True:
-            state = self.run_round(round_idx)
+            try:
+                state = self.run_round(round_idx)
+            except Exception as exc:
+                stopped_early = True
+                termination_reason = "exception"
+                error_message = f"{type(exc).__name__}: {exc}"
+                break
             history.append(state)
+            evaluation = state.metadata.get("evaluation", {})
+            communication = state.metadata.get("communication", {})
+            mean_acc = float(evaluation.get("mean_client_accuracy", 0.0))
+            worst_acc = float(evaluation.get("worst_client_accuracy", 0.0))
+            round_total_bytes = int(communication.get("round_total_bytes", 0))
+            if unlimited_rounds:
+                progress_suffix = "?"
+            else:
+                progress_suffix = str(configured_rounds)
+            print(
+                f"[ROUND] exp={self.config.experiment_name} round={round_idx}/{progress_suffix} "
+                f"mean={mean_acc:.4f} worst={worst_acc:.4f} bytes={round_total_bytes}",
+                flush=True,
+            )
 
             if early_stop_enabled:
-                evaluation = state.metadata.get("evaluation", {})
                 current_metric = float(evaluation.get("mean_client_accuracy", 0.0))
 
                 if current_metric > (best_metric + min_delta):
@@ -391,11 +569,19 @@ class FederatedSimulator:
         if best_metric == float("-inf"):
             best_metric = 0.0
 
+        run_status = "SUCCESS"
+        if termination_reason == "exception":
+            run_status = "FAIL"
+        elif not unlimited_rounds and len(history) < configured_rounds:
+            run_status = "FAIL"
+
         self._last_run_summary = {
+            "run_status": run_status,
             "rounds_configured": int(self.config.training.rounds),
             "rounds_executed": len(history),
             "stopped_early": bool(stopped_early),
             "termination_reason": termination_reason,
+            "error_message": error_message,
             "early_stopping_metric": "mean_client_accuracy",
             "early_stopping_enabled": early_stop_enabled,
             "early_stopping_patience": patience,
@@ -413,10 +599,71 @@ class FederatedSimulator:
             final_eval = history[-1].metadata.get("evaluation", {})
         else:
             final_eval = {}
+        scalar_final_eval = {
+            str(k): float(v)
+            for k, v in final_eval.items()
+            if isinstance(v, (int, float))
+        }
         report = self.report_builder.build(
-            final_round_metrics={str(k): float(v) for k, v in final_eval.items()},
+            final_round_metrics=scalar_final_eval,
             communication_summary=self.communication_tracker.summarize(),
             convergence_traces=self.convergence_logger.as_dict(),
         )
         report["run_summary"] = self._last_run_summary
         return report
+
+    def build_run_schema(self, history: list[RoundState]) -> dict[str, object]:
+        rounds: list[dict[str, object]] = []
+        for state in history:
+            evaluation = state.metadata.get("evaluation", {})
+            communication = state.metadata.get("communication", {})
+            rounds.append(
+                {
+                    "round": int(state.round_idx),
+                    "client_metrics": {
+                        str(client_id): {k: float(v) for k, v in metrics.items()}
+                        for client_id, metrics in state.local_metrics.items()
+                    },
+                    "global_metrics": {k: v for k, v in evaluation.items()},
+                    "communication": {k: int(v) for k, v in communication.items()},
+                }
+            )
+
+        partition_manifest = {
+            str(bundle.client_id): {
+                "num_samples": int(bundle.num_samples),
+                "class_distribution": {str(k): int(v) for k, v in bundle.class_histogram.items()},
+                "source_indices": [int(i) for i in bundle.source_indices],
+            }
+            for bundle in sorted(self._client_bundles, key=lambda b: b.client_id)
+        }
+
+        return {
+            "config": {
+                "experiment_name": self.config.experiment_name,
+                "dataset_name": self.config.dataset_name,
+                "num_clients": int(self.config.num_clients),
+                "partition_mode": self.config.partition_mode,
+                "dirichlet_alpha": float(self.config.dirichlet_alpha),
+                "aggregation_mode": self.config.training.aggregation_mode,
+                "rounds": int(self.config.training.rounds),
+                "local_epochs": int(self.config.training.local_epochs),
+                "cluster_aware_epochs": int(self.config.training.cluster_aware_epochs),
+                "learning_rate": float(self.config.training.learning_rate),
+                "batch_size": int(self.config.training.batch_size),
+                "lambda_cluster": float(self.config.training.lambda_cluster),
+                "lambda_cluster_center": float(self.config.training.lambda_cluster_center),
+            },
+            "seed": int(self.config.random_seed),
+            "environment": {
+                "python": platform.python_version(),
+                "pytorch": torch.__version__,
+                "cuda": torch.version.cuda,
+                "cudnn": int(torch.backends.cudnn.version() or 0),
+                "deterministic_algorithms": bool(torch.are_deterministic_algorithms_enabled()),
+            },
+            "partition_fingerprint": self.data_manager.partition_fingerprint(self._client_bundles),
+            "partition_manifest": partition_manifest,
+            "rounds": rounds,
+            "final_summary": self.build_report(history),
+        }

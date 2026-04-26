@@ -1,0 +1,24 @@
+{
+  "test_name": "SCAFFOLD LR Sensitivity",
+  "seed": 42,
+  "alpha": 0.1,
+  "rounds": 10,
+  "results": [
+    {
+      "lr": 0.001,
+      "final_accuracy": 0.1319964989096099,
+      "round_accuracy": []
+    },
+    {
+      "lr": 0.005,
+      "final_accuracy": 0.1319964989096099,
+      "round_accuracy": []
+    },
+    {
+      "lr": 0.01,
+      "final_accuracy": 0.15652709998849187,
+      "round_accuracy": []
+    }
+  ],
+  "conclusion": "SCAFFOLD shows high sensitivity to learning rate"
+}

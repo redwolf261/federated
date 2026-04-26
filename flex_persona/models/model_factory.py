@@ -26,7 +26,7 @@ class ModelFactory:
         normalized = dataset_name.lower().strip()
         if normalized == "femnist":
             return InputSpec(in_channels=1, height=28, width=28)
-        if normalized == "cifar100":
+        if normalized in {"cifar10", "cifar100"}:
             return InputSpec(in_channels=3, height=32, width=32)
         raise ValueError(f"Unsupported dataset_name: {dataset_name}")
 
@@ -60,7 +60,11 @@ class ModelFactory:
     @staticmethod
     def _build_backbone(backbone_name: str, spec: InputSpec):
         if backbone_name == "small_cnn":
-            return SmallCNNBackbone(in_channels=spec.in_channels)
+            return SmallCNNBackbone(
+                in_channels=spec.in_channels,
+                input_height=spec.height,
+                input_width=spec.width,
+            )
         if backbone_name == "resnet8":
             return ResNet8Backbone(in_channels=spec.in_channels)
         if backbone_name == "mlp":

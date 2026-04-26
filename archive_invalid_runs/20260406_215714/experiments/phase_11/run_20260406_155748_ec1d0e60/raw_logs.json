@@ -1,0 +1,80 @@
+{
+  "run": {
+    "run_id": "run_20260406_155748_ec1d0e60",
+    "phase": "11",
+    "timestamp": "20260406_155748",
+    "config_hash": "ec1d0e60f1389e7ed945eac22e7acb4d5c0f0271a3ba5980bd4bf50578979a43",
+    "git_commit": "c43d40cc2414efc40fb094becc22c7bbcae9298d",
+    "contract": {
+      "dataset": "femnist",
+      "model_architecture": "small_cnn",
+      "shared_dim": 64,
+      "preprocessing": "dataset_loader_default",
+      "evaluation_metrics": [
+        "mean_client_accuracy",
+        "worst_client_accuracy",
+        "p10_client_accuracy",
+        "p90_client_accuracy",
+        "p90_minus_p10_gap"
+      ],
+      "seed_protocol": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "payload": {
+    "phase": "phase11",
+    "timestamp": "2026-04-06T15:57:48.575363+00:00",
+    "status": "available",
+    "source": "outputs\\phase2_q1\\stage6_baselines.json",
+    "baselines": {
+      "fedavg": {
+        "mean": 0.8206666666666668,
+        "std": 0.010412999354439352,
+        "worst_mean": 0.7399999999999999
+      },
+      "scaffold": {
+        "mean": 0.008833333333333334,
+        "std": 0.005181430518903272,
+        "worst_mean": 0.0
+      },
+      "moon": {
+        "mean": 0.8337500000000001,
+        "std": 0.004826144078523471,
+        "worst_mean": 0.7591666666666667
+      },
+      "flex_persona": {
+        "mean": 0.7949999999999999,
+        "std": 0.0038944404818493346,
+        "worst_mean": 0.7358333333333333
+      }
+    },
+    "run_id": "run_20260406_155748_ec1d0e60",
+    "config_hash": "ec1d0e60f1389e7ed945eac22e7acb4d5c0f0271a3ba5980bd4bf50578979a43",
+    "git_commit": "c43d40cc2414efc40fb094becc22c7bbcae9298d",
+    "contract": {
+      "dataset": "femnist",
+      "model_architecture": "small_cnn",
+      "shared_dim": 64,
+      "preprocessing": "dataset_loader_default",
+      "evaluation_metrics": [
+        "mean_client_accuracy",
+        "worst_client_accuracy",
+        "p10_client_accuracy",
+        "p90_client_accuracy",
+        "p90_minus_p10_gap"
+      ],
+      "seed_protocol": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  }
+}

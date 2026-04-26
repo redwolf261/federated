@@ -1,0 +1,8 @@
+{
+  "learning_rate": 0.003,
+  "batch_size": 64,
+  "local_epochs": 3,
+  "rounds": 50,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+}

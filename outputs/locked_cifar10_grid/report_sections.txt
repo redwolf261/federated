@@ -1,0 +1,83 @@
+SECTION 1 - CORE RESULTS
+alpha = 0.1
+FEDAVG:
+mean = 0.47521875543037106
+std = 0.0
+per_seed = [0.47521875543037106]
+MOON:
+mean = 0.0
+std = 0.0
+per_seed = []
+SCAFFOLD:
+mean = 0.0
+std = 0.0
+per_seed = []
+FLEX:
+mean = 0.0
+std = 0.0
+per_seed = []
+
+SECTION 2 - CONVERGENCE
+alpha = 0.1, seed = 42
+FEDAVG:
+[0.26531809527736483, 0.3126766967967312, 0.36225677829465974, 0.4099703792801854, 0.41426364347525685, 0.4193730996593478, 0.4305140238627495, 0.42071606910173964, 0.43442214481046826, 0.43880990660683106, 0.43463487771943904, 0.4402863019934607, 0.47244266617153735, 0.4657390468852368, 0.48365987654659676, 0.46816325877325593, 0.48214809943558634, 0.45199486204283845, 0.4830925513895473, 0.47521875543037106]
+MOON:
+[]
+SCAFFOLD:
+[]
+FLEX:
+[]
+
+SECTION 3 - FAIRNESS
+alpha = 0.1
+FEDAVG:
+mean_client = 0.47521875543037106
+worst_client = 0.2675
+p10 = 0.4115
+p90 = 0.5563986486486486
+MOON:
+mean_client = 0.0
+worst_client = 0.0
+p10 = 0.0
+p90 = 0.0
+SCAFFOLD:
+mean_client = 0.0
+worst_client = 0.0
+p10 = 0.0
+p90 = 0.0
+FLEX:
+mean_client = 0.0
+worst_client = 0.0
+p10 = 0.0
+p90 = 0.0
+
+SECTION 4 - SPEED METRIC
+round_to_50_percent_accuracy:
+FEDAVG = None
+MOON = None
+SCAFFOLD = None
+FLEX = None
+
+SECTION 5 - GAP ANALYSIS
+gap_fedavg = 0.39478124456962893
+gap_moon = 0.87
+gap_scaffold = 0.87
+gap_flex = 0.87
+
+SECTION 6 - STATISTICAL TESTS
+FLEX vs FEDAVG:
+p-value = nan
+t-stat = nan
+FLEX vs MOON:
+p-value = nan
+t-stat = nan
+FLEX vs SCAFFOLD:
+p-value = nan
+t-stat = nan
+
+SECTION 7 - SANITY FLAGS
+1. Any run failed? NO
+2. Any NaN/inf? NO
+3. Any method collapsing? NO
+4. SCAFFOLD stable (no early collapse)? NO
+5. MOON stable? NO

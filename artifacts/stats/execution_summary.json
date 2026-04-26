@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-04-18T08:46:29.958485+00:00",
+  "requested_runs": 48,
+  "executed_runs": 48,
+  "success_runs": 48,
+  "failed_runs": 0,
+  "mode": "firm2h",
+  "phase": "full",
+  "max_workers": 2,
+  "shard": null,
+  "num_shards": null
+}

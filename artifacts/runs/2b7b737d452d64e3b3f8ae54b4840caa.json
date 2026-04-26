@@ -1,0 +1,203 @@
+{
+  "run_id": "2b7b737d452d64e3b3f8ae54b4840caa",
+  "method": "moon",
+  "alpha": 0.5,
+  "dataset": "cifar100",
+  "seed": 43,
+  "status": "SUCCESS",
+  "rounds_expected": 6,
+  "rounds_completed": 6,
+  "error": null,
+  "dataset_hash": "29a2f0ccc1ccfadd22259d981642178bc7d4c015e9203f93ab91e994be3635d2",
+  "preprocessing": "dataset_loader_default",
+  "metrics": {
+    "per_round": [
+      {
+        "round": 1,
+        "global_metrics": {
+          "mean_client_accuracy": 0.013725490196078433,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0196078431372549,
+            "1": 0.0392156862745098,
+            "2": 0.0392156862745098,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0196078431372549,
+            "6": 0.0,
+            "7": 0.0196078431372549,
+            "8": 0.0,
+            "9": 0.0
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24964000,
+          "round_server_to_client_bytes": 24964000,
+          "round_total_bytes": 49928000
+        }
+      },
+      {
+        "round": 2,
+        "global_metrics": {
+          "mean_client_accuracy": 0.013725490196078433,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0196078431372549,
+            "1": 0.0392156862745098,
+            "2": 0.0392156862745098,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0196078431372549,
+            "6": 0.0,
+            "7": 0.0196078431372549,
+            "8": 0.0,
+            "9": 0.0
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24964000,
+          "round_server_to_client_bytes": 24964000,
+          "round_total_bytes": 49928000
+        }
+      },
+      {
+        "round": 3,
+        "global_metrics": {
+          "mean_client_accuracy": 0.02941176470588235,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0392156862745098,
+            "1": 0.0392156862745098,
+            "2": 0.09803921568627451,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0392156862745098,
+            "6": 0.0196078431372549,
+            "7": 0.0392156862745098,
+            "8": 0.0196078431372549,
+            "9": 0.0
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24964000,
+          "round_server_to_client_bytes": 24964000,
+          "round_total_bytes": 49928000
+        }
+      },
+      {
+        "round": 4,
+        "global_metrics": {
+          "mean_client_accuracy": 0.01764705882352941,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.0392156862745098,
+            "2": 0.0784313725490196,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0196078431372549,
+            "6": 0.0,
+            "7": 0.0196078431372549,
+            "8": 0.0196078431372549,
+            "9": 0.0
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24964000,
+          "round_server_to_client_bytes": 24964000,
+          "round_total_bytes": 49928000
+        }
+      },
+      {
+        "round": 5,
+        "global_metrics": {
+          "mean_client_accuracy": 0.041176470588235294,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.01764705882352941,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.09803921568627451,
+            "2": 0.0784313725490196,
+            "3": 0.0196078431372549,
+            "4": 0.0196078431372549,
+            "5": 0.0392156862745098,
+            "6": 0.0196078431372549,
+            "7": 0.0392156862745098,
+            "8": 0.0784313725490196,
+            "9": 0.0196078431372549
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24964000,
+          "round_server_to_client_bytes": 24964000,
+          "round_total_bytes": 49928000
+        }
+      },
+      {
+        "round": 6,
+        "global_metrics": {
+          "mean_client_accuracy": 0.037254901960784306,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.01764705882352941,
+          "client_accuracies": {
+            "0": 0.0,
+            "1": 0.09803921568627451,
+            "2": 0.058823529411764705,
+            "3": 0.0196078431372549,
+            "4": 0.0196078431372549,
+            "5": 0.058823529411764705,
+            "6": 0.0196078431372549,
+            "7": 0.0196078431372549,
+            "8": 0.058823529411764705,
+            "9": 0.0196078431372549
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24964000,
+          "round_server_to_client_bytes": 24964000,
+          "round_total_bytes": 49928000
+        }
+      }
+    ],
+    "final": {
+      "mean_client_accuracy": 0.037254901960784306,
+      "worst_client_accuracy": 0.0,
+      "p10_client_accuracy": 0.01764705882352941,
+      "client_accuracies": {
+        "0": 0.0,
+        "1": 0.09803921568627451,
+        "2": 0.058823529411764705,
+        "3": 0.0196078431372549,
+        "4": 0.0196078431372549,
+        "5": 0.058823529411764705,
+        "6": 0.0196078431372549,
+        "7": 0.0196078431372549,
+        "8": 0.058823529411764705,
+        "9": 0.0196078431372549
+      }
+    }
+  },
+  "communication": {
+    "total_bytes": 299568000.0
+  },
+  "config": {
+    "method": "moon",
+    "dataset": "cifar100",
+    "alpha": 0.5,
+    "seed": 43,
+    "rounds": 6,
+    "local_epochs": 2,
+    "max_samples_per_client": 256,
+    "require_gpu": false
+  },
+  "execution": {
+    "attempts": 1,
+    "status": "success",
+    "last_error": null,
+    "saved_at": "2026-04-18T08:43:54.809721+00:00"
+  }
+}

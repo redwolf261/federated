@@ -1,0 +1,769 @@
+{
+  "run_id": "94ef532e6a4f60fe43cae061c770f2a4",
+  "method": "flexfl",
+  "dataset": "cifar10",
+  "alpha": 0.5,
+  "seed": 43,
+  "status": "SUCCESS",
+  "rounds_expected": 6,
+  "rounds_completed": 6,
+  "error": null,
+  "dataset_hash": "158cad7c184ceba2eac0670d7c333ad3ba21a173cb31e95e4beb01b44ab9bd7c",
+  "preprocessing": "dataset_loader_default",
+  "metrics": {
+    "per_round": [
+      {
+        "round": 1,
+        "client_metrics": {
+          "0": {
+            "local_loss": 2.042913659025983,
+            "cluster_id": 1.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.9305668083632865,
+            "cluster_alignment_loss": 0.3356547836123443,
+            "cluster_loss": 0.0,
+            "total_objective": 1.9305668083632865
+          },
+          "1": {
+            "local_loss": 1.937101940992402,
+            "cluster_id": 1.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.8302115896853004,
+            "cluster_alignment_loss": 0.540848954421718,
+            "cluster_loss": 0.0,
+            "total_objective": 1.8302115896853004
+          },
+          "2": {
+            "local_loss": 2.0659948039699243,
+            "cluster_id": 0.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.9554386863837372,
+            "cluster_alignment_loss": 0.3935566786978696,
+            "cluster_loss": 0.0,
+            "total_objective": 1.9554386863837372
+          },
+          "3": {
+            "local_loss": 1.9093782948284614,
+            "cluster_id": 0.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.7513204048319562,
+            "cluster_alignment_loss": 0.5017679061104612,
+            "cluster_loss": 0.0,
+            "total_objective": 1.7513204048319562
+          },
+          "4": {
+            "local_loss": 1.9424093278442942,
+            "cluster_id": 0.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.7823923805864845,
+            "cluster_alignment_loss": 0.6533771126735501,
+            "cluster_loss": 0.0,
+            "total_objective": 1.7823923805864845
+          },
+          "5": {
+            "local_loss": 2.012632251076582,
+            "cluster_id": 1.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.8735421267951406,
+            "cluster_alignment_loss": 0.5109173804521561,
+            "cluster_loss": 0.0,
+            "total_objective": 1.8735421267951406
+          },
+          "6": {
+            "local_loss": 2.0594392625296987,
+            "cluster_id": 0.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.9417998883782364,
+            "cluster_alignment_loss": 0.5742795641102442,
+            "cluster_loss": 0.0,
+            "total_objective": 1.9417998883782364
+          },
+          "7": {
+            "local_loss": 1.9363426903399026,
+            "cluster_id": 0.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.7345910889346425,
+            "cluster_alignment_loss": 0.4023234720637159,
+            "cluster_loss": 0.0,
+            "total_objective": 1.7345910889346425
+          },
+          "8": {
+            "local_loss": 2.0443498111352687,
+            "cluster_id": 1.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.9254511766317415,
+            "cluster_alignment_loss": 0.6266804260451619,
+            "cluster_loss": 0.0,
+            "total_objective": 1.9254511766317415
+          },
+          "9": {
+            "local_loss": 1.9731214119166862,
+            "cluster_id": 1.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.8056348376157807,
+            "cluster_alignment_loss": 0.4702526948800901,
+            "cluster_loss": 0.0,
+            "total_objective": 1.8056348376157807
+          }
+        },
+        "global_metrics": {
+          "mean_client_accuracy": 0.35136402387041776,
+          "worst_client_accuracy": 0.09803921568627451,
+          "p10_client_accuracy": 0.09803921568627451,
+          "bottom3_client_accuracy": 0.21042909917590225,
+          "worst_group_accuracy": 0.32625745950554136,
+          "client_accuracies": {
+            "0": 0.3333333333333333,
+            "1": 0.43137254901960786,
+            "2": 0.2391304347826087,
+            "3": 0.37254901960784315,
+            "4": 0.43137254901960786,
+            "5": 0.43137254901960786,
+            "6": 0.09803921568627451,
+            "7": 0.49019607843137253,
+            "8": 0.29411764705882354,
+            "9": 0.39215686274509803
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 2,
+        "client_metrics": {
+          "0": {
+            "local_loss": 1.8276911726812037,
+            "cluster_id": 1.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.8323750059779098,
+            "cluster_alignment_loss": 0.4533301567159048,
+            "cluster_loss": 0.0,
+            "total_objective": 1.8323750059779098
+          },
+          "1": {
+            "local_loss": 1.7665108011990058,
+            "cluster_id": 1.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.6938662592957658,
+            "cluster_alignment_loss": 0.5751444547641568,
+            "cluster_loss": 0.0,
+            "total_objective": 1.6938662592957658
+          },
+          "2": {
+            "local_loss": 1.7919010819615544,
+            "cluster_id": 0.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.8642756964709308,
+            "cluster_alignment_loss": 0.6192041960922448,
+            "cluster_loss": 0.0,
+            "total_objective": 1.8642756964709308
+          },
+          "3": {
+            "local_loss": 1.6537445321315671,
+            "cluster_id": 0.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.5471107962654858,
+            "cluster_alignment_loss": 0.51802195550465,
+            "cluster_loss": 0.0,
+            "total_objective": 1.5471107962654858
+          },
+          "4": {
+            "local_loss": 1.6707674090455218,
+            "cluster_id": 0.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.6449563296829781,
+            "cluster_alignment_loss": 0.6376966009779674,
+            "cluster_loss": 0.0,
+            "total_objective": 1.6449563296829781
+          },
+          "5": {
+            "local_loss": 1.7253588568873521,
+            "cluster_id": 1.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.6817877766562672,
+            "cluster_alignment_loss": 0.5585160331028264,
+            "cluster_loss": 0.0,
+            "total_objective": 1.6817877766562672
+          },
+          "6": {
+            "local_loss": 1.8771114317382254,
+            "cluster_id": 0.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.7278890926663468,
+            "cluster_alignment_loss": 0.6210345374374855,
+            "cluster_loss": 0.0,
+            "total_objective": 1.7278890926663468
+          },
+          "7": {
+            "local_loss": 1.5867733655906304,
+            "cluster_id": 0.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.5739336790108098,
+            "cluster_alignment_loss": 0.43084192944736016,
+            "cluster_loss": 0.0,
+            "total_objective": 1.5739336790108098
+          },
+          "8": {
+            "local_loss": 1.851395807905895,
+            "cluster_id": 1.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.7846021989496743,
+            "cluster_alignment_loss": 0.5771161536617977,
+            "cluster_loss": 0.0,
+            "total_objective": 1.7846021989496743
+          },
+          "9": {
+            "local_loss": 1.689192858847176,
+            "cluster_id": 1.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.6297565899244169,
+            "cluster_alignment_loss": 0.527970892045556,
+            "cluster_loss": 0.0,
+            "total_objective": 1.6297565899244169
+          }
+        },
+        "global_metrics": {
+          "mean_client_accuracy": 0.40912190963341855,
+          "worst_client_accuracy": 0.13043478260869565,
+          "p10_client_accuracy": 0.13043478260869565,
+          "bottom3_client_accuracy": 0.23955669224211426,
+          "worst_group_accuracy": 0.36726342710997445,
+          "client_accuracies": {
+            "0": 0.5490196078431373,
+            "1": 0.43137254901960786,
+            "2": 0.13043478260869565,
+            "3": 0.43137254901960786,
+            "4": 0.5098039215686274,
+            "5": 0.5294117647058824,
+            "6": 0.27450980392156865,
+            "7": 0.49019607843137253,
+            "8": 0.3137254901960784,
+            "9": 0.43137254901960786
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 3,
+        "client_metrics": {
+          "0": {
+            "local_loss": 1.6734326845262109,
+            "cluster_id": 0.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.6327379747134882,
+            "cluster_alignment_loss": 0.5047546541545449,
+            "cluster_loss": 0.0,
+            "total_objective": 1.6327379747134882
+          },
+          "1": {
+            "local_loss": 1.5531726633630147,
+            "cluster_id": 0.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.5281949912629476,
+            "cluster_alignment_loss": 0.6489176328589277,
+            "cluster_loss": 0.0,
+            "total_objective": 1.5281949912629476
+          },
+          "2": {
+            "local_loss": 1.7256962521656138,
+            "cluster_id": 1.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.674140061881091,
+            "cluster_alignment_loss": 0.5180969235059377,
+            "cluster_loss": 0.0,
+            "total_objective": 1.674140061881091
+          },
+          "3": {
+            "local_loss": 1.4967254693915204,
+            "cluster_id": 1.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.3982164586462626,
+            "cluster_alignment_loss": 0.49641652892275556,
+            "cluster_loss": 0.0,
+            "total_objective": 1.3982164586462626
+          },
+          "4": {
+            "local_loss": 1.5415304163607155,
+            "cluster_id": 1.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.5144556164741516,
+            "cluster_alignment_loss": 0.6439228015701945,
+            "cluster_loss": 0.0,
+            "total_objective": 1.5144556164741516
+          },
+          "5": {
+            "local_loss": 1.549537938397105,
+            "cluster_id": 0.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.462526214704281,
+            "cluster_alignment_loss": 0.49432452851679265,
+            "cluster_loss": 0.0,
+            "total_objective": 1.462526214704281
+          },
+          "6": {
+            "local_loss": 1.5385799719066156,
+            "cluster_id": 1.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.4791539064267787,
+            "cluster_alignment_loss": 0.6541366282032757,
+            "cluster_loss": 0.0,
+            "total_objective": 1.4791539064267787
+          },
+          "7": {
+            "local_loss": 1.4234452672121,
+            "cluster_id": 1.0,
+            "cluster_support_size": 41.0,
+            "cluster_local_loss": 1.4063491690449599,
+            "cluster_alignment_loss": 0.47490467240170736,
+            "cluster_loss": 0.0,
+            "total_objective": 1.4063491690449599
+          },
+          "8": {
+            "local_loss": 1.6974154303713542,
+            "cluster_id": 0.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.6501320577249294,
+            "cluster_alignment_loss": 0.5900309447835131,
+            "cluster_loss": 0.0,
+            "total_objective": 1.6501320577249294
+          },
+          "9": {
+            "local_loss": 1.4924497682873796,
+            "cluster_id": 0.0,
+            "cluster_support_size": 46.0,
+            "cluster_local_loss": 1.507903031605046,
+            "cluster_alignment_loss": 0.5696462465495598,
+            "cluster_loss": 0.0,
+            "total_objective": 1.507903031605046
+          }
+        },
+        "global_metrics": {
+          "mean_client_accuracy": 0.5046888320545609,
+          "worst_client_accuracy": 0.3333333333333333,
+          "p10_client_accuracy": 0.3333333333333333,
+          "bottom3_client_accuracy": 0.41830065359477125,
+          "worst_group_accuracy": 0.4917306052855925,
+          "client_accuracies": {
+            "0": 0.5490196078431373,
+            "1": 0.45098039215686275,
+            "2": 0.4782608695652174,
+            "3": 0.49019607843137253,
+            "4": 0.6274509803921569,
+            "5": 0.6078431372549019,
+            "6": 0.3333333333333333,
+            "7": 0.5294117647058824,
+            "8": 0.5098039215686274,
+            "9": 0.47058823529411764
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 4,
+        "client_metrics": {
+          "0": {
+            "local_loss": 1.500199821809443,
+            "cluster_id": 0.0,
+            "cluster_support_size": 36.0,
+            "cluster_local_loss": 1.5067737396170453,
+            "cluster_alignment_loss": 0.44302978090396744,
+            "cluster_loss": 0.0,
+            "total_objective": 1.5067737396170453
+          },
+          "1": {
+            "local_loss": 1.3373743240426226,
+            "cluster_id": 0.0,
+            "cluster_support_size": 36.0,
+            "cluster_local_loss": 1.4532241248502964,
+            "cluster_alignment_loss": 0.7226577159835071,
+            "cluster_loss": 0.0,
+            "total_objective": 1.4532241248502964
+          },
+          "2": {
+            "local_loss": 1.45654975240295,
+            "cluster_id": 1.0,
+            "cluster_support_size": 51.0,
+            "cluster_local_loss": 1.542275136870307,
+            "cluster_alignment_loss": 0.6712548947012102,
+            "cluster_loss": 0.0,
+            "total_objective": 1.542275136870307
+          },
+          "3": {
+            "local_loss": 1.3209949321863128,
+            "cluster_id": 1.0,
+            "cluster_support_size": 51.0,
+            "cluster_local_loss": 1.3327122289959978,
+            "cluster_alignment_loss": 0.5024102115049595,
+            "cluster_loss": 0.0,
+            "total_objective": 1.3327122289959978
+          },
+          "4": {
+            "local_loss": 1.394627588551219,
+            "cluster_id": 1.0,
+            "cluster_support_size": 51.0,
+            "cluster_local_loss": 1.3754595425070786,
+            "cluster_alignment_loss": 0.6906886283944292,
+            "cluster_loss": 0.0,
+            "total_objective": 1.3754595425070786
+          },
+          "5": {
+            "local_loss": 1.3030602126586728,
+            "cluster_id": 0.0,
+            "cluster_support_size": 36.0,
+            "cluster_local_loss": 1.3458566808119052,
+            "cluster_alignment_loss": 0.5662347255683526,
+            "cluster_loss": 0.0,
+            "total_objective": 1.3458566808119052
+          },
+          "6": {
+            "local_loss": 1.2889726182309593,
+            "cluster_id": 1.0,
+            "cluster_support_size": 51.0,
+            "cluster_local_loss": 1.2801563789204853,
+            "cluster_alignment_loss": 0.689302837557909,
+            "cluster_loss": 0.0,
+            "total_objective": 1.2801563789204853
+          },
+          "7": {
+            "local_loss": 1.1975929545193185,
+            "cluster_id": 1.0,
+            "cluster_support_size": 51.0,
+            "cluster_local_loss": 1.2973250136142824,
+            "cluster_alignment_loss": 0.5981021790242776,
+            "cluster_loss": 0.0,
+            "total_objective": 1.2973250136142824
+          },
+          "8": {
+            "local_loss": 1.5540309158767143,
+            "cluster_id": 0.0,
+            "cluster_support_size": 36.0,
+            "cluster_local_loss": 1.593012676587919,
+            "cluster_alignment_loss": 0.5744092242019933,
+            "cluster_loss": 0.0,
+            "total_objective": 1.593012676587919
+          },
+          "9": {
+            "local_loss": 1.3570844030961757,
+            "cluster_id": 1.0,
+            "cluster_support_size": 51.0,
+            "cluster_local_loss": 1.3104501468379324,
+            "cluster_alignment_loss": 0.6246994174835159,
+            "cluster_loss": 0.0,
+            "total_objective": 1.3104501468379324
+          }
+        },
+        "global_metrics": {
+          "mean_client_accuracy": 0.49731457800511514,
+          "worst_client_accuracy": 0.32608695652173914,
+          "p10_client_accuracy": 0.32608695652173914,
+          "bottom3_client_accuracy": 0.3635976129582268,
+          "worst_group_accuracy": 0.4824524012503552,
+          "client_accuracies": {
+            "0": 0.5686274509803921,
+            "1": 0.4117647058823529,
+            "2": 0.32608695652173914,
+            "3": 0.45098039215686275,
+            "4": 0.5490196078431373,
+            "5": 0.5882352941176471,
+            "6": 0.35294117647058826,
+            "7": 0.6862745098039216,
+            "8": 0.5098039215686274,
+            "9": 0.5294117647058824
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 5,
+        "client_metrics": {
+          "0": {
+            "local_loss": 1.3478769817003389,
+            "cluster_id": 0.0,
+            "cluster_support_size": 77.0,
+            "cluster_local_loss": 1.3518198051103731,
+            "cluster_alignment_loss": 0.626071235174086,
+            "cluster_loss": 0.0,
+            "total_objective": 1.3518198051103731
+          },
+          "1": {
+            "local_loss": 1.202781419928481,
+            "cluster_id": 0.0,
+            "cluster_support_size": 77.0,
+            "cluster_local_loss": 1.049809911774426,
+            "cluster_alignment_loss": 0.7609109551441379,
+            "cluster_loss": 0.0,
+            "total_objective": 1.049809911774426
+          },
+          "2": {
+            "local_loss": 1.3203361537005451,
+            "cluster_id": 0.0,
+            "cluster_support_size": 77.0,
+            "cluster_local_loss": 1.3611241807808747,
+            "cluster_alignment_loss": 0.797400261582555,
+            "cluster_loss": 0.0,
+            "total_objective": 1.3611241807808747
+          },
+          "3": {
+            "local_loss": 1.260426146228139,
+            "cluster_id": 0.0,
+            "cluster_support_size": 77.0,
+            "cluster_local_loss": 1.220894542845284,
+            "cluster_alignment_loss": 0.5680408411636585,
+            "cluster_loss": 0.0,
+            "total_objective": 1.220894542845284
+          },
+          "4": {
+            "local_loss": 1.2767715756486102,
+            "cluster_id": 0.0,
+            "cluster_support_size": 77.0,
+            "cluster_local_loss": 1.2742727820466204,
+            "cluster_alignment_loss": 0.7265110585747696,
+            "cluster_loss": 0.0,
+            "total_objective": 1.2742727820466204
+          },
+          "5": {
+            "local_loss": 1.163700610253869,
+            "cluster_id": 0.0,
+            "cluster_support_size": 77.0,
+            "cluster_local_loss": 1.137476581625822,
+            "cluster_alignment_loss": 0.6399519036455852,
+            "cluster_loss": 0.0,
+            "total_objective": 1.137476581625822
+          },
+          "6": {
+            "local_loss": 1.061593811686446,
+            "cluster_id": 1.0,
+            "cluster_support_size": 10.0,
+            "cluster_local_loss": 1.0921304090720851,
+            "cluster_alignment_loss": 0.29132166770173284,
+            "cluster_loss": 0.0,
+            "total_objective": 1.0921304090720851
+          },
+          "7": {
+            "local_loss": 1.0129674085756628,
+            "cluster_id": 0.0,
+            "cluster_support_size": 77.0,
+            "cluster_local_loss": 1.0130415913535327,
+            "cluster_alignment_loss": 0.6870877754397509,
+            "cluster_loss": 0.0,
+            "total_objective": 1.0130415913535327
+          },
+          "8": {
+            "local_loss": 1.4352567466293893,
+            "cluster_id": 0.0,
+            "cluster_support_size": 77.0,
+            "cluster_local_loss": 1.4447355142453822,
+            "cluster_alignment_loss": 0.8186355051470966,
+            "cluster_loss": 0.0,
+            "total_objective": 1.4447355142453822
+          },
+          "9": {
+            "local_loss": 1.150000742877402,
+            "cluster_id": 0.0,
+            "cluster_support_size": 77.0,
+            "cluster_local_loss": 1.091787072216592,
+            "cluster_alignment_loss": 0.6935680556588056,
+            "cluster_loss": 0.0,
+            "total_objective": 1.091787072216592
+          }
+        },
+        "global_metrics": {
+          "mean_client_accuracy": 0.5297527706734868,
+          "worst_client_accuracy": 0.3333333333333333,
+          "p10_client_accuracy": 0.3333333333333333,
+          "bottom3_client_accuracy": 0.41290139244103435,
+          "worst_group_accuracy": 0.3333333333333333,
+          "client_accuracies": {
+            "0": 0.5686274509803921,
+            "1": 0.49019607843137253,
+            "2": 0.43478260869565216,
+            "3": 0.47058823529411764,
+            "4": 0.6078431372549019,
+            "5": 0.6470588235294118,
+            "6": 0.3333333333333333,
+            "7": 0.7254901960784313,
+            "8": 0.47058823529411764,
+            "9": 0.5490196078431373
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 6,
+        "client_metrics": {
+          "0": {
+            "local_loss": 1.184098058793603,
+            "cluster_id": 0.0,
+            "cluster_support_size": 57.0,
+            "cluster_local_loss": 1.1197927919829764,
+            "cluster_alignment_loss": 0.6962089550204393,
+            "cluster_loss": 0.0,
+            "total_objective": 1.1197927919829764
+          },
+          "1": {
+            "local_loss": 0.8745460582942497,
+            "cluster_id": 1.0,
+            "cluster_support_size": 30.0,
+            "cluster_local_loss": 0.8995383373120936,
+            "cluster_alignment_loss": 0.5003050126680514,
+            "cluster_loss": 0.0,
+            "total_objective": 0.8995383373120936
+          },
+          "2": {
+            "local_loss": 1.0903149334160058,
+            "cluster_id": 0.0,
+            "cluster_support_size": 57.0,
+            "cluster_local_loss": 1.009634431793883,
+            "cluster_alignment_loss": 0.6493937224955172,
+            "cluster_loss": 0.0,
+            "total_objective": 1.009634431793883
+          },
+          "3": {
+            "local_loss": 1.0946188635942413,
+            "cluster_id": 0.0,
+            "cluster_support_size": 57.0,
+            "cluster_local_loss": 1.0783249793983087,
+            "cluster_alignment_loss": 0.6074160721243882,
+            "cluster_loss": 0.0,
+            "total_objective": 1.0783249793983087
+          },
+          "4": {
+            "local_loss": 1.1184467129591034,
+            "cluster_id": 0.0,
+            "cluster_support_size": 57.0,
+            "cluster_local_loss": 1.0427936564131481,
+            "cluster_alignment_loss": 0.6945486970064116,
+            "cluster_loss": 0.0,
+            "total_objective": 1.0427936564131481
+          },
+          "5": {
+            "local_loss": 0.945057919548779,
+            "cluster_id": 0.0,
+            "cluster_support_size": 57.0,
+            "cluster_local_loss": 0.8900401813227956,
+            "cluster_alignment_loss": 0.5329170720606315,
+            "cluster_loss": 0.0,
+            "total_objective": 0.8900401813227956
+          },
+          "6": {
+            "local_loss": 0.8283585132622138,
+            "cluster_id": 0.0,
+            "cluster_support_size": 57.0,
+            "cluster_local_loss": 0.7361176612900524,
+            "cluster_alignment_loss": 0.702890981115946,
+            "cluster_loss": 0.0,
+            "total_objective": 0.7361176612900524
+          },
+          "7": {
+            "local_loss": 0.8503119563184134,
+            "cluster_id": 0.0,
+            "cluster_support_size": 57.0,
+            "cluster_local_loss": 0.8136872887611389,
+            "cluster_alignment_loss": 0.5860535316350983,
+            "cluster_loss": 0.0,
+            "total_objective": 0.8136872887611389
+          },
+          "8": {
+            "local_loss": 1.2586400721131301,
+            "cluster_id": 1.0,
+            "cluster_support_size": 30.0,
+            "cluster_local_loss": 1.2425487319143806,
+            "cluster_alignment_loss": 0.6916808089105094,
+            "cluster_loss": 0.0,
+            "total_objective": 1.2425487319143806
+          },
+          "9": {
+            "local_loss": 0.9608917939953687,
+            "cluster_id": 1.0,
+            "cluster_support_size": 30.0,
+            "cluster_local_loss": 0.9207718293841293,
+            "cluster_alignment_loss": 0.4980882868534181,
+            "cluster_loss": 0.0,
+            "total_objective": 0.9207718293841293
+          }
+        },
+        "global_metrics": {
+          "mean_client_accuracy": 0.5317135549872123,
+          "worst_client_accuracy": 0.3333333333333333,
+          "p10_client_accuracy": 0.3333333333333333,
+          "bottom3_client_accuracy": 0.41943734015345263,
+          "worst_group_accuracy": 0.5242966751918159,
+          "client_accuracies": {
+            "0": 0.5490196078431373,
+            "1": 0.5098039215686274,
+            "2": 0.43478260869565216,
+            "3": 0.49019607843137253,
+            "4": 0.6274509803921569,
+            "5": 0.5490196078431373,
+            "6": 0.3333333333333333,
+            "7": 0.6862745098039216,
+            "8": 0.6078431372549019,
+            "9": 0.5294117647058824
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      }
+    ],
+    "final": {
+      "mean_client_accuracy": 0.5317135549872123,
+      "worst_client_accuracy": 0.3333333333333333,
+      "p10_client_accuracy": 0.3333333333333333,
+      "bottom3_client_accuracy": 0.41943734015345263,
+      "worst_group_accuracy": 0.5242966751918159,
+      "client_accuracies": {
+        "0": 0.5490196078431373,
+        "1": 0.5098039215686274,
+        "2": 0.43478260869565216,
+        "3": 0.49019607843137253,
+        "4": 0.6274509803921569,
+        "5": 0.5490196078431373,
+        "6": 0.3333333333333333,
+        "7": 0.6862745098039216,
+        "8": 0.6078431372549019,
+        "9": 0.5294117647058824
+      }
+    }
+  },
+  "communication": {
+    "total_bytes": 296760000.0
+  },
+  "config": {
+    "method": "flexfl",
+    "dataset": "cifar10",
+    "alpha": 0.5,
+    "seed": 43,
+    "rounds": 6,
+    "local_epochs": 2,
+    "max_samples_per_client": 256,
+    "require_gpu": false
+  },
+  "execution": {
+    "attempts": 1,
+    "status": "success",
+    "last_error": null,
+    "saved_at": "2026-04-18T08:32:38.050755+00:00"
+  }
+}

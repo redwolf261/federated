@@ -1,0 +1,63 @@
+{
+  "created_at": "2026-04-18T08:46:29.953482+00:00",
+  "statistics": [
+    {
+      "alpha": 1.0,
+      "baseline": "moon",
+      "n": 0,
+      "p_ttest": null,
+      "p_wilcoxon": null,
+      "effect_size": null,
+      "status": "INSUFFICIENT_DATA"
+    },
+    {
+      "alpha": 1.0,
+      "baseline": "scaffold",
+      "n": 0,
+      "p_ttest": null,
+      "p_wilcoxon": null,
+      "effect_size": null,
+      "status": "INSUFFICIENT_DATA"
+    },
+    {
+      "alpha": 0.5,
+      "baseline": "moon",
+      "n": 3,
+      "mean_delta_worst": 0.0849673202614379,
+      "p_ttest": 0.42603597860514775,
+      "p_wilcoxon": 0.75,
+      "effect_size": 0.5722930891116554,
+      "status": "OK"
+    },
+    {
+      "alpha": 0.5,
+      "baseline": "scaffold",
+      "n": 3,
+      "mean_delta_worst": 0.130718954248366,
+      "p_ttest": 0.32656497029852627,
+      "p_wilcoxon": 0.25,
+      "effect_size": 0.7438080033056017,
+      "status": "OK"
+    },
+    {
+      "alpha": 0.1,
+      "baseline": "moon",
+      "n": 3,
+      "mean_delta_worst": 0.1895424836601307,
+      "p_ttest": 0.42264973081037427,
+      "p_wilcoxon": 1.0,
+      "effect_size": 0.5773502691896257,
+      "status": "OK"
+    },
+    {
+      "alpha": 0.1,
+      "baseline": "scaffold",
+      "n": 3,
+      "mean_delta_worst": 0.1895424836601307,
+      "p_ttest": 0.42264973081037427,
+      "p_wilcoxon": 1.0,
+      "effect_size": 0.5773502691896257,
+      "status": "OK"
+    }
+  ]
+}

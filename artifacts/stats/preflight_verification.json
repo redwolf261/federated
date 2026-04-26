@@ -1,0 +1,312 @@
+{
+  "preflight_config": {
+    "dataset": "cifar10",
+    "alpha": 0.1,
+    "rounds": 10,
+    "local_epochs": 3,
+    "seeds": [
+      42,
+      43
+    ],
+    "methods": [
+      "fedavg",
+      "moon",
+      "flexfl"
+    ]
+  },
+  "gates": [
+    {
+      "name": "1.1_single_client_equivalence",
+      "passed": false,
+      "detail": {
+        "centralized_accuracy": 0.7139,
+        "fedavg_1client_accuracy": 0.6255,
+        "abs_gap": 0.08840000000000003,
+        "threshold": 0.01
+      }
+    },
+    {
+      "name": "1.2_loss_behavior",
+      "passed": true,
+      "detail": {
+        "losses": [
+          1.6177843955993652,
+          1.1209403889656067,
+          0.9176347416877747,
+          0.7780835747718811,
+          0.673429400396347,
+          0.5784307969093323,
+          0.49846377701759337,
+          0.431057719540596,
+          0.3641964287042618,
+          0.31354992175102236
+        ]
+      }
+    },
+    {
+      "name": "1.3_gradient_sanity",
+      "passed": true,
+      "detail": {
+        "grad_norms": [
+          1.6933714094877244,
+          2.339319223499298,
+          2.4998991794586183,
+          2.5309989088058473,
+          2.5905955223083494,
+          2.548670261001587,
+          2.4654587096214295,
+          2.5226882205963133,
+          2.460823516654968,
+          2.4083023696899413
+        ],
+        "min": 1.6933714094877244,
+        "max": 2.5905955223083494
+      }
+    },
+    {
+      "name": "2.1_aggregation_correctness",
+      "passed": true,
+      "detail": {
+        "agg_diff_norm": 0.0,
+        "max_client_load_diff_norm": 0.0
+      }
+    },
+    {
+      "name": "2.2_optimizer_persistence",
+      "passed": true,
+      "detail": {
+        "optimizer_id_round1": 2614530995984,
+        "optimizer_id_round2": 2614530995984,
+        "optimizer_persisted": true,
+        "client_models_independent": true
+      }
+    },
+    {
+      "name": "2.3_client_independence",
+      "passed": true,
+      "detail": {
+        "optimizer_id_round1": 2614530995984,
+        "optimizer_id_round2": 2614530995984,
+        "optimizer_persisted": true,
+        "client_models_independent": true
+      }
+    },
+    {
+      "name": "2.4_update_magnitude",
+      "passed": true,
+      "detail": {
+        "delta_norms": [
+          2.0563536820149397,
+          1.5136008842213744,
+          1.8025073151603088,
+          1.9614816989057993,
+          1.9459669058154754,
+          1.81573263165505,
+          1.9317328533772324,
+          1.9396480285026194,
+          1.8870708058782124
+        ]
+      }
+    },
+    {
+      "name": "3.1_dataset_hash_consistency",
+      "passed": true,
+      "detail": {
+        "split_consistent": true
+      }
+    },
+    {
+      "name": "3.2_dirichlet_skew_visible",
+      "passed": true,
+      "detail": {
+        "client0_hist": {
+          "0": 30,
+          "3": 25,
+          "8": 170,
+          "9": 31
+        },
+        "client1_hist": {
+          "1": 70,
+          "2": 20,
+          "3": 132,
+          "5": 3,
+          "7": 10,
+          "8": 21
+        }
+      }
+    },
+    {
+      "name": "3.3_no_empty_clients",
+      "passed": true,
+      "detail": {
+        "min_samples": 4
+      }
+    },
+    {
+      "name": "4.1_nonzero_communication",
+      "passed": true,
+      "detail": {
+        "fedavg": {
+          "sent_mean": 247300000.0,
+          "recv_mean": 247300000.0,
+          "total_mean": 494600000.0
+        },
+        "moon": {
+          "sent_mean": 247300000.0,
+          "recv_mean": 247300000.0,
+          "total_mean": 494600000.0
+        },
+        "flexfl": {
+          "sent_mean": 247300000.0,
+          "recv_mean": 247300000.0,
+          "total_mean": 494600000.0
+        }
+      }
+    },
+    {
+      "name": "4.2_roundwise_communication_scaling",
+      "passed": true,
+      "detail": {
+        "note": "Per-round totals are constant in per_round communication logs."
+      }
+    },
+    {
+      "name": "4.3_cross_method_comm_equality",
+      "passed": true,
+      "detail": {
+        "relative_span": 0.0,
+        "totals": {
+          "fedavg": {
+            "sent_mean": 247300000.0,
+            "recv_mean": 247300000.0,
+            "total_mean": 494600000.0
+          },
+          "moon": {
+            "sent_mean": 247300000.0,
+            "recv_mean": 247300000.0,
+            "total_mean": 494600000.0
+          },
+          "flexfl": {
+            "sent_mean": 247300000.0,
+            "recv_mean": 247300000.0,
+            "total_mean": 494600000.0
+          }
+        }
+      }
+    },
+    {
+      "name": "5.1_dryrun_completed",
+      "passed": true,
+      "detail": {
+        "methods": [
+          "fedavg",
+          "moon",
+          "flexfl"
+        ],
+        "seeds": [
+          42,
+          43
+        ],
+        "rounds": 10
+      }
+    },
+    {
+      "name": "6.1_fedavg_threshold",
+      "passed": false,
+      "detail": {
+        "fedavg_mean": 0.24643493761140822,
+        "threshold": 0.3
+      }
+    },
+    {
+      "name": "6.2_moon_sanity",
+      "passed": true,
+      "detail": {
+        "moon_mean": 0.31708556149732625,
+        "fedavg_mean": 0.24643493761140822,
+        "allowed_drop": 0.05
+      }
+    },
+    {
+      "name": "7_variance_precheck",
+      "passed": false,
+      "detail": {
+        "reason": "requires 3 seeds; current protocol run is 2 seeds",
+        "observed_std": {
+          "fedavg": {
+            "mean": 0.24643493761140822,
+            "std": 0.02219251336898397,
+            "n": 2
+          },
+          "moon": {
+            "mean": 0.31708556149732625,
+            "std": 0.06860071301247775,
+            "n": 2
+          },
+          "flexfl": {
+            "mean": 0.7132798573975044,
+            "std": 0.043582887700534756,
+            "n": 2
+          }
+        }
+      }
+    }
+  ],
+  "auto_fail_reasons": [],
+  "mini_matrix_summary": {
+    "fedavg": {
+      "mean": 0.24643493761140822,
+      "std": 0.02219251336898397,
+      "n": 2
+    },
+    "moon": {
+      "mean": 0.31708556149732625,
+      "std": 0.06860071301247775,
+      "n": 2
+    },
+    "flexfl": {
+      "mean": 0.7132798573975044,
+      "std": 0.043582887700534756,
+      "n": 2
+    }
+  },
+  "learning_dynamics_seed42": {
+    "fedavg": [
+      0.15811051693404635,
+      0.2162210338680927,
+      0.15811051693404635,
+      0.1837789661319073,
+      0.15811051693404635,
+      0.23155080213903742,
+      0.16007130124777183,
+      0.10962566844919786,
+      0.15811051693404635,
+      0.22424242424242427
+    ],
+    "moon": [
+      0.15811051693404635,
+      0.15811051693404635,
+      0.1017825311942959,
+      0.14099821746880573,
+      0.19500891265597145,
+      0.2415329768270945,
+      0.23957219251336898,
+      0.22780748663101602,
+      0.24153297682709446,
+      0.24848484848484848
+    ],
+    "flexfl": [
+      0.5919786096256685,
+      0.6135472370766488,
+      0.6468805704099821,
+      0.6588235294117647,
+      0.6645276292335116,
+      0.6597147950089127,
+      0.6647058823529411,
+      0.6616755793226381,
+      0.6705882352941177,
+      0.6696969696969697
+    ]
+  },
+  "overall_pass": false
+}

@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .cifar100_loader import Cifar100Loader
+from .cifar10_loader import Cifar10Loader
 from .femnist_loader import FemnistLoader
 
 
@@ -30,6 +31,15 @@ class DatasetRegistry:
         max_rows: int | None = None,
     ) -> DatasetArtifact:
         normalized = dataset_name.lower().strip()
+        if normalized == "cifar10":
+            loader = Cifar10Loader(self.workspace_root / "dataset" / "cifar-10-batches-py")
+            return DatasetArtifact(
+                name="cifar10",
+                payload=loader.load(
+                    max_train_samples=max_train_samples,
+                    max_test_samples=max_test_samples,
+                ),
+            )
         if normalized == "cifar100":
             loader = Cifar100Loader(self.workspace_root / "dataset" / "cifar-100-python")
             return DatasetArtifact(

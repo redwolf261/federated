@@ -1,0 +1,203 @@
+{
+  "run_id": "015e4177cfc5f4fd3ff01fe7b94ffe2a",
+  "method": "scaffold",
+  "alpha": 0.5,
+  "dataset": "cifar10",
+  "seed": 44,
+  "status": "SUCCESS",
+  "rounds_expected": 6,
+  "rounds_completed": 6,
+  "error": null,
+  "dataset_hash": "800613002f67d5c2cfa21b79c80d0d128b3f2b4c4142433e9b1b0f93790d49b9",
+  "preprocessing": "dataset_loader_default",
+  "metrics": {
+    "per_round": [
+      {
+        "round": 1,
+        "global_metrics": {
+          "mean_client_accuracy": 0.16820728291316528,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.058823529411764705,
+            "1": 0.27450980392156865,
+            "2": 0.43137254901960786,
+            "3": 0.27450980392156865,
+            "4": 0.0,
+            "5": 0.14285714285714285,
+            "6": 0.058823529411764705,
+            "7": 0.0,
+            "8": 0.14705882352941177,
+            "9": 0.29411764705882354
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 2,
+        "global_metrics": {
+          "mean_client_accuracy": 0.09502801120448179,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.01764705882352941,
+          "client_accuracies": {
+            "0": 0.37254901960784315,
+            "1": 0.0196078431372549,
+            "2": 0.09803921568627451,
+            "3": 0.0392156862745098,
+            "4": 0.1568627450980392,
+            "5": 0.10714285714285714,
+            "6": 0.0,
+            "7": 0.0196078431372549,
+            "8": 0.058823529411764705,
+            "9": 0.0784313725490196
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 3,
+        "global_metrics": {
+          "mean_client_accuracy": 0.16624649859943977,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.058823529411764705,
+            "1": 0.27450980392156865,
+            "2": 0.43137254901960786,
+            "3": 0.2549019607843137,
+            "4": 0.0,
+            "5": 0.14285714285714285,
+            "6": 0.058823529411764705,
+            "7": 0.0,
+            "8": 0.14705882352941177,
+            "9": 0.29411764705882354
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 4,
+        "global_metrics": {
+          "mean_client_accuracy": 0.08914565826330531,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.01764705882352941,
+          "client_accuracies": {
+            "0": 0.3333333333333333,
+            "1": 0.0196078431372549,
+            "2": 0.0784313725490196,
+            "3": 0.0392156862745098,
+            "4": 0.1568627450980392,
+            "5": 0.10714285714285714,
+            "6": 0.0,
+            "7": 0.0196078431372549,
+            "8": 0.058823529411764705,
+            "9": 0.0784313725490196
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 5,
+        "global_metrics": {
+          "mean_client_accuracy": 0.1623249299719888,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.0,
+          "client_accuracies": {
+            "0": 0.0392156862745098,
+            "1": 0.27450980392156865,
+            "2": 0.43137254901960786,
+            "3": 0.2549019607843137,
+            "4": 0.0,
+            "5": 0.14285714285714285,
+            "6": 0.058823529411764705,
+            "7": 0.0,
+            "8": 0.14705882352941177,
+            "9": 0.27450980392156865
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      },
+      {
+        "round": 6,
+        "global_metrics": {
+          "mean_client_accuracy": 0.08914565826330531,
+          "worst_client_accuracy": 0.0,
+          "p10_client_accuracy": 0.01764705882352941,
+          "client_accuracies": {
+            "0": 0.3333333333333333,
+            "1": 0.0196078431372549,
+            "2": 0.0784313725490196,
+            "3": 0.0392156862745098,
+            "4": 0.1568627450980392,
+            "5": 0.10714285714285714,
+            "6": 0.0,
+            "7": 0.0196078431372549,
+            "8": 0.058823529411764705,
+            "9": 0.0784313725490196
+          }
+        },
+        "communication": {
+          "round_client_to_server_bytes": 24730000,
+          "round_server_to_client_bytes": 24730000,
+          "round_total_bytes": 49460000
+        }
+      }
+    ],
+    "final": {
+      "mean_client_accuracy": 0.08914565826330531,
+      "worst_client_accuracy": 0.0,
+      "p10_client_accuracy": 0.01764705882352941,
+      "client_accuracies": {
+        "0": 0.3333333333333333,
+        "1": 0.0196078431372549,
+        "2": 0.0784313725490196,
+        "3": 0.0392156862745098,
+        "4": 0.1568627450980392,
+        "5": 0.10714285714285714,
+        "6": 0.0,
+        "7": 0.0196078431372549,
+        "8": 0.058823529411764705,
+        "9": 0.0784313725490196
+      }
+    }
+  },
+  "communication": {
+    "total_bytes": 296760000.0
+  },
+  "config": {
+    "method": "scaffold",
+    "dataset": "cifar10",
+    "alpha": 0.5,
+    "seed": 44,
+    "rounds": 6,
+    "local_epochs": 2,
+    "max_samples_per_client": 256,
+    "require_gpu": false
+  },
+  "execution": {
+    "attempts": 1,
+    "status": "success",
+    "last_error": null,
+    "saved_at": "2026-04-18T08:45:20.978482+00:00"
+  }
+}

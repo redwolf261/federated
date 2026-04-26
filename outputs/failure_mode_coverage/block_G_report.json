@@ -1,0 +1,98 @@
+{
+  "block": "G",
+  "title": "Mechanism Isolation (Prototype Exchange Causality)",
+  "statistics": {
+    "flex_full": {
+      "mean": 0.7853287621170034,
+      "std": 0.012763131053293865,
+      "worst": 0.6191203703703704,
+      "std_worst": 0.024644158204484908,
+      "p10": 0.640912037037037,
+      "std_p10": 0.019161514113291103,
+      "std_clients": 0.10534680010400828,
+      "n_runs": 3
+    },
+    "flex_no_prototype_sharing": {
+      "mean": 0.7890989837175971,
+      "std": 0.016409621792376233,
+      "worst": 0.6198214285714285,
+      "std_worst": 0.03902538202473964,
+      "p10": 0.6518988095238095,
+      "std_p10": 0.01692392651097115,
+      "std_clients": 0.10464284847254607,
+      "n_runs": 3
+    },
+    "flex_self_only": {
+      "mean": 0.7853287621170034,
+      "std": 0.012763131053293865,
+      "worst": 0.6191203703703704,
+      "std_worst": 0.024644158204484908,
+      "p10": 0.640912037037037,
+      "std_p10": 0.019161514113291103,
+      "std_clients": 0.10534680010400828,
+      "n_runs": 3
+    },
+    "flex_shuffled_prototypes": {
+      "mean": 0.7853287621170034,
+      "std": 0.012763131053293865,
+      "worst": 0.6191203703703704,
+      "std_worst": 0.024644158204484908,
+      "p10": 0.640912037037037,
+      "std_p10": 0.019161514113291103,
+      "std_clients": 0.10534680010400828,
+      "n_runs": 3
+    },
+    "flex_noise_prototypes": {
+      "mean": 0.7441844133647734,
+      "std": 0.01692758620175289,
+      "worst": 0.4938293650793651,
+      "std_worst": 0.08055956769272035,
+      "p10": 0.6051329365079365,
+      "std_p10": 0.015288483416698499,
+      "std_clients": 0.12880551044792699,
+      "n_runs": 3
+    },
+    "fedavg_sgd": {
+      "mean": 0.47146053602182186,
+      "std": 0.017387135554331516,
+      "worst": 0.3169444444444444,
+      "std_worst": 0.01920085517642829,
+      "p10": 0.3549444444444445,
+      "std_p10": 0.01904214785841472,
+      "std_clients": 0.09515250578818962,
+      "n_runs": 3
+    }
+  },
+  "drops_vs_flex_full": {
+    "flex_full": 0.0,
+    "flex_no_prototype_sharing": -0.003770221600593704,
+    "flex_self_only": 0.0,
+    "flex_shuffled_prototypes": 0.0,
+    "flex_noise_prototypes": 0.04114434875223005,
+    "fedavg_sgd": 0.31386822609518156
+  },
+  "validation_checks": {
+    "necessity_of_sharing": {
+      "passed": false,
+      "description": "flex_no_prototype_sharing mean=0.7891, drop=-0.0038 (-0.4 pp) vs threshold 0.20 \u2014 FAIL"
+    },
+    "information_integrity": {
+      "passed": false,
+      "description": "flex_shuffled_prototypes mean=0.7853, drop=0.0000 (0.0 pp) vs threshold 0.01 \u2014 FAIL"
+    },
+    "signal_vs_noise": {
+      "passed": false,
+      "description": "flex_noise_prototypes mean=0.7442, drop=0.0411 (4.1 pp) vs threshold 0.10 \u2014 FAIL"
+    },
+    "collaboration_requirement": {
+      "passed": false,
+      "description": "flex_self_only mean=0.7853, drop=0.0000 (0.0 pp) vs threshold 0.01 \u2014 FAIL"
+    }
+  },
+  "overall_conclusion": {
+    "verdict": "PARTIAL",
+    "all_passed": false,
+    "num_passed": 0,
+    "num_total": 4
+  }
+}

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pickle
+import warnings
 from pathlib import Path
 from typing import Any
 
@@ -59,7 +60,13 @@ class Cifar100Loader:
     @staticmethod
     def _load_pickle(path: Path) -> dict[str, Any] | dict[bytes, Any]:
         with path.open("rb") as handle:
-            return pickle.load(handle, encoding="bytes")
+            with warnings.catch_warnings():
+                warnings.filterwarnings(
+                    "ignore",
+                    message=r"dtype\(\): align should be passed as Python or NumPy boolean but got `align=0`.*",
+                    category=Warning,
+                )
+                return pickle.load(handle, encoding="bytes")
 
     def _decode_split(self, path: Path) -> tuple[np.ndarray, np.ndarray]:
         split_dict = self._load_pickle(path)

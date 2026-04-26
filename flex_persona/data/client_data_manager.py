@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
+import json
 from pathlib import Path
 
 import numpy as np
@@ -21,6 +23,7 @@ class ClientDatasetBundle:
     eval_loader: DataLoader
     num_samples: int
     class_histogram: dict[int, int]
+    source_indices: list[int]
 
 
 class ClientDataManager:
@@ -47,8 +50,10 @@ class ClientDataManager:
         )
         if artifact.name == "femnist":
             return self._build_femnist_bundles(artifact.payload)
+        if artifact.name == "cifar10":
+            return self._build_cifar_bundles(artifact.payload, dataset_name="cifar10")
         if artifact.name == "cifar100":
-            return self._build_cifar100_bundles(artifact.payload)
+            return self._build_cifar_bundles(artifact.payload, dataset_name="cifar100")
         raise ValueError(f"Unsupported artifact: {artifact.name}")
 
     def _build_femnist_bundles(self, payload: dict[str, object]) -> list[ClientDatasetBundle]:
@@ -72,11 +77,15 @@ class ClientDataManager:
             idx_tensor = torch.from_numpy(indices)
             x_client = images[idx_tensor]
             y_client = labels[idx_tensor]
-            bundles.append(self._make_bundle(client_id, x_client, y_client))
+            bundles.append(self._make_bundle(client_id, x_client, y_client, source_indices=indices))
 
         return bundles
 
-    def _build_cifar100_bundles(self, payload: dict[str, object]) -> list[ClientDatasetBundle]:
+    def _build_cifar_bundles(
+        self,
+        payload: dict[str, object],
+        dataset_name: str,
+    ) -> list[ClientDatasetBundle]:
         train_images = payload["train_images"]
         train_labels = payload["train_labels"]
 
@@ -86,7 +95,7 @@ class ClientDataManager:
         partition = self._resolve_partition(
             labels=train_labels,
             writer_ids=None,
-            dataset_name="cifar100",
+            dataset_name=dataset_name,
         )
 
         bundles: list[ClientDatasetBundle] = []
@@ -96,7 +105,7 @@ class ClientDataManager:
             idx_tensor = torch.from_numpy(indices)
             x_client = train_images[idx_tensor]
             y_client = train_labels[idx_tensor]
-            bundles.append(self._make_bundle(client_id, x_client, y_client))
+            bundles.append(self._make_bundle(client_id, x_client, y_client, source_indices=indices))
 
         return bundles
 
@@ -105,6 +114,7 @@ class ClientDataManager:
         client_id: int,
         x_tensor: torch.Tensor,
         y_tensor: torch.Tensor,
+        source_indices: np.ndarray,
     ) -> ClientDatasetBundle:
         max_samples = self.config.training.max_samples_per_client
         if max_samples is not None and int(y_tensor.shape[0]) > max_samples:
@@ -142,12 +152,14 @@ class ClientDataManager:
             batch_size=batch_size,
             shuffle=True,
             num_workers=0,
+            generator=self._make_loader_generator(client_id),
         )
         eval_loader = DataLoader(
             eval_dataset,
             batch_size=batch_size,
             shuffle=False,
             num_workers=0,
+            generator=self._make_loader_generator(client_id + 10_000),
         )
 
         unique_labels, counts = torch.unique(y_tensor, return_counts=True)
@@ -162,7 +174,25 @@ class ClientDataManager:
             eval_loader=eval_loader,
             num_samples=total_samples,
             class_histogram=class_hist,
+            source_indices=[int(i) for i in source_indices.tolist()],
         )
+
+    def _make_loader_generator(self, client_id: int) -> torch.Generator:
+        generator = torch.Generator()
+        generator.manual_seed(int(self.config.random_seed) + int(client_id))
+        return generator
+
+    @staticmethod
+    def partition_fingerprint(bundles: list[ClientDatasetBundle]) -> str:
+        payload = {
+            str(bundle.client_id): {
+                "indices": bundle.source_indices,
+                "class_histogram": bundle.class_histogram,
+            }
+            for bundle in sorted(bundles, key=lambda b: b.client_id)
+        }
+        serialized = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        return hashlib.sha256(serialized).hexdigest()
 
     def _resolve_partition(
         self,

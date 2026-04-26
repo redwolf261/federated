@@ -1,0 +1,22 @@
+{
+  "A1": {
+    "simulator_fedavg": 0.813,
+    "manual_loop_fedavg": 0.823,
+    "delta": 0.010000000000000009,
+    "pass": false
+  },
+  "A2": {
+    "manual_fedavg": 0.823,
+    "scaffold_zero_control": 0.10675000000000001,
+    "delta": -0.7162499999999999,
+    "pass": false
+  },
+  "E2": {
+    "manual_step_vs_optimizer_step_error": 1.618702103202804e-08,
+    "pass": true
+  },
+  "F1": {
+    "control_update_equation_error": 0.0,
+    "pass": true
+  }
+}

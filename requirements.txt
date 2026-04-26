@@ -7,3 +7,4 @@ torch>=2.2
 torchvision>=0.17
 POT>=0.9
 streamlit>=1.36
+tqdm>=4.67

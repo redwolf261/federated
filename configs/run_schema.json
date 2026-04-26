@@ -1,0 +1,17 @@
+{
+  "$schema_version": "1.0",
+  "run_id": "string",
+  "method": "string",
+  "seed": "int",
+  "status": "SUCCESS | FAIL",
+  "rounds_expected": "int",
+  "rounds_completed": "int",
+  "error": "string|null",
+  "metrics": {
+    "per_round": [],
+    "final": {}
+  },
+  "communication": {
+    "total_bytes": "float"
+  }
+}

@@ -33,7 +33,9 @@ This enables personalized cluster-aware training where each client:
 
 from __future__ import annotations
 
+import numpy as np
 import torch
+
 
 from ..clustering.cluster_aggregator import ClusterPrototypeAggregator
 from ..clustering.spectral_clusterer import SpectralClusterer
@@ -66,11 +68,14 @@ class Server:
     architectures collaborate through their unified prototype distributions.
     """
 
-    def __init__(self, num_clusters: int, sigma: float, random_state: int = 42) -> None:
+    def __init__(self, num_clusters: int, sigma: float, random_state: int = 42, mode: str = "full") -> None:
         self.num_clusters = num_clusters
         self.sigma = sigma
+        self.mode = mode
+        self.random_state = random_state
         self.clusterer = SpectralClusterer(num_clusters=num_clusters, random_state=random_state)
         self.aggregator = ClusterPrototypeAggregator()
+
         self._client_feature_means: dict[int, torch.Tensor] = {}
         self._client_messages: dict[int, ClientToServerMessage] = {}
 
@@ -122,20 +127,44 @@ class Server:
             adjacency[i, topk] = True
         return similarity_matrix, adjacency
 
-    def cluster_clients(self, affinity_matrix: torch.Tensor) -> torch.Tensor:
+    def cluster_clients(
+        self,
+        affinity_matrix: torch.Tensor,
+        round_idx: int = 0,
+        num_clients: int | None = None,
+    ) -> torch.Tensor:
         """Perform spectral clustering on similarity affinity matrix.
 
         Uses spectral clustering algorithm to partition clients into num_clusters
         groups based on their representation similarity.
 
+        Supports ablation modes:
+        - full: Normal spectral clustering
+        - no_clustering: All clients assigned to cluster 0
+        - random_clusters: Random assignment each round
+        - no_guidance: Same as full (guidance is handled client-side)
+
         Args:
             affinity_matrix: Similarity affinity matrix from build_similarity_and_adjacency().
+            round_idx: Current round number (for random_clusters seeding).
+            num_clients: Number of clients (required for no_clustering/random_clusters).
 
         Returns:
             Tensor of shape [num_clients] where cluster_assignments[i] = cluster_id
             for client i. cluster_id ∈ [0, num_clusters-1].
         """
+        if num_clients is None:
+            num_clients = affinity_matrix.shape[0]
+
+        if self.mode == "no_clustering":
+            return torch.zeros(num_clients, dtype=torch.long)
+
+        if self.mode == "random_clusters":
+            rng = np.random.default_rng(self.random_state + round_idx)
+            return torch.tensor(rng.integers(0, self.num_clusters, size=num_clients), dtype=torch.long)
+
         return self.clusterer.fit_predict(affinity_matrix)
+
 
     def compute_cluster_distributions(
         self,
@@ -156,10 +185,16 @@ class Server:
         Returns:
             Dict mapping cluster_id → PrototypeDistribution (aggregated cluster prototypes).
         """
+        client_sample_counts = {
+            cid: max(int(sum(self._client_messages[cid].class_counts.values())), 1)
+            for cid in self.client_ids
+        }
+
         return self.aggregator.aggregate_cluster_distributions(
             cluster_assignments=cluster_assignments,
             client_ids=self.client_ids,
             client_distributions=self.get_client_distributions(),
+            client_sample_counts=client_sample_counts,
         )
 
     def build_broadcast_messages(

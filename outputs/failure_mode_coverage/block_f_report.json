@@ -1,0 +1,107 @@
+{
+  "block": "F",
+  "title": "Mechanism Ablation Study",
+  "method_statistics": {
+    "fedavg_sgd": {
+      "mean": 0.4257650529810683,
+      "std": 0.019286529956728637,
+      "worst": 0.18916666666666662,
+      "p10": 0.20624143302180686,
+      "std_across_seeds": 0.019286529956728637,
+      "n_seeds": 3
+    },
+    "flex_full": {
+      "mean": 0.7892167333963096,
+      "std": 0.01601676536052428,
+      "worst": 0.6378571428571428,
+      "p10": 0.6658690476190476,
+      "std_across_seeds": 0.01601676536052428,
+      "n_seeds": 3
+    },
+    "flex_no_clustering": {
+      "mean": 0.7879742281657439,
+      "std": 0.016428752476683746,
+      "worst": 0.6257010582010581,
+      "p10": 0.6490701058201057,
+      "std_across_seeds": 0.016428752476683746,
+      "n_seeds": 3
+    },
+    "flex_random_clusters": {
+      "mean": 0.78142620052633,
+      "std": 0.010760541464453863,
+      "worst": 0.605244708994709,
+      "p10": 0.6342744708994709,
+      "std_across_seeds": 0.010760541464453863,
+      "n_seeds": 3
+    },
+    "flex_no_guidance": {
+      "mean": 0.7853287621170034,
+      "std": 0.012763131053293865,
+      "worst": 0.6191203703703704,
+      "p10": 0.640912037037037,
+      "std_across_seeds": 0.012763131053293865,
+      "n_seeds": 3
+    }
+  },
+  "drops_vs_flex_full": {
+    "fedavg_sgd": {
+      "mean_drop": 0.3634516804152413,
+      "mean_drop_pct": 46.05220151011826
+    },
+    "flex_full": {
+      "mean_drop": 0.0,
+      "mean_drop_pct": 0.0
+    },
+    "flex_no_clustering": {
+      "mean_drop": 0.0012425052305656825,
+      "mean_drop_pct": 0.15743523648043986
+    },
+    "flex_random_clusters": {
+      "mean_drop": 0.0077905328699795495,
+      "mean_drop_pct": 0.9871221098485616
+    },
+    "flex_no_guidance": {
+      "mean_drop": 0.0038879712793061794,
+      "mean_drop_pct": 0.492636701020607
+    }
+  },
+  "component_ranking": [
+    {
+      "component": "flex_random_clusters",
+      "mean_drop": 0.0077905328699795495,
+      "rank": 1
+    },
+    {
+      "component": "flex_no_guidance",
+      "mean_drop": 0.0038879712793061794,
+      "rank": 2
+    },
+    {
+      "component": "flex_no_clustering",
+      "mean_drop": 0.0012425052305656825,
+      "rank": 3
+    }
+  ],
+  "causal_conclusions": {
+    "dominant_mechanism": {
+      "component": "flex_random_clusters",
+      "mean_drop": 0.0077905328699795495,
+      "interpretation": "flex_random_clusters is the dominant mechanism (drop = 0.0078)"
+    },
+    "clustering_importance": {
+      "drop": 0.0012425052305656825,
+      "is_dominant": false,
+      "interpretation": "Clustering contributes but is not the sole driver"
+    },
+    "guidance_importance": {
+      "drop": 0.0038879712793061794,
+      "is_secondary": false,
+      "interpretation": "Guidance is equally or more important than clustering"
+    },
+    "structure_vs_grouping": {
+      "random_clusters_drop": 0.0077905328699795495,
+      "structured_clustering_better": true,
+      "interpretation": "Random clustering performs similarly to structured clustering \u2014 grouping itself provides most benefit"
+    }
+  }
+}

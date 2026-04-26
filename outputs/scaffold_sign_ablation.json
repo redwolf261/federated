@@ -1,0 +1,12 @@
+{
+  "iid": {
+    "fedavg": 0.8240000000000001,
+    "scaffold_paper_sign": 0.18225,
+    "scaffold_flipped_sign": 0.1815
+  },
+  "noniid_alpha_0_1": {
+    "fedavg": 0.79375,
+    "scaffold_paper_sign": 0.20075,
+    "scaffold_flipped_sign": 0.20199999999999999
+  }
+}

@@ -1,0 +1,65 @@
+[BLOCK A RESULTS]
+Optimizer Validity: Is SCAFFOLD failure due to Adam misuse?
+
+Method       Optimizer       LR   Mean Acc    Worst Control/Grad
+-----------------------------------------------------------------
+fedavg       adam       0.0030     0.4873   0.3025          N/A
+scaffold     N/A        0.0000     0.1484   0.0000          1.1
+fedavg       sgd        0.0100     0.5432   0.3100          N/A
+scaffold     N/A        0.0000     0.4233   0.1200          0.3
+scaffold     N/A        0.0000     0.5299   0.2125          0.2
+
+
+[BLOCK B RESULTS]
+Compute Fairness: Is FLEX benefiting from extra compute?
+
+Variant               LocalEp  Cluster   Mean Acc    Worst
+------------------------------------------------------------
+FLEX_full                   5        2     0.8012   0.6400
+FLEX_full                   5        2     0.8012   0.6400
+FLEX_no_extra               5        0     0.8013   0.6375
+FedAvg_7epochs              7        0     0.4831   0.3125
+
+FLEX_full (0.8012) vs FLEX_no_extra (0.8013):
+  → Clustering adds minimal benefit (core is local training)
+FLEX_no_extra (0.8013) vs FedAvg_7epochs (0.4831):
+  → FLEX outperforms compute-matched FedAvg (not just compute advantage)
+
+[BLOCK C RESULTS]
+Data Regime: Does FLEX advantage disappear with more data?
+
+Samples/Client  Method       Mean Acc    Worst
+--------------------------------------------------
+2000            flex_no_extra     0.7867   0.6111
+2000            fedavg_sgd     0.4159   0.1475
+2000            flex_no_extra     0.7691   0.5938
+2000            fedavg_sgd     0.4086   0.1850
+2000            flex_no_extra     0.8002   0.6525
+2000            fedavg_sgd     0.4530   0.2375
+5000            flex_no_extra     0.8261   0.7460
+5000            fedavg_sgd     0.5722   0.2090
+5000            flex_no_extra     0.8866   0.6980
+5000            fedavg_sgd     0.4695   0.1856
+5000            flex_no_extra     0.8005   0.6970
+5000            fedavg_sgd     0.5566   0.3690
+10000           flex_no_extra     0.8335   0.7527
+10000           fedavg_sgd     0.5897   0.4226
+10000           flex_no_extra     0.8891   0.7315
+10000           fedavg_sgd     0.5511   0.2450
+10000           flex_no_extra     0.8126   0.7010
+10000           fedavg_sgd     0.6038   0.5081
+
+Trend analysis:
+  2000 samples/client: FLEX-FedAvg gap = +0.3472
+  5000 samples/client: FLEX-FedAvg gap = +0.2439
+  10000 samples/client: FLEX-FedAvg gap = +0.2088
+
+[BLOCK D RESULTS]
+No data available yet
+
+[BLOCK E RESULTS]
+No data available yet
+
+[BLOCK F RESULTS]
+No data available yet
+

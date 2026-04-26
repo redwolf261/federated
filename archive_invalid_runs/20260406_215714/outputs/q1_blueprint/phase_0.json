@@ -1,0 +1,37 @@
+{
+  "phase": "phase0",
+  "timestamp": "2026-04-06T14:28:59.142025+00:00",
+  "environment": {
+    "captured_at": "2026-04-06T14:29:04.242995+00:00",
+    "python": "3.12.8",
+    "pytorch": "2.10.0+cu126",
+    "cuda": "12.6",
+    "cudnn": 91002,
+    "deterministic_algorithms": true,
+    "python_executable": "C:\\Users\\HP\\Projects\\Federated\\.venv\\Scripts\\python.exe",
+    "pip_freeze_exit_code": 0,
+    "requirements_file": "outputs\\q1_blueprint\\requirements_frozen.txt"
+  },
+  "dataset_snapshot": {
+    "dataset\\femnist\\train-00000-of-00001.parquet": {
+      "exists": true,
+      "bytes": 200734290,
+      "sha256": "cdb389c8d41d5facab79a4a8d452724c30d9c629a1c1e0b1e9ae9de2c633522b"
+    },
+    "dataset\\cifar-100-python\\train": {
+      "exists": true,
+      "bytes": 155249918,
+      "sha256": "735e79b04f092ca3d2e6d07f368c0a7d70d48c48d28865950cc24454cf45129b"
+    },
+    "dataset\\cifar-100-python\\test": {
+      "exists": true,
+      "bytes": 31049707,
+      "sha256": "4b67687d9933c4db8f0831104447f15b93774f4f464bd0516f0f0f2ac83b7864"
+    },
+    "dataset\\cifar-100-python\\meta": {
+      "exists": true,
+      "bytes": 1473,
+      "sha256": "a5d4786345c961390f865e93b434dbd5c6904ce880667e0cb888c97d449f28b9"
+    }
+  }
+}

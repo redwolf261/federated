@@ -1,0 +1,162 @@
+{
+  "statistical_tests": {
+    "alpha_0.1": {
+      "flex_vs_fedavg": {
+        "t_statistic": 17.352633357653197,
+        "p_value": 0.003304550074972814,
+        "significant": true,
+        "cohens_d": 10.018547540189953,
+        "seeds": [
+          42,
+          123,
+          456
+        ]
+      },
+      "flex_vs_scaffold": {
+        "t_statistic": 91.13294339981965,
+        "p_value": 0.00012038455629251076,
+        "significant": true,
+        "cohens_d": 52.6156294039288,
+        "seeds": [
+          42,
+          123,
+          456
+        ]
+      }
+    },
+    "alpha_1.0": {
+      "flex_vs_fedavg": {
+        "t_statistic": -0.8944567603071998,
+        "p_value": 0.4654648941818344,
+        "significant": false,
+        "cohens_d": -0.5164148513418424,
+        "seeds": [
+          42,
+          123,
+          456
+        ]
+      },
+      "flex_vs_scaffold": {
+        "t_statistic": 5.830752910642076,
+        "p_value": 0.028176526727851942,
+        "significant": true,
+        "cohens_d": 3.366386762537396,
+        "seeds": [
+          42,
+          123,
+          456
+        ]
+      }
+    }
+  },
+  "variance_checks": {
+    "FedAvg": {
+      "alpha_0.1": {
+        "accuracies": [
+          0.4595447263720156,
+          0.46379623341217774,
+          0.421741452991453
+        ],
+        "mean": 0.44836080425854874,
+        "std": 0.02315083636586187,
+        "consistent": true,
+        "outliers": [],
+        "collapsed": []
+      },
+      "alpha_1.0": {
+        "accuracies": [
+          0.57775,
+          0.5507500000000001,
+          0.5515
+        ],
+        "mean": 0.56,
+        "std": 0.015376524314681754,
+        "consistent": true,
+        "outliers": [],
+        "collapsed": []
+      }
+    },
+    "SCAFFOLD": {
+      "alpha_0.1": {
+        "accuracies": [
+          0.10869776119402985,
+          0.1428038435035602,
+          0.1441730769230769
+        ],
+        "mean": 0.13189156054022233,
+        "std": 0.02009808314548577,
+        "consistent": true,
+        "outliers": [],
+        "collapsed": [
+          [
+            123,
+            0.10869776119402985
+          ],
+          [
+            42,
+            0.1428038435035602
+          ],
+          [
+            456,
+            0.1441730769230769
+          ]
+        ]
+      },
+      "alpha_1.0": {
+        "accuracies": [
+          0.31450000000000006,
+          0.151,
+          0.32650000000000007
+        ],
+        "mean": 0.264,
+        "std": 0.09804463269348306,
+        "consistent": true,
+        "outliers": [],
+        "collapsed": []
+      }
+    },
+    "FLEX": {
+      "alpha_0.1": {
+        "accuracies": [
+          0.7864714205115806,
+          0.7953654860487454,
+          0.8112499999999999
+        ],
+        "mean": 0.7976956355201086,
+        "std": 0.012552557420109642,
+        "consistent": true,
+        "outliers": [],
+        "collapsed": []
+      },
+      "alpha_1.0": {
+        "accuracies": [
+          0.5417500000000001,
+          0.5297499999999999,
+          0.5672499999999999
+        ],
+        "mean": 0.54625,
+        "std": 0.01915071800220553,
+        "consistent": true,
+        "outliers": [],
+        "collapsed": []
+      }
+    }
+  },
+  "compute_fairness": {
+    "same_architecture": true,
+    "same_init": true,
+    "same_data_split": true,
+    "same_local_epochs": 5,
+    "same_batch_size": 64,
+    "same_optimizer": "Adam",
+    "same_lr": 0.003
+  },
+  "communication_fairness": {
+    "note": "All methods report similar bytes due to serialization"
+  },
+  "baseline_invariants": {
+    "fedavg_1client": "validated",
+    "moon_mu0": "validated",
+    "scaffold_zero_control": "validated"
+  }
+}
