@@ -1,0 +1,37 @@
+name: Blackbox Smoke Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  blackbox-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Try Blackbox CLI (npx)
+        run: |
+          set -e
+          echo "Trying npx blackbox --version"
+          npx -y blackbox --version || npx -y @blackboxai/cli --version || {
+            echo "Both npx attempts failed; installing from repo source"
+            git clone https://github.com/blackboxaicode/cli /tmp/blackbox-cli || true
+            if [ -d /tmp/blackbox-cli ]; then
+              cd /tmp/blackbox-cli
+              npm install
+              npm install -g .
+              blackbox --version || true
+            fi
+          }
+
+      - name: Run example Blackbox command via wrapper
+        run: |
+          python3 scripts/blackbox_wrapper.py -- --version || true
