@@ -436,7 +436,9 @@ class FederatedSimulator:
                     cluster_feature_mean=cluster_centers[cluster_id],
                     lambda_cluster_center=lambda_cluster_center,
                     cluster_center_warmup_scale=cluster_center_warmup_scale,
+                    alignment_mode=self.config.training.alignment_mode,
                 )
+
                 state.local_metrics[client.client_id].update(metrics)
 
             state.metadata["aggregation_mode"] = "prototype"

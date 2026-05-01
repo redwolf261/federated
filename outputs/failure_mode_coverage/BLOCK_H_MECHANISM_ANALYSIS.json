@@ -1,0 +1,139 @@
+{
+  "statistics": {
+    "flex_full": {
+      "mean": 0.7892167333963096,
+      "std": 0.01601676536052428,
+      "worst_mean": 0.6378571428571428,
+      "worst_std": 0.016228072594613757,
+      "p10_mean": 0.6658690476190476,
+      "p10_std": 0.017650840042190936,
+      "client_std_mean": 0.09984728085090992,
+      "n_runs": 3
+    },
+    "flex_no_alignment": {
+      "mean": 0.7778172647574246,
+      "std": 0.013617504234910021,
+      "worst_mean": 0.6154166666666666,
+      "worst_std": 0.021658652363945048,
+      "p10_mean": 0.6462083333333334,
+      "p10_std": 0.01834573444215913,
+      "client_std_mean": 0.10478445610192777,
+      "n_runs": 3
+    },
+    "flex_no_adapter": {
+      "mean": 0.7902868654836895,
+      "std": 0.014032453339883564,
+      "worst_mean": 0.6189285714285714,
+      "worst_std": 0.023777955262439705,
+      "p10_mean": 0.6789761904761905,
+      "p10_std": 0.00585803806554071,
+      "client_std_mean": 0.0978838690288505,
+      "n_runs": 3
+    },
+    "flex_frozen_adapter": {
+      "mean": 0.8042643283456328,
+      "std": 0.011889743073418073,
+      "worst_mean": 0.6221825396825397,
+      "worst_std": 0.04483217354008779,
+      "p10_mean": 0.6854682539682541,
+      "p10_std": 0.03266484494048828,
+      "client_std_mean": 0.10209000299779629,
+      "n_runs": 3
+    },
+    "flex_random_projection": {
+      "mean": 0.8060817929263929,
+      "std": 0.018370212595324554,
+      "worst_mean": 0.6402248677248678,
+      "worst_std": 0.042147643852416296,
+      "p10_mean": 0.6827724867724868,
+      "p10_std": 0.020744533434004515,
+      "client_std_mean": 0.09881306565229647,
+      "n_runs": 3
+    },
+    "flex_noise_alignment": {
+      "mean": 0.7441844133647734,
+      "std": 0.01692758620175289,
+      "worst_mean": 0.4938293650793651,
+      "worst_std": 0.08055956769272035,
+      "p10_mean": 0.6051329365079365,
+      "p10_std": 0.015288483416698499,
+      "client_std_mean": 0.12880551044792699,
+      "n_runs": 3
+    },
+    "fedavg_sgd": {
+      "mean": 0.47146053602182186,
+      "std": 0.017387135554331516,
+      "worst_mean": 0.3169444444444444,
+      "worst_std": 0.01920085517642829,
+      "p10_mean": 0.3549444444444445,
+      "p10_std": 0.01904214785841472,
+      "client_std_mean": 0.09515250578818962,
+      "n_runs": 3
+    }
+  },
+  "drops_vs_full": {
+    "flex_full": 0.0,
+    "flex_no_alignment": 0.011399468638884969,
+    "flex_no_adapter": -0.001070132087379938,
+    "flex_frozen_adapter": -0.015047594949323173,
+    "flex_random_projection": -0.016865059530083326,
+    "flex_noise_alignment": 0.04503232003153623,
+    "fedavg_sgd": 0.31775619737448774
+  },
+  "causal_rules": {
+    "adapter_dominant": {
+      "drop_pp": -0.11,
+      "verdict": "NO",
+      "interpretation": "Adapter is NOT the primary driver"
+    },
+    "alignment_dominant": {
+      "drop_pp": 1.14,
+      "verdict": "NO",
+      "interpretation": "Alignment loss has MODERATE effect"
+    },
+    "learning_critical": {
+      "diff_pp": -1.69,
+      "verdict": "NO",
+      "interpretation": "Learning is NOT critical (random \u2248 learned)"
+    },
+    "representation_learning": {
+      "diff_pp": -1.5,
+      "verdict": "NO",
+      "interpretation": "Dynamic representation learning is NOT critical"
+    },
+    "signal_quality": {
+      "diff_pp": 4.5,
+      "verdict": "YES",
+      "interpretation": "Signal quality MATTERS"
+    }
+  },
+  "conclusion": {
+    "primary": "Architecture (backbone + adapter design)",
+    "secondary": "Prototype alignment regularization",
+    "irrelevant": [
+      "Learned vs random projection"
+    ],
+    "component_ranking": [
+      [
+        "Noise alignment",
+        0.04503232003153623
+      ],
+      [
+        "Alignment loss removal",
+        0.011399468638884969
+      ],
+      [
+        "Adapter removal",
+        -0.001070132087379938
+      ],
+      [
+        "Frozen adapter",
+        -0.015047594949323173
+      ],
+      [
+        "Random projection",
+        -0.016865059530083326
+      ]
+    ]
+  }
+}

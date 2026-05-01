@@ -31,6 +31,10 @@ class TrainingConfig:
     use_guidance: bool = True
     ablation_mode: str = "full"
 
+    # Alignment mode for signal nature analysis (Block I)
+    alignment_mode: str = "cluster_prototype"
+
+
     def validate(self) -> None:
 
         if self.rounds == 0 or self.rounds < -1:
@@ -66,3 +70,5 @@ class TrainingConfig:
             raise ValueError("unlimited rounds (-1) requires early_stopping_enabled=True")
         if self.ablation_mode not in {"full", "no_clustering", "random_clusters", "no_guidance", "no_prototype_sharing", "self_only", "shuffled_prototypes", "noise_prototypes"}:
             raise ValueError("ablation_mode must be one of: 'full', 'no_clustering', 'random_clusters', 'no_guidance', 'no_prototype_sharing', 'self_only', 'shuffled_prototypes', 'noise_prototypes'")
+        if self.alignment_mode not in {"cluster_prototype", "class_centroid", "global_centroid", "random_centroid", "feature_norm", "variance_min"}:
+            raise ValueError("alignment_mode must be one of: 'cluster_prototype', 'class_centroid', 'global_centroid', 'random_centroid', 'feature_norm', 'variance_min'")

@@ -1,0 +1,42 @@
+[
+  {
+    "method": "flex_full",
+    "seed": 42,
+    "mean_accuracy": 0.0,
+    "worst_accuracy": 0.0,
+    "p10": 0.0,
+    "std": 0.0,
+    "run_status": "SUCCESS",
+    "wall_time_seconds": 377.24
+  },
+  {
+    "method": "class_centroid_alignment",
+    "seed": 42,
+    "mean_accuracy": 0.0,
+    "worst_accuracy": 0.0,
+    "p10": 0.0,
+    "std": 0.0,
+    "run_status": "SUCCESS",
+    "wall_time_seconds": 408.06
+  },
+  {
+    "method": "global_centroid_alignment",
+    "seed": 42,
+    "mean_accuracy": 0.0,
+    "worst_accuracy": 0.0,
+    "p10": 0.0,
+    "std": 0.0,
+    "run_status": "SUCCESS",
+    "wall_time_seconds": 356.21
+  },
+  {
+    "method": "random_centroid_alignment",
+    "seed": 42,
+    "mean_accuracy": 0.0,
+    "worst_accuracy": 0.0,
+    "p10": 0.0,
+    "std": 0.0,
+    "run_status": "SUCCESS",
+    "wall_time_seconds": 432.04
+  }
+]

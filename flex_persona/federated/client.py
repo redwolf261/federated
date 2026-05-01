@@ -213,7 +213,9 @@ class Client:
         cluster_feature_mean: torch.Tensor | None = None,
         lambda_cluster_center: float = 0.0,
         cluster_center_warmup_scale: float = 1.0,
+        alignment_mode: str = "cluster_prototype",
     ) -> dict[str, float]:
+
         self._last_cluster_id = int(message.cluster_id)
         self._last_cluster_distribution = message.cluster_prototype_distribution
 
@@ -230,7 +232,9 @@ class Client:
             cluster_feature_mean=cluster_feature_mean,
             lambda_cluster_center=lambda_cluster_center,
             cluster_center_warmup_scale=cluster_center_warmup_scale,
+            alignment_mode=alignment_mode,
         )
+
 
         output = {
             "cluster_id": float(self._last_cluster_id),

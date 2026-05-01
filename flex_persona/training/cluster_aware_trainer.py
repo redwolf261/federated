@@ -102,6 +102,7 @@ class ClusterAwareTrainer:
         cluster_feature_mean: Optional[torch.Tensor] = None,
         lambda_cluster_center: float = 0.0,
         cluster_center_warmup_scale: float = 1.0,
+        alignment_mode: str = "cluster_prototype",
     ) -> dict[str, float]:
         """Train a client model with cluster guidance.
 
@@ -123,6 +124,13 @@ class ClusterAwareTrainer:
             cluster_aware_epochs: Number of training epochs with cluster guidance.
             learning_rate: Learning rate for optimizer (default Adam).
             weight_decay: L2 regularization coefficient.
+            alignment_mode: Type of alignment signal to use.
+                           - cluster_prototype: Use server cluster prototypes (default)
+                           - class_centroid: Use per-class centroids from client data
+                           - global_centroid: Use single global centroid
+                           - random_centroid: Use random fixed centroids
+                           - feature_norm: L2 normalize features
+                           - variance_min: Minimize intra-batch feature variance
 
         Returns:
             Dictionary of metrics:
@@ -136,7 +144,26 @@ class ClusterAwareTrainer:
         scaler = torch.amp.GradScaler(enabled=(device == 'cuda'))
         model.train()
         optimizer = self._get_optimizer(model, learning_rate=learning_rate, weight_decay=weight_decay)
-        cluster_class_prototypes = self._cluster_class_prototypes(cluster_distribution, device)
+
+        # Pre-compute centroids based on alignment mode
+        class_centroids: Optional[dict[int, torch.Tensor]] = None
+        global_centroid: Optional[torch.Tensor] = None
+        random_centroids: Optional[dict[int, torch.Tensor]] = None
+
+        if alignment_mode == "cluster_prototype":
+            cluster_class_prototypes = self._cluster_class_prototypes(cluster_distribution, device)
+        elif alignment_mode == "class_centroid":
+            class_centroids = self._compute_class_centroids(model, train_loader, device, num_classes)
+            cluster_class_prototypes = class_centroids
+        elif alignment_mode == "global_centroid":
+            global_centroid = self._compute_global_centroid(model, train_loader, device)
+            cluster_class_prototypes = None
+        elif alignment_mode == "random_centroid":
+            random_centroids = self._compute_random_centroids(num_classes, cluster_distribution, device)
+            cluster_class_prototypes = random_centroids
+        else:
+            # feature_norm and variance_min don't use cluster_class_prototypes
+            cluster_class_prototypes = None
 
         total_local_loss = 0.0
         total_alignment_loss = 0.0
@@ -152,17 +179,43 @@ class ClusterAwareTrainer:
                     logits = model.forward_task(x_batch)
                     local_loss = self.loss_composer.local_task_loss(logits, y_batch)
                     shared_features = model.forward_shared(x_batch)
-                    cluster_alignment_loss = self._batch_cluster_alignment_loss(
-                        shared_features=shared_features,
-                        labels=y_batch,
-                        cluster_class_prototypes=cluster_class_prototypes,
-                    )
+
+                    # Compute alignment loss based on mode
+                    if alignment_mode == "cluster_prototype":
+                        cluster_alignment_loss = self._batch_cluster_alignment_loss(
+                            shared_features=shared_features,
+                            labels=y_batch,
+                            cluster_class_prototypes=cluster_class_prototypes,
+                        )
+                    elif alignment_mode in ("class_centroid", "random_centroid"):
+                        cluster_alignment_loss = self._batch_cluster_alignment_loss(
+                            shared_features=shared_features,
+                            labels=y_batch,
+                            cluster_class_prototypes=cluster_class_prototypes,
+                        )
+                    elif alignment_mode == "global_centroid":
+                        cluster_alignment_loss = self._batch_global_centroid_alignment_loss(
+                            shared_features=shared_features,
+                            global_centroid=global_centroid,
+                        )
+                    elif alignment_mode == "feature_norm":
+                        cluster_alignment_loss = self._batch_feature_norm_loss(
+                            shared_features=shared_features,
+                        )
+                    elif alignment_mode == "variance_min":
+                        cluster_alignment_loss = self._batch_variance_min_loss(
+                            shared_features=shared_features,
+                        )
+                    else:
+                        cluster_alignment_loss = shared_features.new_zeros(())
+
                     # Structured alignment: client batch mean -> assigned cluster center.
                     cluster_center_reg = 0.0
                     if cluster_feature_mean is not None and lambda_cluster_center > 0.0:
                         batch_mean = shared_features.mean(dim=0)
                         cluster_feature_mean = cluster_feature_mean.to(batch_mean.device)
                         cluster_center_reg = torch.norm(batch_mean - cluster_feature_mean, p=2) ** 2
+
                     total_loss = self.loss_composer.total_loss(
                         local_loss=local_loss,
                         cluster_loss=cluster_alignment_loss,
@@ -241,6 +294,112 @@ class ClusterAwareTrainer:
         return class_prototypes
 
     @staticmethod
+    def _compute_class_centroids(
+        model: ClientModel,
+        train_loader: DataLoader,
+        device: str,
+        num_classes: int,
+    ) -> dict[int, torch.Tensor]:
+        """Compute per-class centroids from client's own training data.
+
+        Args:
+            model: ClientModel to extract features.
+            train_loader: DataLoader with training data.
+            device: Compute device.
+            num_classes: Number of classes.
+
+        Returns:
+            Dictionary mapping class_id → centroid_tensor (shape: [shared_dim]).
+        """
+        model.eval()
+        features: list[torch.Tensor] = []
+        labels: list[torch.Tensor] = []
+
+        with torch.no_grad():
+            for x_batch, y_batch in train_loader:
+                x_batch = x_batch.to(device, non_blocking=True)
+                y_batch = y_batch.to(device, non_blocking=True)
+                z = model.extract_features(x_batch)
+                h = model.project_shared(z)
+                features.append(h.detach())
+                labels.append(y_batch.detach())
+
+        if not features:
+            return {}
+
+        all_features = torch.cat(features, dim=0)
+        all_labels = torch.cat(labels, dim=0)
+
+        centroids: dict[int, torch.Tensor] = {}
+        for class_id in range(num_classes):
+            mask = all_labels == class_id
+            if bool(mask.any()):
+                centroids[class_id] = all_features[mask].mean(dim=0)
+            else:
+                centroids[class_id] = torch.zeros(all_features.shape[1], device=device)
+
+        return centroids
+
+    @staticmethod
+    def _compute_global_centroid(
+        model: ClientModel,
+        train_loader: DataLoader,
+        device: str,
+    ) -> torch.Tensor:
+        """Compute a single global centroid from all training data.
+
+
+        Args:
+            model: ClientModel to extract features.
+            train_loader: DataLoader with training data.
+            device: Compute device.
+
+        Returns:
+            Global centroid tensor (shape: [shared_dim]).
+        """
+        model.eval()
+        features: list[torch.Tensor] = []
+
+        with torch.no_grad():
+            for x_batch, _ in train_loader:
+                x_batch = x_batch.to(device, non_blocking=True)
+                z = model.extract_features(x_batch)
+                h = model.project_shared(z)
+                features.append(h.detach())
+
+        if not features:
+            return torch.zeros(1, device=device)
+
+        all_features = torch.cat(features, dim=0)
+        return all_features.mean(dim=0)
+
+    @staticmethod
+    def _compute_random_centroids(
+        num_classes: int,
+        cluster_distribution: PrototypeDistribution,
+        device: str,
+    ) -> dict[int, torch.Tensor]:
+        """Compute random fixed centroids per class.
+
+        Args:
+            num_classes: Number of classes.
+            cluster_distribution: PrototypeDistribution to get dimension.
+            device: Compute device.
+
+        Returns:
+            Dictionary mapping class_id → random_centroid_tensor (shape: [shared_dim]).
+        """
+        shared_dim = cluster_distribution.support_points.shape[1]
+        generator = torch.Generator(device=device)
+        generator.manual_seed(cluster_distribution.client_id + 42)
+
+        centroids: dict[int, torch.Tensor] = {}
+        for class_id in range(num_classes):
+            centroids[class_id] = torch.randn(shared_dim, generator=generator, device=device)
+
+        return centroids
+
+    @staticmethod
     def _batch_cluster_alignment_loss(
         shared_features: torch.Tensor,
         labels: torch.Tensor,
@@ -273,13 +432,64 @@ class ClusterAwareTrainer:
             if not bool(mask.any()):
                 continue
             client_proto = shared_features[mask].mean(dim=0)
-            # Cosine similarity: 1 - cosine_similarity (higher is worse)
             cosine_loss = 1.0 - F.cosine_similarity(client_proto, cluster_proto, dim=0)
             losses.append(cosine_loss)
 
         if not losses:
             return shared_features.new_zeros(())
         return torch.stack(losses).mean()
+
+    @staticmethod
+    def _batch_global_centroid_alignment_loss(
+        shared_features: torch.Tensor,
+        global_centroid: torch.Tensor,
+    ) -> torch.Tensor:
+        """Compute alignment loss to a single global centroid.
+
+        All samples are pulled toward the same global centroid, regardless of class.
+
+        Args:
+            shared_features: Batch features in shared space, shape [batch_size, shared_dim].
+            global_centroid: Global centroid tensor (shape: [shared_dim]).
+
+        Returns:
+            Scalar tensor (MSE between features and global centroid).
+        """
+        global_centroid = global_centroid.to(shared_features.device)
+        return F.mse_loss(shared_features, global_centroid.unsqueeze(0).expand_as(shared_features))
+
+    @staticmethod
+    def _batch_feature_norm_loss(
+        shared_features: torch.Tensor,
+    ) -> torch.Tensor:
+        """Compute L2 normalization loss on features.
+
+        Encourages features to have unit norm, testing if geometry/scale alone matters.
+
+        Args:
+            shared_features: Batch features in shared space, shape [batch_size, shared_dim].
+
+        Returns:
+            Scalar tensor (deviation from unit norm).
+        """
+        norms = torch.norm(shared_features, p=2, dim=1)
+        return torch.mean((norms - 1.0) ** 2)
+
+    @staticmethod
+    def _batch_variance_min_loss(
+        shared_features: torch.Tensor,
+    ) -> torch.Tensor:
+        """Compute intra-batch feature variance minimization loss.
+
+        Minimizes the variance of features within the batch, testing generic regularization.
+
+        Args:
+            shared_features: Batch features in shared space, shape [batch_size, shared_dim].
+
+        Returns:
+            Scalar tensor (intra-batch variance).
+        """
+        return torch.var(shared_features, dim=0).mean()
 
     @staticmethod
     def _compute_current_distribution(
@@ -289,6 +499,7 @@ class ClusterAwareTrainer:
         num_classes: int,
         client_id: int,
     ) -> PrototypeDistribution:
+
         """Compute the client's current prototype distribution after training.
 
         After cluster-aware training, re-extract all training samples through
@@ -316,7 +527,7 @@ class ClusterAwareTrainer:
 
                 z = model.extract_features(x_batch)
                 h = model.project_shared(z)
-                features.append(h.detach())  # keep on device
+                features.append(h.detach())
                 labels.append(y_batch.detach())
 
         if not features:
@@ -324,7 +535,6 @@ class ClusterAwareTrainer:
 
         all_features = torch.cat(features, dim=0)
         all_labels = torch.cat(labels, dim=0)
-        # Only move to CPU if needed by downstream code
         prototype_dict, class_counts = PrototypeExtractor.compute_class_prototypes(
             shared_features=all_features,
             labels=all_labels,
