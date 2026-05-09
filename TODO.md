@@ -1,8 +1,7 @@
-# Block I: Signal Nature Analysis — Implementation TODO
+# Block I TODO Progress Tracker
 
-## Steps
-- [ ] Step 1: Modify `flex_persona/training/cluster_aware_trainer.py` to add alignment modes
-- [ ] Step 2: Create `scripts/run_block_i.py` experiment runner
-- [ ] Step 3: Create `scripts/generate_block_i_report.py` report generator
-- [ ] Step 4: Run experiments (21 runs total)
-- [ ] Step 5: Generate report and save to `outputs/failure_mode_coverage/block_I.md`
+## Current Status
+- [x] Step 1: cluster_aware_trainer.py already supports alignment modes (class_centroid, global_centroid, random_centroid, feature_norm, variance_min, cluster_prototype)
+
+Pending:
+- [ ] Step
