@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FLEX-Persona: Cross-Architecture Personalized Federated Learning for Non-IID and Heterogeneous Clients">
+    <meta name="theme-color" content="#141413">
+    <title>FLEX-Persona | Personalized Federated Learning Research</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== CSS Variables & Root ========== */
+        :root {
+            --bg-primary: #141413;
+            --bg-surface: #1e1e1c;
+            --bg-hover: #282824;
+            --border-color: #2a2a28;
+            
+            --text-primary: #faf9f5;
+            --text-muted: #b0aea5;
+            
+            --accent-orange: #d97757;
+            --accent-blue: #6a9bcc;
+            --accent-green: #788c5d;
+            
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+            --radius-xl: 12px;
+            
+            --transition: all 0.3s ease;
+            --transition-fast: all 0.15s ease;
+        }
+
+        /* ========== Reset & Defaults ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* ========== Typography ========== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; font-weight: 700; }
+        h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: var(--spacing-lg); }
+        h3 { font-size: 1.5rem; font-weight: 600; }
+        h4 { font-size: 1.125rem; font-weight: 600; }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-muted);
+        }
+
+        a {
+            color: var(--accent-orange);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        /* ========== Utilities ========== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .accent-orange {
+            color: var(--accent-orange);
+        }
+
+        .accent-blue {
+            color: var(--accent-blue);
+        }
+
+        .accent-green {
+            color: var(--accent-green);
+        }
+
+        /* ========== Navigation Bar ========== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(20, 20, 19, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+        }
+
+        .navbar-links {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-lg);
+        }
+
+        .navbar-links a {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar-badge {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(217, 119, 87, 0.1);
+            border: 1px solid var(--accent-orange);
+            color: var(--accent-orange);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== Hero Section ========== */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            align-items: center;
+            min-height: 100vh;
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: linear-gradient(135deg, rgba(20, 20, 19, 0.5), rgba(30, 30, 28, 0.8));
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        .hero-description {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        /* ========== Buttons ========== */
+        .btn {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 14px 32px;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-primary {
+            background: var(--accent-orange);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            background: #c86a4a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(217, 119, 87, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-orange);
+            color: var(--accent-orange);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(217, 119, 87, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ========== Hero Canvas Wrapper ========== */
+        .hero-canvas-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #networkCanvas {
+            width: 100%;
+            height: 100%;
+            max-width: 600px;
+            max-height: 600px;
+            display: block;
+            image-rendering: crisp-edges;
+        }
+
+        /* ========== Metrics Section ========== */
+        #metrics {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: linear-gradient(135deg, rgba(20, 20, 19, 0.3), rgba(30, 30, 28, 0.5));
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--spacing-lg);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .metric-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .metric-card.orange::before {
+            background: var(--accent-orange);
+        }
+
+        .metric-card.blue::before {
+            background: var(--accent-blue);
+        }
+
+        .metric-card.green::before {
+            background: var(--accent-green);
+        }
+
+        .metric-card:hover {
+            background: var(--bg-hover);
+            transform: translateY(-8px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 12px 24px rgba(217, 119, 87, 0.15);
+        }
+
+        .metric-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .metric-card.orange .metric-number {
+            color: var(--accent-orange);
+        }
+
+        .metric-card.blue .metric-number {
+            color: var(--accent-blue);
+        }
+
+        .metric-card.green .metric-number {
+            color: var(--accent-green);
+        }
+
+        .metric-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ========== Architecture Section ========== */
+        #architecture {
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        .architecture-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .architecture-flow {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -24px;
+            top: 30px;
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+            opacity: 0.5;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .step-number.orange {
+            background: rgba(217, 119, 87, 0.2);
+            color: var(--accent-orange);
+            border: 2px solid var(--accent-orange);
+        }
+
+        .step-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .step-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .tech-stack {
+            width: 100%;
+            max-width: 800px;
+            margin: var(--spacing-2xl) auto;
+            border-collapse: collapse;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .tech-stack thead {
+            background: var(--bg-hover);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tech-stack th {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            padding: var(--spacing-md);
+            text-align: left;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .tech-stack td {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        .tech-stack tbody tr:hover {
+            background: var(--bg-hover);
+        }
+
+        .tech-stack tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .privacy-callout {
+            max-width: 800px;
+            margin: var(--spacing-2xl) auto;
+            background: rgba(120, 140, 93, 0.08);
+            border-left: 4px solid var(--accent-green);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+        }
+
+        .callout-text {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* ========== Features Section ========== */
+        #features {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: linear-gradient(135deg, rgba(20, 20, 19, 0.3), rgba(30, 30, 28, 0.5));
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .feature-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-orange);
+            background: var(--bg-hover);
+            box-shadow: 0 12px 32px rgba(217, 119, 87, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.15);
+            color: var(--accent-orange);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        /* ========== Evaluation Section ========== */
+        #evaluation {
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        .evaluation-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .evaluation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--spacing-lg);
+            background: rgba(20, 20, 19, 0.5);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
+        }
+
+        .eval-column h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .eval-column ul {
+            list-style: none;
+        }
+
+        .eval-column li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            padding: var(--spacing-xs) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot.orange {
+            background: var(--accent-orange);
+        }
+
+        .dot.blue {
+            background: var(--accent-blue);
+        }
+
+        .dot.green {
+            background: var(--accent-green);
+        }
+
+        /* ========== Footer ========== */
+        footer {
+            background: #0f0f0e;
+            border-top: 1px solid var(--border-color);
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            max-width: 1400px;
+            margin: 0 auto var(--spacing-xl);
+        }
+
+        .footer-section h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-primary);
+        }
+
+        .footer-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .footer-logo::before {
+            content: '◆';
+            color: var(--accent-orange);
+            font-size: 1.25rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            padding: var(--spacing-xs) 0;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+
+        .badge {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            background: var(--border-color);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            display: inline-block;
+            transition: var(--transition-fast);
+        }
+
+        .badge:hover {
+            background: var(--accent-orange);
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* ========== Responsive Design ========== */
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding: var(--spacing-lg);
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .navbar-links {
+                gap: var(--spacing-md);
+            }
+
+            .navbar-links a {
+                font-size: 0.85rem;
+            }
+
+            #networkCanvas {
+                max-width: 450px;
+                max-height: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            
+            .navbar-links {
+                display: none;
+            }
+
+            .navbar-badge {
+                font-size: 0.65rem;
+                padding: 4px 8px;
+            }
+
+            .hero {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-md);
+            }
+
+            .metric-number {
+                font-size: 2rem;
+            }
+
+            .architecture-flow {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .flow-step::after {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .evaluation-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+                padding: var(--spacing-md);
+            }
+
+            #metrics,
+            #features {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+
+            #architecture,
+            #evaluation {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+
+            footer {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+
+            .footer-content {
+                gap: var(--spacing-md);
+                margin-bottom: var(--spacing-lg);
+            }
+
+            #networkCanvas {
+                max-width: 100%;
+                max-height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
+            
+            .navbar-logo {
+                font-size: 1rem;
+            }
+
+            .hero-title {
+                font-size: 1.5rem;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-number {
+                font-size: 1.75rem;
+            }
+
+            .tech-stack {
+                font-size: 0.8rem;
+            }
+
+            .tech-stack th,
+            .tech-stack td {
+                padding: var(--spacing-sm);
+            }
+        }
+
+        /* ========== Animations ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .metric-card {
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .metric-card:nth-child(1) { animation-delay: 0s; }
+        .metric-card:nth-child(2) { animation-delay: 0.1s; }
+        .metric-card:nth-child(3) { animation-delay: 0.2s; }
+        .metric-card:nth-child(4) { animation-delay: 0.3s; }
+
+        /* ========== Print Styles ========== */
+        @media print {
+            .navbar {
+                position: static;
+            }
+
+            footer {
+                page-break-before: avoid;
+            }
+
+            #networkCanvas {
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">
+                <span class="logo-icon">◆</span>
+                <span>FLEX-Persona</span>
+            </div>
+            <ul class="navbar-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#evaluation">Evaluation</a></li>
+                <li><a href="https://github.com/redwolf261/federated" target="_blank">GitHub</a></li>
+            </ul>
+            <div class="navbar-badge">Research Preview</div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="overview" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Cross-Architecture<br>
+                <span class="accent-orange">Personalized</span><br>
+                Federated Learning
+            </h1>
+            <p class="hero-description">
+                FLEX-Persona enables federated learning across heterogeneous clients with non-IID data through representation-based collaboration. Instead of sharing model parameters, clients exchange compact representation summaries, enabling seamless cross-architecture collaboration while preserving privacy and improving personalization.
+            </p>
+            <div class="hero-ctas">
+                <button class="btn btn-primary">View Paper</button>
+                <button class="btn btn-secondary">Get Started</button>
+            </div>
+        </div>
+        <div class="hero-canvas-wrapper">
+            <canvas id="networkCanvas" width="600" height="600"></canvas>
+        </div>
+    </section>
+
+    <!-- ========== METRICS SECTION ========== -->
+    <section id="metrics">
+        <div class="metrics-grid">
+            <div class="metric-card orange">
+                <div class="metric-number">↑12%</div>
+                <div class="metric-label">Worst-Client Accuracy</div>
+            </div>
+            <div class="metric-card blue">
+                <div class="metric-number">↑8%</div>
+                <div class="metric-label">Personalization Gain</div>
+            </div>
+            <div class="metric-card green">
+                <div class="metric-number">↓40%</div>
+                <div class="metric-label">Communication Overhead</div>
+            </div>
+            <div class="metric-card orange">
+                <div class="metric-number">3×</div>
+                <div class="metric-label">Faster Convergence</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ARCHITECTURE SECTION ========== -->
+    <section id="architecture">
+        <div class="architecture-container">
+            <h2>System Architecture</h2>
+
+            <div class="architecture-flow">
+                <div class="flow-step">
+                    <div class="step-number orange">1</div>
+                    <h4 class="step-title">Local Training</h4>
+                    <p class="step-description">Optimize local loss on client data</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number orange">2</div>
+                    <h4 class="step-title">Upload Repr.</h4>
+                    <p class="step-description">Send adapter outputs to server</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number orange">3</div>
+                    <h4 class="step-title">Clustering</h4>
+                    <p class="step-description">Group via Wasserstein distance</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number orange">4</div>
+                    <h4 class="step-title">Aggregation</h4>
+                    <p class="step-description">Combine cluster prototypes</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number orange">5</div>
+                    <h4 class="step-title">Fine-tune</h4>
+                    <p class="step-description">Personalized head training</p>
+                </div>
+            </div>
+
+            <table class="tech-stack">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Technologies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Model Training</td>
+                        <td>PyTorch, torchvision</td>
+                    </tr>
+                    <tr>
+                        <td>Federated Framework</td>
+                        <td>Flower (Flwr)</td>
+                    </tr>
+                    <tr>
+                        <td>Data Partitioning</td>
+                        <td>scikit-learn, Dirichlet distribution</td>
+                    </tr>
+                    <tr>
+                        <td>Clustering & Aggregation</td>
+                        <td>scipy, POT (Optimal Transport)</td>
+                    </tr>
+                    <tr>
+                        <td>Experiment Tracking</td>
+                        <td>Weights & Biases (W&B)</td>
+                    </tr>
+                    <tr>
+                        <td>Datasets</td>
+                        <td>FEMNIST (3597 writers), CIFAR-100</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="privacy-callout">
+                <p class="callout-text">
+                    <em>✓ Clients only share compact representation summaries, never raw data or full model parameters—ensuring differential privacy guarantees while enabling effective collaboration.</em>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES SECTION ========== -->
+    <section id="features">
+        <div class="features-container">
+            <h2>Key Capabilities</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">◆</div>
+                    <h3>Local Client Training</h3>
+                    <p>Each client optimizes independently on local data, preserving autonomy and enabling heterogeneous architectures.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">◈</div>
+                    <h3>Representation Adapter</h3>
+                    <p>Neural networks map diverse local features into a shared, low-dimensional latent space for cross-client alignment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⬢</div>
+                    <h3>Secure Representation Sharing</h3>
+                    <p>Compact summary distributions replace full parameter sharing, dramatically reducing bandwidth and communication overhead.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">◊</div>
+                    <h3>Dynamic Clustering</h3>
+                    <p>Server automatically groups similar clients using Wasserstein distance on prototype distributions for optimal collaboration.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">★</div>
+                    <h3>Cluster-Level Aggregation</h3>
+                    <p>Shared knowledge derived from peer clusters guides personalized updates while maintaining client-specific specialization.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">◆</div>
+                    <h3>Personalized Head Fine-Tuning</h3>
+                    <p>Individual task-specific layers per client balance global alignment with local optimization for superior personalization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EVALUATION SECTION ========== -->
+    <section id="evaluation">
+        <div class="evaluation-container">
+            <h2>Comprehensive Evaluation</h2>
+            <div class="evaluation-grid">
+                <div class="eval-column">
+                    <h3>Datasets</h3>
+                    <ul>
+                        <li>FEMNIST (3597 writers)</li>
+                        <li>Character recognition</li>
+                        <li>CIFAR-100 (Dirichlet α=0.1)</li>
+                        <li>CIFAR-100 (Dirichlet α=0.5)</li>
+                    </ul>
+                </div>
+                <div class="eval-column">
+                    <h3>Client Architectures</h3>
+                    <ul>
+                        <li>SmallCNN (~100K params)</li>
+                        <li>ResNet8 (8-layer)</li>
+                        <li>MLP (feedforward)</li>
+                        <li>Heterogeneous combinations</li>
+                    </ul>
+                </div>
+                <div class="eval-column">
+                    <h3>Baseline Comparisons</h3>
+                    <ul>
+                        <li>FedAvg (standard)</li>
+                        <li>FedProx (regularized)</li>
+                        <li>IFCA (clustering-based)</li>
+                        <li>pFedMe (personalized)</li>
+                        <li>Ditto (multi-head)</li>
+                    </ul>
+                </div>
+                <div class="eval-column">
+                    <h3>Key Metrics</h3>
+                    <ul>
+                        <li><span class="dot orange"></span> Accuracy</li>
+                        <li><span class="dot green"></span> Privacy Cost</li>
+                        <li><span class="dot blue"></span> Communication (KB)</li>
+                        <li><span class="dot orange"></span> Convergence (rounds)</li>
+                        <li><span class="dot green"></span> Personalization Gap</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">FLEX-Persona</div>
+                <p>Cross-Architecture Personalized Federated Learning for Non-IID and Heterogeneous Clients</p>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Research Paper</a></li>
+                    <li><a href="https://github.com/redwolf261/federated" target="_blank">GitHub Repository</a></li>
+                    <li><a href="#">Authors & Affiliations</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Technology</h4>
+                <div class="tech-badges">
+                    <span class="badge">PyTorch</span>
+                    <span class="badge">Flower</span>
+                    <span class="badge">FEMNIST</span>
+                    <span class="badge">CIFAR-100</span>
+                    <span class="badge">POT</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Related</h4>
+                <ul>
+                    <li><a href="#">W&B Experiments</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 FLEX-Persona Research Team. All rights reserved. | Open Source | Made with ♥ for Federated Learning</p>
+        </div>
+    </footer>
+
+    <!-- ========== CANVAS ANIMATION SCRIPT ========== -->
+    <script>
+        // ========== Canvas Setup ==========
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+        
+        let animationFrameId;
+        let time = 0;
+
+        // ========== Configuration ==========
+        const CONFIG = {
+            clusterCount: 3,
+            nodesPerCluster: 6,
+            orbitRadius: 80,
+            wobbleAmount: 15,
+            wobbleSpeed: 2.0, // Hz
+            nodeRadius: 8,
+            serverRadius: 14,
+            glowRadius: 20,
+            packetRadius: 4,
+            packetTravelTime: 1.2,
+            packetRepeatTime: 1.5,
+            colors: {
+                cluster1: '#6a9bcc', // Blue
+                cluster2: '#d97757', // Orange
+                cluster3: '#788c5d', // Green
+            }
+        };
+
+        // ========== Cluster Definition ==========
+        const clusters = [
+            {
+                id: 0,
+                color: CONFIG.colors.cluster1,
+                centroidX: 150,
+                centroidY: 200,
+                nodes: []
+            },
+            {
+                id: 1,
+                color: CONFIG.colors.cluster2,
+                centroidX: 300,
+                centroidY: 400,
+                nodes: []
+            },
+            {
+                id: 2,
+                color: CONFIG.colors.cluster3,
+                centroidX: 450,
+                centroidY: 200,
+                nodes: []
+            }
+        ];
+
+        const server = {
+            x: 300,
+            y: 300,
+            radius: CONFIG.serverRadius,
+            color: '#faf9f5'
+        };
+
+        // ========== Initialize Nodes ==========
+        function initializeNodes() {
+            clusters.forEach((cluster, clusterIdx) => {
+                for (let i = 0; i < CONFIG.nodesPerCluster; i++) {
+                    cluster.nodes.push({
+                        id: `c${clusterIdx}_n${i}`,
+                        clusterIdx: clusterIdx,
+                        clientIdx: i,
+                        baseAngle: (i * 60) * Math.PI / 180,
+                        orbitRadius: CONFIG.orbitRadius,
+                        radius: CONFIG.nodeRadius,
+                        wobbleAmount: CONFIG.wobbleAmount,
+                        wobbleSpeed: CONFIG.wobbleSpeed
+                    });
+                }
+            });
+        }
+
+        // ========== Animation Helper Functions ==========
+        function getNodePosition(cluster, node, currentTime) {
+            const wobble = Math.sin(currentTime * node.wobbleSpeed * 2 * Math.PI) * node.wobbleAmount;
+            const angle = node.baseAngle + wobble * 0.1;
+            
+            return {
+                x: cluster.centroidX + Math.cos(angle) * node.orbitRadius,
+                y: cluster.centroidY + Math.sin(angle) * node.orbitRadius
+            };
+        }
+
+        function drawNode(x, y, radius, color, time) {
+            const pulseScale = 1 + 0.1 * Math.sin(time * 2 * Math.PI);
+            
+            // Outer circle with pulse
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, radius * pulseScale, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // White center dot
+            ctx.fillStyle = '#faf9f5';
+            ctx.beginPath();
+            ctx.arc(x, y, radius * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function drawDashedLine(x1, y1, x2, y2, color, dashLength = 8, gapLength = 6) {
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.setLineDash([dashLength, gapLength]);
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        function drawLine(x1, y1, x2, y2, color, width, opacity) {
+            ctx.strokeStyle = color;
+            ctx.globalAlpha = opacity;
+            ctx.lineWidth = width;
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+            ctx.globalAlpha = 1.0;
+        }
+
+        function drawIntraClusterEdges(time) {
+            clusters.forEach(cluster => {
+                const positions = cluster.nodes.map(node => getNodePosition(cluster, node, time));
+                
+                for (let i = 0; i < positions.length; i++) {
+                    for (let j = i + 1; j < positions.length; j++) {
+                        const p1 = positions[i];
+                        const p2 = positions[j];
+                        const dx = p2.x - p1.x;
+                        const dy = p2.y - p1.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 110) {
+                            const opacity = (110 - distance) / 110 * 0.4;
+                            drawLine(p1.x, p1.y, p2.x, p2.y, cluster.color, 1, opacity);
+                        }
+                    }
+                }
+            });
+        }
+
+        function drawCentroidServerEdges() {
+            clusters.forEach(cluster => {
+                drawDashedLine(cluster.centroidX, cluster.centroidY, server.x, server.y, cluster.color);
+                ctx.globalAlpha = 0.3;
+                ctx.stroke();
+                ctx.globalAlpha = 1.0;
+            });
+        }
+
+        function drawClientNodes(time) {
+            clusters.forEach(cluster => {
+                cluster.nodes.forEach(node => {
+                    const pos = getNodePosition(cluster, node, time);
+                    drawNode(pos.x, pos.y, node.radius, cluster.color, time);
+                });
+            });
+        }
+
+        function drawDataPackets(time) {
+            clusters.forEach((cluster, clusterIdx) => {
+                const staggerOffset = clusterIdx * 0.5;
+                const staggeredTime = (time - staggerOffset) % CONFIG.packetRepeatTime;
+                
+                if (staggeredTime >= 0 && staggeredTime < CONFIG.packetTravelTime) {
+                    const progress = staggeredTime / CONFIG.packetTravelTime;
+                    // Ease-out timing
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
+                    
+                    const x = cluster.centroidX + (server.x - cluster.centroidX) * easeProgress;
+                    const y = cluster.centroidY + (server.y - cluster.centroidY) * easeProgress;
+                    
+                    ctx.fillStyle = cluster.color;
+                    ctx.globalAlpha = 0.8;
+                    ctx.beginPath();
+                    ctx.arc(x, y, CONFIG.packetRadius, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.globalAlpha = 1.0;
+                }
+            });
+        }
+
+        function drawServerNode(time) {
+            // Outer glow ring
+            const glowRadius = CONFIG.glowRadius + 5 * Math.sin(time * 2 * Math.PI);
+            ctx.strokeStyle = '#faf9f5';
+            ctx.globalAlpha = 0.3;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(server.x, server.y, glowRadius, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.globalAlpha = 1.0;
+            
+            // Server circle
+            const pulseScale = 1 + 0.15 * Math.sin(time * 2 * Math.PI);
+            ctx.fillStyle = server.color;
+            ctx.beginPath();
+            ctx.arc(server.x, server.y, server.radius * pulseScale, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Server inner dot
+            ctx.fillStyle = CONFIG.colors.cluster1;
+            ctx.beginPath();
+            ctx.arc(server.x, server.y, server.radius * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // ========== Main Animation Loop ==========
+        function animate() {
+            time += 1 / 60; // 60 FPS
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = 'transparent';
+            
+            // Render in order
+            drawIntraClusterEdges(time);
+            drawCentroidServerEdges();
+            drawClientNodes(time);
+            drawDataPackets(time);
+            drawServerNode(time);
+            
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        // ========== Start Animation ==========
+        function startAnimation() {
+            initializeNodes();
+            animate();
+        }
+
+        // ========== Initialize on Load ==========
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startAnimation);
+        } else {
+            startAnimation();
+        }
+
+        // ========== Smooth Scroll Navigation ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== '#overview') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // ========== Cleanup on Unload ==========
+        window.addEventListener('beforeunload', () => {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+        });
+    </script>
+</body>
+</html>
